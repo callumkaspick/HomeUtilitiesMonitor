@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row class="text-center">
-      <v-col cols="12">
+      <v-col cols="12" class="mt-6 mb-16">
         <v-img
           src="https://cdn.shopify.com/s/files/1/0576/0453/8540/products/powerx-electricity-product_1265x700_dfb06e06-2362-402b-99e8-cf7ce0d8cd65_576x.png?v=1634756386"          class="my-3"
           contain
@@ -19,9 +19,9 @@
           <br>on your utility usage.
         </p>
       </v-col>
-
+      
       <v-col
-        class="mb-5"
+        class="mb-5 mt-16"
         cols="12"
       >
         <h2 class="headline font-weight-bold mb-3">
@@ -144,3 +144,4 @@
     }),
   }
 </script>
+
