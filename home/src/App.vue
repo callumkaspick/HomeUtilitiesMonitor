@@ -8,7 +8,7 @@
     
       <div class="d-flex align-center" @click="$router.push('/')">
         <v-img
-          alt="Vuetify Logo"
+          alt="HUM Logo"
           class="shrink mr-2"
           contain
           src="https://www.pngall.com/wp-content/uploads/5/Green-Leaf-PNG-Free-Image.png"
@@ -19,6 +19,26 @@
         HUM
       </v-app-bar-title>
       </div>
+
+      <v-app-bar-item>
+        <v-btn
+        target="_blank"
+        text
+        @click="$router.push('/')"
+        >
+          <span class="mr-2">Home</span>
+        </v-btn>
+      </v-app-bar-item>
+
+      <v-app-bar-item>
+        <v-btn
+        target="_blank"
+        text
+        @click="$router.push('/about')"
+        >
+          <span class="mr-2">About Us</span>
+        </v-btn>
+      </v-app-bar-item>
 
       <v-spacer></v-spacer>
 
@@ -37,7 +57,7 @@
       >
         <span class="mr-2">Register</span>
       </v-btn>
-
+      
     </v-app-bar>
 
     <v-main>

@@ -3,25 +3,20 @@
     <v-row class="text-center">
       <v-col cols="12">
         <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
+          src="https://cdn.shopify.com/s/files/1/0576/0453/8540/products/powerx-electricity-product_1265x700_dfb06e06-2362-402b-99e8-cf7ce0d8cd65_576x.png?v=1634756386"          class="my-3"
           contain
-          height="200"
+          height="500"
         />
       </v-col>
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Welcome to Vuetify
+          Welcome to HUM
         </h1>
 
         <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br>please join our online
-          <a
-            href="https://community.vuetifyjs.com"
-            target="_blank"
-          >Discord Community</a>
+          An affordable solution to save you money
+          <br>on your utility usage.
         </p>
       </v-col>
 
