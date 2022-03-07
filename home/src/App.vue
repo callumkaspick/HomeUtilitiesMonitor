@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    
     <v-app-bar
       app
       color="primary"
@@ -78,7 +79,11 @@
       </v-btn>
       
     </v-app-bar>
-
+    <v-navigation-drawer 
+    v-model="drawer" 
+    app >
+      <p>test</p>
+    </v-navigation-drawer>
     <v-main>
       <router-view/>
     </v-main>
@@ -91,7 +96,7 @@ export default {
   name: 'App',
 
   data: () => ({
-    //
+    drawer: true
   }),
   methods: {
     logout () {
