@@ -26,12 +26,17 @@
                               v-model="password"
                            ></v-text-field>
                         </v-form>
-                     </v-card-text>
-                     <v-card-actions>
-                        <v-spacer></v-spacer>
+                        <v-btn 
+                        color="white" 
+                        @click="trouble" 
+                        small
+                        elevation="0">Trouble Signing In?</v-btn>
                         <br>
                         <div class="danger-alert" v-html="error" />
                         <br>
+                     </v-card-text>
+                     <v-card-actions>
+                        <v-spacer></v-spacer>
                         <v-btn color="primary" @click="login">Login</v-btn>
                      </v-card-actions>
                   </v-card>
@@ -43,17 +48,6 @@
 </template>
 
 <script>
-export default {
-   name: 'Login',
-   props: {
-      source: String,
-   },
-};
-</script>
-
-<style></style>
-
-<script>
 import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
@@ -79,41 +73,11 @@ export default {
       } catch (error) {
         this.error = error.response.data.error
       }
-    }
-  }
-}
-</script>
-
-<style scoped>
-</style>
-
-
-<script>
-import AuthenticationService from '@/services/AuthenticationService'
-
-export default {
-  data () {
-    return {
-      username: '',
-      password: '',
-      error: null
-    }
-  },
-  methods: {
-    async login () {
-      try {
-        const response = await AuthenticationService.login({
-          username: this.username,
-          password: this.password
+    },
+    trouble () {
+      this.$router.push({
+          name: 'troubleLoggingIn'
         })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({
-          name: 'home'
-        })
-      } catch (error) {
-        this.error = error.response.data.error
-      }
     }
   }
 }
