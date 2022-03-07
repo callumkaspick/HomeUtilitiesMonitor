@@ -3,13 +3,11 @@ A Vue.js / Express.js web application for viewing your electric and water usage.
 
 # Setup
 
-You need to have Node version **8.2.1 - 8.9.3** installed.
-
 ### Client - Terminal A
 ```
-cd client
+cd home
 npm install
-npm start
+npm run serve
 ```
 
 ### Server - Terminal B
