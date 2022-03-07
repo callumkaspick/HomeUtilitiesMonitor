@@ -43,6 +43,7 @@
       <v-spacer></v-spacer>
 
       <v-btn
+        v-if="!$store.state.isUserLoggedIn"
         target="_blank"
         text
         @click="$router.push('/login')"
@@ -51,11 +52,20 @@
       </v-btn>
 
       <v-btn
+        v-if="!$store.state.isUserLoggedIn"
         target="_blank"
         text
         @click="$router.push('/register')"
       >
         <span class="mr-2">Register</span>
+      </v-btn>
+
+      <v-btn 
+        v-if="$store.state.isUserLoggedIn"
+        flat 
+        dark
+        @click="logout">
+        Log Out
       </v-btn>
       
     </v-app-bar>
@@ -74,5 +84,14 @@ export default {
   data: () => ({
     //
   }),
+  methods: {
+    logout () {
+      this.$store.dispatch('setToken', null)
+      this.$store.dispatch('setUser', null)
+      this.$router.push({
+        name: 'home'
+      })
+    }
+  }
 };
 </script>
