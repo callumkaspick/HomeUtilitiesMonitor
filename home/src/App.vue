@@ -43,6 +43,15 @@
       <v-spacer></v-spacer>
 
       <v-btn
+        v-if="$store.state.isUserLoggedIn"
+        target="_blank"
+        text
+        @click="$router.push('/app')"
+      >
+        <span class="mr-2">App</span>
+      </v-btn>
+
+      <v-btn
         v-if="!$store.state.isUserLoggedIn"
         target="_blank"
         text
