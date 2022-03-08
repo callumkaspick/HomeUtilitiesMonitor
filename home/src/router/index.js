@@ -59,6 +59,11 @@ const routes = [
     path: '/electric',
     name: 'electric',
     component: ElectricView
+  },
+  {
+    path: '/notifications',
+    name: 'notifications',
+    component: NotificationView
   }
 ]
 
