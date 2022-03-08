@@ -8,6 +8,7 @@ import TroubleLoggingIn from '../views/TroubleLoggingIn.vue'
 import SettingsView from '../views/SettingsView.vue'
 import WaterView from '../views/WaterView.vue'
 import ElectricView from '../views/ElectricView.vue'
+import NotificationView from '../views/NotificationView.vue'
 
 Vue.use(VueRouter)
 
