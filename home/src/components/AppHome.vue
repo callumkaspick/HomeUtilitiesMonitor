@@ -4,16 +4,19 @@
       <v-row justify="center" class="pt-16 pb-8">
           <h1>Welcome, {{ user }}</h1>
       </v-row>
-      <v-row justify="space-around">
+      <v-row justify="center">
           <v-col 
           cols="12"
           xs="12"
           sm="12"
-          md="5">
+          md="6">
             <v-card
+            class="d-flex align-center justify-center"
             height="500"
-            width="500">
-              <v-card-title justify="center">
+            width="500"
+            elevation-12
+            >
+              <v-card-title class="center-text">
                 Electric
               </v-card-title>
             </v-card>
@@ -22,7 +25,7 @@
           cols="12"
           xs="12"
           sm="12"
-          md="5">
+          md="6">
             <v-card
             height="500"
             width="500">

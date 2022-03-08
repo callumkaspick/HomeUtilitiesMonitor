@@ -3,7 +3,7 @@
     <v-col v-if="$store.state.isUserLoggedIn">
       <app-home />
     </v-col>
-    <v-col v-if="!$store.state.isUserLoggedIn">
+    <v-col v-if="!$store.state.isUserLoggedIn" cols="12">
       <hello-world />
     </v-col>
   </v-row>
