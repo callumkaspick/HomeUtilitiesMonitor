@@ -6,7 +6,10 @@
       color="primary"
       dark
     >
-     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+     <v-app-bar-nav-icon 
+     @click="drawer = !drawer"
+     v-if="$store.state.isUserLoggedIn">
+     </v-app-bar-nav-icon>
       <div class="d-flex align-center" @click="$router.push('/')">
         <v-img
           alt="HUM Logo"
@@ -21,25 +24,7 @@
       </v-app-bar-title>
       </div>
 
-      <v-app-bar-item>
-        <v-btn
-        target="_blank"
-        text
-        @click="$router.push('/')"
-        >
-          <span class="mr-2">Home</span>
-        </v-btn>
-      </v-app-bar-item>
 
-      <v-app-bar-item>
-        <v-btn
-        target="_blank"
-        text
-        @click="$router.push('/about')"
-        >
-          <span class="mr-2">About Us</span>
-        </v-btn>
-      </v-app-bar-item>
 
       <v-spacer></v-spacer>
 
@@ -49,7 +34,7 @@
         text
         @click="$router.push('/app')"
       >
-        <span class="mr-2">App</span>
+        <span class="mr-2">App Home</span>
       </v-btn>
 
       <v-btn
