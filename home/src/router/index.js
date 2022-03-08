@@ -5,6 +5,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import AppView from '../views/AppView.vue'
 import TroubleLoggingIn from '../views/TroubleLoggingIn.vue'
+import SettingsView from '../views/SettingsView.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/troubleLoggingIn',
     name: 'troubleLoggingIn',
     component: TroubleLoggingIn
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: SettingsView
   },
   {
     path: '/about',

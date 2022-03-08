@@ -1,11 +1,12 @@
 <template>
   <v-app>
+    
     <v-app-bar
       app
       color="primary"
       dark
     >
-    
+     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <div class="d-flex align-center" @click="$router.push('/')">
         <v-img
           alt="HUM Logo"
@@ -78,7 +79,26 @@
       </v-btn>
       
     </v-app-bar>
+    <v-navigation-drawer 
+    v-model="drawer" 
+    app >
+      <v-list>
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          :to="item.path"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
 
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
       <router-view/>
     </v-main>
@@ -90,9 +110,18 @@
 export default {
   name: 'App',
 
-  data: () => ({
-    //
-  }),
+  data () {
+    return {
+      items: [
+        { title: 'Home', icon: 'mdi-view-dashboard', path: '/' },
+        { title: 'Profile', icon: 'mdi-account-box', path: '/about'},
+        { title: 'Settings', icon: 'mdi-cog', path: '/settings'},
+        { title: 'About', icon: 'mdi-information', path: '/about'},
+        { title: 'Contact', icon: 'mdi-mail', path: '/about'},
+      ],
+      drawer: false,
+    }
+  },
   methods: {
     logout () {
       this.$store.dispatch('setToken', null)
