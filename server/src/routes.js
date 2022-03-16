@@ -12,8 +12,9 @@ module.exports = (app) => {
     AuthenticationController.login)
   app.post('/newUsername',
     ChangeController.changeUsername)
-  app.get('/user/:username',
-    TestController.getUser)
-  app.get('/getResponse',
-    TestController.getResponse)  
+  app.post('/newEmail',
+    ChangeController.changeEmail) 
+  app.post('/newPassword',
+    ChangeController.changePassword) 
+
 }
