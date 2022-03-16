@@ -38,6 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     return bcrypt.compareAsync(password, this.password)
   }
 
+  User.prototype.changeUsername = function (user, newUsername){
+    user.setDataValue('username', newUsername)
+  }
+
   User.associate = function (models) {
   }
 

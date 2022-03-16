@@ -38,6 +38,15 @@
       </v-btn>
 
       <v-btn
+        v-if="$store.state.isUserLoggedIn"
+        target="_blank"
+        text
+        @click="$router.push('/newUsername')"
+      >
+        <span class="mr-2">Change Password</span>
+      </v-btn>
+      
+      <v-btn
         v-if="!$store.state.isUserLoggedIn"
         target="_blank"
         text

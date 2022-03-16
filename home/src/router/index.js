@@ -6,6 +6,7 @@ import RegisterView from '../views/RegisterView.vue'
 import AppView from '../views/AppView.vue'
 import TroubleLoggingIn from '../views/TroubleLoggingIn.vue'
 import SettingsView from '../views/SettingsView.vue'
+import NewUsernameView from '../views/NewUsernameView'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/settings',
     name: 'settings',
     component: SettingsView
+  },
+  {
+    path: '/newUsername',
+    name: 'newUsername',
+    component: NewUsernameView
   },
   {
     path: '/about',

@@ -12,7 +12,7 @@
                         <v-form>
                             <v-text-field
                               prepend-icon="person"
-                              name="username"
+                              name="newUsername"
                               label="New username"
                               type="text"
                               v-model="newUsername"
@@ -39,7 +39,7 @@
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="login">Login</v-btn>
+                        <v-btn color="primary" @click="createNewUsername">Change</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -64,11 +64,9 @@ export default {
   },
   methods: {
     async createNewUsername () {
-       //If the stored username is the same as the entered...
-       if (this.$store.user.username === this.username){
-          try {
-             //validate password
-             const responseForPassword = await AuthenticationService.validatePassword({
+       try {
+             //validate by logging in
+             const responseForPassword = await AuthenticationService.login({
                username: this.username,
                password: this.password,
              })
@@ -78,20 +76,16 @@ export default {
                   newUsername: this.newUsername,
                   username: this.username,
                })
+               this.$store.dispatch('setToken', response.data.token)
+               this.$store.dispatch('setUser', response.data.user)
              }
             catch (error) {
                this.error = error.responseUsernameUpdate.data.error
             } 
-          }
-          catch (error) {
-             this.error = error.responseForPassword.data.error
-          }
-          //Update what user is currently logged in since it has changed usernames
-          this.$store.dispatch('setUser', response.data.user)
-       }
-       else {
-          this.error = 'Username does not match account currently signed in.'
-       }
+      }
+      catch (error) {
+         this.error = error.responseForPassword.data.error
+      }
     },
   }
 }
