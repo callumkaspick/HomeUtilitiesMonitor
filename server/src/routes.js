@@ -3,6 +3,7 @@ const AuthenticationControllerPolicy = require('./policies/AuthenticationControl
 const ChangeController = require('./controllers/ChangeController')
 const isAuthenticated = require('./policies/isAuthenticated')
 const TestController = require('./controllers/TestController')
+const ChangeControllerPolicy = require('./policies/ChangeControllerPolicy')
 
 module.exports = (app) => {
   app.post('/register',
@@ -11,10 +12,13 @@ module.exports = (app) => {
   app.post('/login',
     AuthenticationController.login)
   app.post('/newUsername',
+    ChangeControllerPolicy.checkNewUsername,
     ChangeController.changeUsername)
   app.post('/newEmail',
+    ChangeControllerPolicy.checkNewEmail,
     ChangeController.changeEmail) 
   app.post('/newPassword',
+    ChangeControllerPolicy.checkNewPassword,
     ChangeController.changePassword) 
 
 }
