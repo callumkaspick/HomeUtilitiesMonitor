@@ -43,7 +43,23 @@
         text
         @click="$router.push('/newUsername')"
       >
+        <span class="mr-2">Change Username</span>
+      </v-btn>
+      <v-btn
+        v-if="$store.state.isUserLoggedIn"
+        target="_blank"
+        text
+        @click="$router.push('/newPassword')"
+      >
         <span class="mr-2">Change Password</span>
+      </v-btn>
+      <v-btn
+        v-if="$store.state.isUserLoggedIn"
+        target="_blank"
+        text
+        @click="$router.push('/newEmail')"
+      >
+        <span class="mr-2">Change Email</span>
       </v-btn>
       
       <v-btn
@@ -131,5 +147,8 @@ export default {
 <style>
 .danger-alert {
   color: red;
+}
+.success-alert {
+  color: green;
 }
 </style>

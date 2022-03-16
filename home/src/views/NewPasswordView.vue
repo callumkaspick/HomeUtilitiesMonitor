@@ -36,6 +36,9 @@
                         <br>
                         <div class="danger-alert" v-html="error" />
                         <br>
+                        <br>
+                        <div class="success-alert">{{successMessage}}</div>
+                        <br>
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
@@ -59,7 +62,8 @@ export default {
       username: '',
       password: '',
       newPassword: '',
-      error: null
+      error: null,
+      successMessage: null,
     }
   },
   methods: {
@@ -76,6 +80,7 @@ export default {
                   newPassword: this.newPassword,
                   password: this.password,
                })
+               this.successMessage = 'Password successfully changed'
                this.$store.dispatch('setToken', response.data.token)
                this.$store.dispatch('setUser', response.data.user)
              }

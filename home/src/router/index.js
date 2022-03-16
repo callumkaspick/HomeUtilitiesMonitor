@@ -7,6 +7,8 @@ import AppView from '../views/AppView.vue'
 import TroubleLoggingIn from '../views/TroubleLoggingIn.vue'
 import SettingsView from '../views/SettingsView.vue'
 import NewUsernameView from '../views/NewUsernameView'
+import NewEmailView from '../views/NewEmailView'
+import NewPasswordView from '../views/NewPasswordView'
 
 Vue.use(VueRouter)
 
@@ -45,6 +47,16 @@ const routes = [
     path: '/newUsername',
     name: 'newUsername',
     component: NewUsernameView
+  },
+  {
+    path: '/newEmail',
+    name: 'newEmail',
+    component: NewEmailView
+  },
+  {
+    path: '/newPassword',
+    name: 'newPassword',
+    component: NewPasswordView
   },
   {
     path: '/about',

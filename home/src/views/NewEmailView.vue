@@ -36,6 +36,9 @@
                         <br>
                         <div class="danger-alert" v-html="error" />
                         <br>
+                        <br>
+                        <div class="success-alert">{{successMessage}}</div>
+                        <br>
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
@@ -59,7 +62,8 @@ export default {
       username: '',
       password: '',
       newEmail: '',
-      error: null
+      error: null,
+      successMessage: null,
     }
   },
   methods: {
@@ -75,6 +79,7 @@ export default {
                const responseEmailUpdate = await UpdateDetailsService.newEmail({
                   newEmail: this.newEmail,
                })
+               this.successMessage = 'Email successfully changed'
                this.$store.dispatch('setToken', response.data.token)
                this.$store.dispatch('setUser', response.data.user)
              }
