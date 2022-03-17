@@ -3,8 +3,7 @@
     
     <v-app-bar
       app
-      color="primary"
-      dark
+      color="#45FF04"
     >
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
@@ -99,11 +98,12 @@ export default {
     return {
       items: [
         { title: 'Home', icon: 'mdi-view-dashboard', path: '/' },
-        { title: 'Profile', icon: 'mdi-account-box', path: '/about'},
+        { title: 'Profile', icon: 'mdi-account-box', path: '/profile'},
         { title: 'Settings', icon: 'mdi-cog', path: '/settings'},
         { title: 'About', icon: 'mdi-information', path: '/about'},
         { title: 'Contact', icon: 'mdi-mail', path: '/about'},
       ],
+
       drawer: false,
     }
   },
