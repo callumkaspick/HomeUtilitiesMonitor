@@ -32,7 +32,7 @@
         v-if="$store.state.isUserLoggedIn"
         target="_blank"
         text
-        @click="$router.push('/app')"
+        @click="$router.push('/')"
       >
         <span class="mr-2">App Home</span>
       </v-btn>

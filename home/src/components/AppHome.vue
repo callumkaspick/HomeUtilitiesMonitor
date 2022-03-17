@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <!-- Still need following on main:
+    - Resize text and icon inside buttons to fit 
+    - grab username string and implement in custom welcome message
+    - set constraints for buttons
+    --> 
     <!-- Header for main page -->
     <v-row class="text-center">
       <v-col class="mt-6 mb-16">
@@ -14,7 +19,7 @@
       <v-btn depressed large elevation="3" class="yellow mx-4" width="550" height="580" @click="$router.push('/electric')">
         <v-icon contain height="580" width="550">
           electric_bolt
-          </v-icon>
+        </v-icon>
         <span>Electricity</span>
       </v-btn>
 
