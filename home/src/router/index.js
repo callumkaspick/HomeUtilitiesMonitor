@@ -9,6 +9,9 @@ import SettingsView from '../views/SettingsView.vue'
 import NewUsernameView from '../views/NewUsernameView'
 import NewEmailView from '../views/NewEmailView'
 import NewPasswordView from '../views/NewPasswordView'
+import WaterView from '../views/WaterView.vue'
+import ElectricView from '../views/ElectricView.vue'
+import NotificationView from '../views/NotificationView.vue'
 
 Vue.use(VueRouter)
 
@@ -65,6 +68,21 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  }, 
+  {
+    path: '/water',
+    name: 'water',
+    component: WaterView
+  },
+  {
+    path: '/electric',
+    name: 'electric',
+    component: ElectricView
+  },
+  {
+    path: '/notifications',
+    name: 'notifications',
+    component: NotificationView
   }
 ]
 
