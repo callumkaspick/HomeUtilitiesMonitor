@@ -26,7 +26,7 @@
                               v-model="password"
                            ></v-text-field>
                             <v-text-field
-                              prepend-icon="person"
+                              prepend-icon="mail"
                               name="newEmail"
                               label="New Email"
                               type="text"
@@ -34,10 +34,8 @@
                            ></v-text-field>
                         </v-form>
                         <br>
-                        <div class="danger-alert" v-html="error" />
-                        <br>
-                        <br>
-                        <div class="success-alert">{{successMessage}}</div>
+                        <div v-if="hasError" class="danger-alert">{{msg}}</div>
+                        <div v-if="!hasError" class="success-alert">{{msg}}</div>
                         <br>
                      </v-card-text>
                      <v-card-actions>
@@ -54,7 +52,6 @@
 
 <script>
 import UpdateDetailsService from '@/services/UpdateDetailsService'
-import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
   data () {
@@ -62,34 +59,27 @@ export default {
       username: '',
       password: '',
       newEmail: '',
-      error: null,
-      successMessage: null,
+      msg: null,
+      hasError: false,
     }
   },
   methods: {
-    async createNewPassword () {
-       try {
-             //validate by logging in
-             const responseForLogin = await AuthenticationService.login({
-               username: this.username,
-               password: this.password,
-             })
-             try {
-               //change email
-               const responseEmailUpdate = await UpdateDetailsService.newEmail({
-                  newEmail: this.newEmail,
-               })
-               this.successMessage = 'Email successfully changed'
-               this.$store.dispatch('setToken', response.data.token)
-               this.$store.dispatch('setUser', response.data.user)
-             }
-            catch (error) {
-               this.error = error.responseEmailUpdate.data.error
-            } 
-      }
-      catch (error) {
-         this.error = error.responseForLogin.data.error
-      }
+    async createNewEmail () {
+       
+        try {
+        //change email
+        const response = await UpdateDetailsService.newEmail({
+            username: this.username,
+            password: this.password,
+            newEmail: this.newEmail,
+        })
+        this.hasError = false
+        this.msg = 'Email successfully changed'
+        }
+        catch (error) {
+            this.hasError = true
+            this.msg = error.response.data.error
+        }
     },
   }
 }

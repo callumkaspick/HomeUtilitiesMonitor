@@ -82,7 +82,7 @@
 
       <v-btn 
         v-if="$store.state.isUserLoggedIn"
-        flat 
+        text 
         dark
         @click="logout">
         Log Out

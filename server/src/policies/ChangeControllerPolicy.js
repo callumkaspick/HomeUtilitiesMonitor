@@ -3,8 +3,8 @@ const Joi = require('@hapi/joi');
 module.exports = {
   checkNewUsername (req, res, next) {
     const schema = Joi.object({
-      newUsername: Joi.string().alphanum(),
       username: Joi.string().alphanum(),
+      oldUsername: Joi.string().alphanum(),
       password: Joi.string().regex(
         new RegExp('^[a-zA-Z0-9]{8,32}$')
       )
@@ -14,12 +14,12 @@ module.exports = {
 
     if (error) {
       switch (error.details[0].context.key) {
-        case 'newUsername':
+        case 'username':
           res.status(400).send({
             error: 'You must provide a valid new username'
           })
           break
-        case 'username':
+        case 'oldUsername':
           res.status(400).send({
             error: 'You must provide a valid username'
           })
@@ -87,20 +87,20 @@ module.exports = {
   },
   checkNewPassword (req, res, next) {
     const schema = Joi.object({
-      username: Joi.string().alphanum(),
       password: Joi.string().regex(
         new RegExp('^[a-zA-Z0-9]{8,32}$')
       ),
-      newPassword: Joi.string().regex(
+      oldPassword: Joi.string().regex(
         new RegExp('^[a-zA-Z0-9]{8,32}$')
       ),
+      username: Joi.string().alphanum(),
     })
 
     const { error } = schema.validate(req.body);
 
     if (error) {
       switch (error.details[0].context.key) {
-        case 'newPassword':
+        case 'password':
           res.status(400).send({
             error: `The password provided failed to match the following rules:
             <br>
@@ -115,7 +115,7 @@ module.exports = {
             error: 'You must provide a valid username'
           })
           break
-        case 'password':
+        case 'oldPassword':
           res.status(400).send({
             error: `The password provided failed to match the following rules:
               <br>

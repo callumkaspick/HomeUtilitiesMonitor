@@ -34,10 +34,8 @@
                            ></v-text-field>
                         </v-form>
                         <br>
-                        <div class="danger-alert" v-html="error" />
-                        <br>
-                        <br>
-                        <div class="success-alert">{{successMessage}}</div>
+                        <div v-if="hasError" class="danger-alert">{{msg}}</div>
+                        <div v-if="!hasError" class="success-alert">{{msg}}</div>
                         <br>
                      </v-card-text>
                      <v-card-actions>
@@ -54,7 +52,6 @@
 
 <script>
 import UpdateDetailsService from '@/services/UpdateDetailsService'
-import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
   data () {
@@ -62,35 +59,26 @@ export default {
       username: '',
       password: '',
       newPassword: '',
-      error: null,
-      successMessage: null,
+      hasError: false,
+      msg: null,
     }
   },
   methods: {
     async createNewPassword () {
-       try {
-             //validate by logging in
-             const responseForPassword = await AuthenticationService.login({
-               username: this.username,
-               password: this.password,
-             })
              try {
                //change password
-               const responsePasswordUpdate = await UpdateDetailsService.newPassword({
-                  newPassword: this.newPassword,
-                  password: this.password,
+               const response = await UpdateDetailsService.newPassword({
+                  password: this.newPassword,
+                  oldPassword: this.password,
+                  username: this.username,
                })
-               this.successMessage = 'Password successfully changed'
-               this.$store.dispatch('setToken', response.data.token)
-               this.$store.dispatch('setUser', response.data.user)
+               this.hasError = false
+               this.msg = 'Password successfully changed'
              }
             catch (error) {
-               this.error = error.responsePasswordUpdate.data.error
-            } 
-      }
-      catch (error) {
-         this.error = error.responseForPassword.data.error
-      }
+                this.hasError = true
+               this.msg = error.response.data.error
+            }
     },
   }
 }

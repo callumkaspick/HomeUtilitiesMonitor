@@ -34,10 +34,8 @@
                            ></v-text-field>
                         </v-form>
                         <br>
-                        <div class="danger-alert" v-html="error" />
-                        <br>
-                        <br>
-                        <div class="success-alert">{{successMessage}}</div>
+                        <div v-if="hasError" class="danger-alert">{{msg}}</div>
+                        <div v-if="!hasError" class="success-alert">{{msg}}</div>
                         <br>
                      </v-card-text>
                      <v-card-actions>
@@ -54,7 +52,6 @@
 
 <script>
 import UpdateDetailsService from '@/services/UpdateDetailsService'
-import AuthenticationService from '@/services/AuthenticationService'
 
 export default {
   data () {
@@ -62,37 +59,29 @@ export default {
       newUsername: '',
       username: '',
       password: '',
-      error: null,
-      successMessage: null,
+      hasError: false,
+      msg: null,
     }
   },
   methods: {
     async createNewUsername () {
        
-       try {
-             //validate by logging in
-             const responseForPassword = await AuthenticationService.login({
-               username: this.username,
-               password: this.password,
-             })
-             try {
-               //change username
-               const responseUsernameUpdate = await UpdateDetailsService.newUsername({
-                  newUsername: this.newUsername,
-                  username: this.username,
-               })
-               this.successMessage = 'Username successfully changed'
-               this.$store.dispatch('setToken', response.data.token)
-               this.$store.dispatch('setUser', response.data.user)
-             }
-            catch (error) {
-               this.error = error.responseUsernameUpdate.data.error
-            } 
-            
-      }
+       
+         try {
+         //login, check username, change username
+         const response = await UpdateDetailsService.newUsername({
+            username: this.newUsername,
+            oldUsername: this.username,
+            password: this.password,
+         })
+         this.hasError = false
+         this.msg = 'Username successfully changed'
+         }
       catch (error) {
-         this.error = error.responseForPassword.data.error
-      }
+         this.hasError = true
+         this.msg = error.response.data.error
+      } 
+            
     },
   }
 }
