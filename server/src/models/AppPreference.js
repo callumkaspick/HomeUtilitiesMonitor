@@ -1,6 +1,4 @@
-const sequelize = new Sequelize('sqlite::memory:')
-const { BelongsTo } = require('sequelize/types')
-const User = require('User')
+const User = require('./User')
 
 module.exports = (sequelize, DataTypes) => {
   const AppPreference = sequelize.define('AppPreference', {
@@ -19,14 +17,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     notificationPreference: {
       type: DataTypes.STRING,
-    },
+    }
+  },{
     hooks: {
     }
   })
 
-  AppPreference.associate = function (models) {
-    BelongsTo(User)
+  AppPreference.associate = (models) => {
+    AppPreference.belongsTo(models.User)
+    models.User.hasOne(AppPreference)
   }
+  
 
   return AppPreference
 }
