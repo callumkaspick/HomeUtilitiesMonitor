@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   const AppPreference = sequelize.define('AppPreference', {
     preferencesID: {
       type: DataTypes.STRING,
+      primaryKey: true,
       unique: true
     },
     preferredUnits: {
