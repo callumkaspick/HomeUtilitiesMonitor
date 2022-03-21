@@ -1,10 +1,12 @@
-const AppPreference = sequelize.define('AppPreferences')
-const User = require('AppPreference')
+const AppPreference = require('AppPreference')
+const WaterDevice = require('WaterDevice')
+const ElectricDevice = require('ElectricDevice')
 
 
 const Promise = require('bluebird')
-const { HasMany } = require('sequelize/types')
+const { HasMany, HasOne } = require('sequelize/types')
 const { sequelize } = require('.')
+const ElectricDevice = require('./ElectricDevice')
 const bcrypt = Promise.promisifyAll(require('bcrypt-nodejs'))
 
 function hashPassword (user, options) {
@@ -45,7 +47,9 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   User.associate = function (models) {
-    HasMany(User)
+    HasMany(AppPreference)
+    HasOne(WaterDevice)
+    HasOne(ElectricDevice)
   }
 
   return User
