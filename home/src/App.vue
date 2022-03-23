@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app color="#45FF04">
+    <!-- Logo and title in app bar at top of page -->
+    <v-app-bar app color="#45FF04" class="text-uppercase">
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
      v-if="$store.state.isUserLoggedIn">
@@ -15,7 +16,7 @@
           width="40"
         />
         <v-app-bar-title class="mr-4">
-        HUM
+        Home Utilities Monitor
       </v-app-bar-title>
       </div>
 
@@ -53,15 +54,15 @@
       <v-btn 
         v-if="$store.state.isUserLoggedIn"
         flat 
-        dark
+        dark color="#13630C"
         @click="logout">
         Log Out
+        <v-icon right>exit_to_app</v-icon>
       </v-btn>
-      
+
+    <!-- Nav Bar for Web app -->
     </v-app-bar>
-    <v-navigation-drawer 
-    v-model="drawer" 
-    app >
+    <v-navigation-drawer app v-model="drawer" dark>
       <v-list>
         <v-list-item
           v-for="item in items"
@@ -93,11 +94,11 @@ export default {
   data () {
     return {
       items: [
-        { title: 'Home', icon: 'mdi-view-dashboard', path: '/' },
+        { title: 'Home', icon: 'mdi-home', path: '/' },
         { title: 'Profile', icon: 'mdi-account-box', path: '/profile'},
         { title: 'Settings', icon: 'mdi-cog', path: '/settings'},
         { title: 'About', icon: 'mdi-information', path: '/about'},
-        { title: 'Contact', icon: 'mdi-mail', path: '/about'},
+        { title: 'Contact', icon: 'mdi-mail', path: '/contact'},
       ],
 
       drawer: false,

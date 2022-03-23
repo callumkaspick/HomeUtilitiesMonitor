@@ -9,7 +9,7 @@
     <v-row class="text-center">
       <v-col class="mt-6 mb-16">
         <h1 block class="display-2 font-weight-bold mb-3">
-          Welcome to Home Utilities Monitor, User
+          Welcome, User
         </h1>
       </v-col>
     </v-row>
@@ -18,14 +18,14 @@
       <!-- button for redirect to electricity page -->
       <v-btn depressed large elevation="3" class="flexcol yellow mx-4" width="550" height="580" @click="$router.push('/electric')">
         <v-icon size="350">electric_bolt</v-icon>
-        <h1 class="display-2">Electricity</h1>
+        <span class="display-2">Electricity</span>
       </v-btn>
 
       <!-- button for redirect to water page -->
       <v-btn depressed large elevation="3" class="flexcol light blue mx-4" width="550" height="580" @click="$router.push('/water')">
         <v-icon size="350">water_drop</v-icon>
         <br/>
-        <h1 class="display-2">Water</h1>
+        <span class="display-2">Water</span>
       </v-btn>
     </v-row>      
     

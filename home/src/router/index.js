@@ -10,6 +10,7 @@ import WaterView from '../views/WaterView.vue'
 import ElectricView from '../views/ElectricView.vue'
 import NotificationView from '../views/NotificationView.vue'
 import ProfileView from '../views/ProfileView.vue'
+import ContactUs from '../views/ContactUs.vue'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: ProfileView
+  },
+  {
+    path: '/contact',
+    name: 'contact',
+    component: ContactUs
   }
 ]
 
