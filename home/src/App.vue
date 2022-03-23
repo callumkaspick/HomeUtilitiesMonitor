@@ -1,9 +1,10 @@
 <template>
   <v-app>
     <!-- Logo and title in app bar at top of page 
-          Want to go with Electrolize font for text of app
+        Want to go with Electrolize font for text of app
+        Replace photo in src with logo
     -->
-    <v-app-bar app color="#45FF04" class="text-uppercase">
+    <v-app-bar app color="appPrimary" class="text-uppercase">
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
      v-if="$store.state.isUserLoggedIn">
@@ -56,7 +57,7 @@
       <v-btn 
         v-if="$store.state.isUserLoggedIn"
         flat 
-        dark color="#13630C"
+        dark color="appSecondary"
         @click="logout">
         Log Out
         <v-icon right>exit_to_app</v-icon>
@@ -64,7 +65,7 @@
 
     <!-- Nav Bar for Web app -->
     </v-app-bar>
-    <v-navigation-drawer app v-model="drawer" dark>
+    <v-navigation-drawer app v-model="drawer" dark class="appSecondary">
       <v-list>
         <v-list-item
           v-for="item in items"

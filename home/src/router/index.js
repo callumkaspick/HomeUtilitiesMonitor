@@ -11,6 +11,8 @@ import ElectricView from '../views/ElectricView.vue'
 import NotificationView from '../views/NotificationView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import ContactUs from '../views/ContactUs.vue'
+//import WaterGraph from '../views/WaterGraph.vue'
+//import ElectricGraph from '../views/ElectricGraph.vue'
 
 Vue.use(VueRouter)
 
@@ -77,7 +79,19 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: ContactUs
+  },
+  /*
+  {
+    path: '/watergraph',
+    name: 'watergraph',
+    component: WaterGraph
+  },
+  {
+    path: '/electricgraph',
+    name: 'electricgraph',
+    component: ElectricGraph
   }
+  */
 ]
 
 const router = new VueRouter({

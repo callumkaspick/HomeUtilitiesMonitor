@@ -1,7 +1,6 @@
 <template>
   <v-container>
-    <!-- Still need following on main:
-    - Resize text and icon inside buttons to fit 
+    <!-- Still need following on main: 
     - grab username string and implement in custom welcome message
     - set constraints for buttons
     --> 
@@ -24,7 +23,6 @@
       <!-- button for redirect to water page -->
       <v-btn depressed large elevation="3" class="flexcol light blue mx-4" width="550" height="580" @click="$router.push('/water')">
         <v-icon size="350">water_drop</v-icon>
-        <br/>
         <span class="display-2">Water</span>
       </v-btn>
     </v-row>      

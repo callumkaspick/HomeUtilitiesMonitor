@@ -18,5 +18,45 @@
                 </v-layout>
             </v-card>
         </v-container>
+
+        
+        <v-bottom-navigation grow flat fluid align class="appPrimary ma-2">
+            <v-btn class="rounded-pill">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
+            </v-btn>
+            <v-btn class="rounded-pill">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Hour</span>
+            </v-btn>
+            <v-btn class="rounded-pill">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Day</span>
+            </v-btn>
+            <v-btn class="rounded-pill">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Week</span>
+            </v-btn>
+            <v-btn class="rounded-pill">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Month</span>
+            </v-btn>
+            <v-btn class="rounded-pill">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Year</span>
+            </v-btn>
+            <v-btn class="rounded-pill">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Alltime</span>
+            </v-btn>
+        </v-bottom-navigation>
+
+        <v-bottom-navigation grow flat fluid align class="waterPrimary ma-2">
+            <v-btn class="rounded-pill waterSecondary mx-10">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
+            </v-btn>
+            <v-btn class="rounded-pill waterSecondary mx-10">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Graph</span>
+            </v-btn>
+            <v-btn class="rounded-pill waterSecondary mx-10">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Settings</span>
+            </v-btn>
+            <v-btn class="rounded-pill waterSecondary mx-10">
+                <span class="text-center pa-2 text-h5 font-weight-bold">Notifications</span>
+            </v-btn>
+        </v-bottom-navigation>
     </div>
 </template>
