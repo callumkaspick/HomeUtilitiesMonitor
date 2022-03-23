@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <!-- Logo and title in app bar at top of page -->
+    <!-- Logo and title in app bar at top of page 
+          Want to go with Electrolize font for text of app
+    -->
     <v-app-bar app color="#45FF04" class="text-uppercase">
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
@@ -80,7 +82,8 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main>
+
+    <v-main class="mx-4 mb-4">
       <router-view/>
     </v-main>
   </v-app>
