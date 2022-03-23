@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    
-    <v-app-bar
-      app
-      color="#45FF04"
-    >
+    <v-app-bar app color="#45FF04">
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
      v-if="$store.state.isUserLoggedIn">

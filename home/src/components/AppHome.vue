@@ -16,22 +16,28 @@
 
     <v-row class="text-center">
       <!-- button for redirect to electricity page -->
-      <v-btn depressed large elevation="3" class="yellow mx-4" width="550" height="580" @click="$router.push('/electric')">
-        <v-icon contain height="580" width="550">
-          electric_bolt
-        </v-icon>
-        <span>Electricity</span>
+      <v-btn depressed large elevation="3" class="flexcol yellow mx-4" width="550" height="580" @click="$router.push('/electric')">
+        <v-icon size="350">electric_bolt</v-icon>
+        <h1 class="display-2">Electricity</h1>
       </v-btn>
 
       <!-- button for redirect to water page -->
-      <v-btn depressed large elevation="3" class="light blue mx-4" width="550" height="580" @click="$router.push('/water')">
-        <v-icon>water_drop</v-icon>
-        <span>Water</span>
+      <v-btn depressed large elevation="3" class="flexcol light blue mx-4" width="550" height="580" @click="$router.push('/water')">
+        <v-icon size="350">water_drop</v-icon>
+        <br/>
+        <h1 class="display-2">Water</h1>
       </v-btn>
     </v-row>      
     
   </v-container>
 </template>
+
+<!-- Style choice to have text underneath icons for buttons on main page -->
+<style>
+.flexcol .v-btn__content {
+  flex-direction: column;
+}
+</style>
 
 <script>
   export default {
