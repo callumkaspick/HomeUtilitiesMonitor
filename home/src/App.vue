@@ -1,11 +1,10 @@
 <template>
   <v-app>
-    
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <!-- Logo and title in app bar at top of page 
+        Want to go with Electrolize font for text of app
+        Replace photo in src with logo
+    -->
+    <v-app-bar app color="appPrimary" class="text-uppercase">
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
      v-if="$store.state.isUserLoggedIn">
@@ -20,7 +19,7 @@
           width="40"
         />
         <v-app-bar-title class="mr-4">
-        HUM
+        Home Utilities Monitor
       </v-app-bar-title>
       </div>
 
@@ -32,7 +31,7 @@
         v-if="$store.state.isUserLoggedIn"
         target="_blank"
         text
-        @click="$router.push('/app')"
+        @click="$router.push('/')"
       >
         <span class="mr-2">App Home</span>
       </v-btn>
@@ -58,15 +57,15 @@
       <v-btn 
         v-if="$store.state.isUserLoggedIn"
         flat 
-        dark
+        dark color="appSecondary"
         @click="logout">
         Log Out
+        <v-icon right>exit_to_app</v-icon>
       </v-btn>
-      
+
+    <!-- Nav Bar for Web app -->
     </v-app-bar>
-    <v-navigation-drawer 
-    v-model="drawer" 
-    app >
+    <v-navigation-drawer app v-model="drawer" dark class="appSecondary">
       <v-list>
         <v-list-item
           v-for="item in items"
@@ -84,7 +83,8 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-main>
+
+    <v-main class="mx-4 mb-4">
       <router-view/>
     </v-main>
   </v-app>
@@ -98,12 +98,13 @@ export default {
   data () {
     return {
       items: [
-        { title: 'Home', icon: 'mdi-view-dashboard', path: '/' },
-        { title: 'Profile', icon: 'mdi-account-box', path: '/about'},
+        { title: 'Home', icon: 'mdi-home', path: '/' },
+        { title: 'Profile', icon: 'mdi-account-box', path: '/profile'},
         { title: 'Settings', icon: 'mdi-cog', path: '/settings'},
         { title: 'About', icon: 'mdi-information', path: '/about'},
-        { title: 'Contact', icon: 'mdi-mail', path: '/about'},
+        { title: 'Contact', icon: 'mdi-mail', path: '/contact'},
       ],
+
       drawer: false,
     }
   },
