@@ -6,6 +6,9 @@ import RegisterView from '../views/RegisterView.vue'
 import AppView from '../views/AppView.vue'
 import TroubleLoggingIn from '../views/TroubleLoggingIn.vue'
 import SettingsView from '../views/SettingsView.vue'
+import NewUsernameView from '../views/NewUsernameView'
+import NewEmailView from '../views/NewEmailView'
+import NewPasswordView from '../views/NewPasswordView'
 import WaterView from '../views/WaterView.vue'
 import ElectricView from '../views/ElectricView.vue'
 import NotificationView from '../views/NotificationView.vue'
@@ -46,6 +49,21 @@ const routes = [
     path: '/settings',
     name: 'settings',
     component: SettingsView
+  },
+  {
+    path: '/newUsername',
+    name: 'newUsername',
+    component: NewUsernameView
+  },
+  {
+    path: '/newEmail',
+    name: 'newEmail',
+    component: NewEmailView
+  },
+  {
+    path: '/newPassword',
+    name: 'newPassword',
+    component: NewPasswordView
   },
   {
     path: '/about',
