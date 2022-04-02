@@ -87,21 +87,6 @@ export default {
     }
   },
   methods: {
-    async accountSettings () {
-      try {
-        const response = await AuthenticationService.login({
-          username: this.username,
-          password: this.password
-        })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
-        this.$router.push({
-          name: 'home'
-        })
-      } catch (error) {
-        this.error = error.response.data.error
-      }
-    },
     accountSettings () {
       this.$router.push({
           name: 'accountSettings'
