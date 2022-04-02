@@ -1,9 +1,90 @@
 <template>
     <div>
-        <h1 class="ma-4">Settings</h1>
+        <v-row
+        class="d-flex justify-center">
+            <v-col
+            cols=12>
+                <v-card
+                elevation="2"
+                class="d-flex justify-center mt-4"
+                id="currentPage"
+                >
+                    Settings
+                </v-card>
+            </v-col>
+            
+        </v-row>
+        <v-row
+        class="d-flex justify-center mt-12 mb-6">
+            <v-col
+            cols="12"
+            lg="8"
+            sm="12"
+            md="8"
 
-        <v-container class="my-4">
-            content
-        </v-container>
+            class="">
+                <v-card
+                elevation="2"
+                outlined
+                color="gray"
+                class="d-flex mb-6 justify-space-around align-center"
+                height="80%"
+                id="settingsChoice"
+                >
+                    <v-btn
+                    width="100%"
+                    height="100%">
+                        Account Settings
+                    </v-btn>
+                </v-card>
+                <v-card
+                elevation="2"
+                outlined
+                color="gray"
+                class="d-flex mb-6 justify-space-around align-center"
+                height="80%"
+                id="settingsChoice"
+                >
+                    <v-btn
+                    width="100%"
+                    height="100%">
+                        Device Settings
+                    </v-btn>
+                </v-card>
+                <v-card
+                elevation="2"
+                outlined
+                color="gray"
+                class="d-flex mb-6 justify-space-around align-center"
+                height="80%"
+                id="settingsChoice"
+                >
+                    <v-btn
+                    width="100%"
+                    height="100%">
+                        Notifcation Settings
+                    </v-btn>
+                </v-card>
+            </v-col>
+            
+        </v-row>
+        
     </div>
 </template>
+
+<style>
+#currentPage {
+  background-color: lightgray;
+  color: black;
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: center;
+  font-size: 2em;
+}
+#settingsChoice {
+  background-color: white;
+  color: black;
+  text-align: center;
+  
+}
+</style>
