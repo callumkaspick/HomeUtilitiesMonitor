@@ -14,6 +14,9 @@ import ElectricView from '../views/ElectricView.vue'
 import NotificationView from '../views/NotificationView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import ContactUs from '../views/ContactUs.vue'
+import AccountSettings from '../views/AccountSettingsView.vue'
+import DeviceSettings from '../views/DeviceSettingsView.vue'
+import NotificationSettings from '../views/NotificationSettingsView.vue'
 //import WaterGraph from '../views/WaterGraph.vue'
 //import ElectricGraph from '../views/ElectricGraph.vue'
 
@@ -97,6 +100,21 @@ const routes = [
     path: '/contact',
     name: 'contact',
     component: ContactUs
+  },
+  {
+    path: '/accountSettings',
+    name: 'accountSettings',
+    component: AccountSettings
+  },
+  {
+    path: '/deviceSettings',
+    name: 'deviceSettings',
+    component: DeviceSettings
+  },
+  {
+    path: '/notificationSettings',
+    name: 'notificationSettings',
+    component: NotificationSettings
   },
   /*
   {

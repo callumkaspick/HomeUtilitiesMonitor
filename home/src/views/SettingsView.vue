@@ -33,7 +33,8 @@
                 >
                     <v-btn
                     width="100%"
-                    height="100%">
+                    height="100%"
+                    @click="accountSettings">
                         Account Settings
                     </v-btn>
                 </v-card>
@@ -47,7 +48,8 @@
                 >
                     <v-btn
                     width="100%"
-                    height="100%">
+                    height="100%"
+                    @click="deviceSettings">
                         Device Settings
                     </v-btn>
                 </v-card>
@@ -61,7 +63,8 @@
                 >
                     <v-btn
                     width="100%"
-                    height="100%">
+                    height="100%"
+                    @click="notificationSettings">
                         Notifcation Settings
                     </v-btn>
                 </v-card>
@@ -71,6 +74,52 @@
         
     </div>
 </template>
+
+<script>
+import AuthenticationService from '@/services/AuthenticationService'
+
+export default {
+  data () {
+    return {
+      username: '',
+      password: '',
+      error: null
+    }
+  },
+  methods: {
+    async accountSettings () {
+      try {
+        const response = await AuthenticationService.login({
+          username: this.username,
+          password: this.password
+        })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
+        this.$router.push({
+          name: 'home'
+        })
+      } catch (error) {
+        this.error = error.response.data.error
+      }
+    },
+    accountSettings () {
+      this.$router.push({
+          name: 'accountSettings'
+        })
+    },
+    deviceSettings () {
+      this.$router.push({
+          name: 'deviceSettings'
+        })
+    },
+    notificationSettings () {
+      this.$router.push({
+          name: 'notificationSettings'
+        })
+    }
+  }
+}
+</script>
 
 <style>
 #currentPage {
