@@ -9,7 +9,7 @@
                 class="d-flex justify-center mt-4"
                 id="currentPage"
                 >
-                    Notification Settings
+                    Account Settings
                 </v-card>
             </v-col>
             
@@ -18,11 +18,12 @@
         class="d-flex justify-center mt-12 mb-6">
             <v-col
             cols="12"
-            lg="6"
-            sm="10"
-            md="7"
+            lg="8"
+            sm="12"
+            md="8"
             class="">
-
+                
+                
                 <v-card
                 elevation="2"
                 outlined
@@ -47,7 +48,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Email
+                                    Water Device
                                 </div>
                             </v-card>
                         </v-col>
@@ -65,7 +66,7 @@
                             class="d-flex align-center justify-center">
                                 <div
                                 id="data">
-                                    {{email}}
+                                    {{waterDevice}}
                                 </div>
                             </v-card>
                         </v-col>
@@ -81,169 +82,276 @@
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
+                                    v-if="waterDevice == null"
                                     id="change"
                                     class="mb-2"
-                                    @click="changeEmail"
+                                    @click="changeUsername"
                                     >
-                                        Change
+                                        Add
                                     </v-btn>
-                            </v-card>
-                        </v-col>
-                    </v-row>
-                </v-card>
-
-
-
-
-                <v-card
-                elevation="2"
-                outlined
-                color="gray"
-                class="d-flex justify-space-around mb-6"
-                height="80%"
-                width="100%"
-                id="settingsChoice"
-                >
-                    <v-row
-                    class="d-flex justify-space-between"
-                    height="100%">
-                        <v-col
-                        sm="3"
-                        align="start">
-                            <v-card
-                            height="100%"
-                            width="100%"
-                            align="start"
-                            flat
-                            class="d-flex pl-2">
-                                <div
-                                id="title"
-                                class="mt-2 ml-2">
-                                    Phone
-                                </div>
-                            </v-card>
-                        </v-col>
-
-                        <v-col
-                        cols="5"
-                        sm="6"
-                        align="center"
-                        id="displayed">
-                            <v-card
-                            height="100%"
-                            width="100%"
-                            align="center"
-                            flat
-                            class="d-flex align-center justify-center">
-                                <div
-                                id="data">
-                                    {{phone}}
-                                </div>
-                            </v-card>
-                        </v-col>
-
-                        <v-col
-                        sm="3"
-                        align="end"
-                        id="change">
-                            <v-card
-                            height="100%"
-                            width="100%"
-                            class="d-flex align-end pr-2"
-                            flat>
-                                <v-spacer></v-spacer>
                                     <v-btn
+                                    v-if="waterDevice != null"
                                     id="change"
                                     class="mb-2"
-                                    @click="changePassword"
+                                    @click="changeUsername"
                                     >
-                                        Change
+                                        Remove
                                     </v-btn>
                             </v-card>
                         </v-col>
                     </v-row>
                 </v-card>
                 
+
+
+                <v-card
+                elevation="2"
+                outlined
+                color="gray"
+                class="d-flex justify-space-around mb-6"
+                height="80%"
+                width="100%"
+                id="settingsChoice"
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Water Rate
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="data">
+                                    {{waterRate}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    @click="changeWaterRate"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+
+
+
+                <v-card
+                elevation="2"
+                outlined
+                color="gray"
+                class="d-flex justify-space-around mb-6"
+                height="80%"
+                width="100%"
+                id="settingsChoice"
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Electric Device
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="data">
+                                    {{electricDevice}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    v-if="waterDevice == null"
+                                    id="change"
+                                    class="mb-2"
+                                    @click="changeUsername"
+                                    >
+                                        Add
+                                    </v-btn>
+                                    <v-btn
+                                    v-if="waterDevice != null"
+                                    id="change"
+                                    class="mb-2"
+                                    @click="changeUsername"
+                                    >
+                                        Remove
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+                
+
+                <v-card
+                elevation="2"
+                outlined
+                color="gray"
+                class="d-flex justify-space-around mb-6"
+                height="80%"
+                width="100%"
+                id="settingsChoice"
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Electric Rate
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="data">
+                                    {{electricRate}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    @click="changeElectricRate"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+
+
             </v-col>
             
-
-
-
-
-
-
-
-
-
-
-
-
-        <v-col
-            lg="2"
-            sm="2"
-            md="2"
-            xl="1"
-            class="">
-                
-
-                <v-card
-                elevation="2"
-                outlined
-                color="gray"
-                class="d-flex justify-space-around align-center mb-6"
-                height="80%"
-                width="100%"
-                id="settingsChoice"
-                >
-                    <v-switch
-                    id="slider"
-                    v-model="emailSwitch"
-                    class="d-flex"
-                    ></v-switch>
-                </v-card>
-                
-                
-
-
-                <v-card
-                elevation="2"
-                outlined
-                color="gray"
-                class="d-flex justify-space-around align-center mb-6"
-                height="80%"
-                width="100%"
-                id="settingsChoice"
-                >
-                    <v-switch
-                    id="slider"
-                    v-model="phoneSwitch"
-                    class="d-flex"
-                    ></v-switch>
-                </v-card>
-                
-            </v-col>
-
-
-
-
-
         </v-row>
         
     </div>
 </template>
 
 <script>
-
+import GetService from '@/services/GetService'
 export default {
   computed: {
-    username() { return this.$store.state.user.username },
-    email() { return this.$store.state.user.email }
+    async waterDevice() { 
+        const response = await GetService.getWaterDevice({
+          username: this.$store.state.user.username,
+          password: this.$store.state.user.username
+        })
+        return response.waterDeviceID },
+    async electricDevice() { 
+        
+        
+        
+        return this.$store.state.user.email }
   },
   data () {
     return {
-        emailSwitch: false,
-        phoneSwitch: false,
-        error: null
+      error: null
     }
   },
   methods: {
@@ -290,9 +398,5 @@ export default {
 }
 #data {
     font-size: 2em
-}
-#slider {
-    height: 20px;
-    width: 100px;
 }
 </style>
