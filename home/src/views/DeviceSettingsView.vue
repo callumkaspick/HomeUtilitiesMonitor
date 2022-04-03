@@ -336,31 +336,35 @@
 <script>
 import GetService from '@/services/GetService'
 export default {
-  computed: {
-    async waterDevice() { 
-        const response = await GetService.getWaterDevice({
-          username: this.$store.state.user.username,
-          password: this.$store.state.user.username
-        })
-        return response.waterDeviceID },
-    async electricDevice() { 
-        
-        
-        
-        return this.$store.state.user.email }
-  },
   data () {
     return {
+      waterDevice: '',
+      waterRate: null,
       error: null
     }
   },
+  async mounted() {
+        try{
+            const response = await GetService.getWaterDevice({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.username
+            })
+            console.log(response.data.waterDevice.waterDeviceID)
+            this.waterDevice = response.data.waterDevice.waterDeviceID
+            console.log("mount success")
+        }
+        catch(error){
+            this.error = error.response.data.message
+            console.log("mount fail")
+        }
+  },
   methods: {
-    changeUsername () {
+    changeWaterRate () {
       this.$router.push({
           name: 'newUsername'
         })
     },
-    changeEmail () {
+    changeElectricRate () {
       this.$router.push({
           name: 'newEmail'
         })

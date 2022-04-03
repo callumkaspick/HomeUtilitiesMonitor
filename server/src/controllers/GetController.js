@@ -24,7 +24,7 @@ module.exports = {
       const waterDeviceJSON = waterDevice1.toJSON()
       console.log(waterDeviceJSON)
       res.send({
-        waterDeviceID: waterDevice1.waterDeviceID
+        waterDevice: waterDeviceJSON
       })
 
     } catch (err) {
