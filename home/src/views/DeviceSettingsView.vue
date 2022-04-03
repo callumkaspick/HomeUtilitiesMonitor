@@ -9,7 +9,7 @@
                 class="d-flex justify-center mt-4"
                 id="currentPage"
                 >
-                    Device Settings
+                    Notification Settings
                 </v-card>
             </v-col>
             
@@ -119,7 +119,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Password
+                                    Phone
                                 </div>
                             </v-card>
                         </v-col>
@@ -137,7 +137,7 @@
                             class="d-flex align-center justify-center">
                                 <div
                                 id="data">
-                                    ●●●●●●●●●●
+                                    {{phone}}
                                 </div>
                             </v-card>
                         </v-col>
