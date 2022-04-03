@@ -84,7 +84,7 @@
                                     <v-btn
                                     id="change"
                                     class="mb-2"
-                                    
+                                    @click="changeUsername"
                                     >
                                         Change
                                     </v-btn>
@@ -155,7 +155,7 @@
                                     <v-btn
                                     id="change"
                                     class="mb-2"
-                                    
+                                    @click="changeEmail"
                                     >
                                         Change
                                     </v-btn>
@@ -227,7 +227,7 @@
                                     <v-btn
                                     id="change"
                                     class="mb-2"
-                                    
+                                    @click="changePassword"
                                     >
                                         Change
                                     </v-btn>
@@ -246,27 +246,29 @@
 <script>
 
 export default {
+  computed: {
+    username() { return this.$store.state.user.username },
+    email() { return this.$store.state.user.email }
+  },
   data () {
     return {
-      username: 'username',
-      email: 'email',
       error: null
     }
   },
   methods: {
-    accountSettings () {
+    changeUsername () {
       this.$router.push({
-          name: 'accountSettings'
+          name: 'newUsername'
         })
     },
-    deviceSettings () {
+    changeEmail () {
       this.$router.push({
-          name: 'deviceSettings'
+          name: 'newEmail'
         })
     },
-    notificationSettings () {
+    changePassword () {
       this.$router.push({
-          name: 'notificationSettings'
+          name: 'newPassword'
         })
     }
   }

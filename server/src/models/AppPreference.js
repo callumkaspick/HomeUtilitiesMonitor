@@ -11,10 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     notificationEmail: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
     },
     notificationPhone: {
-      type: DataTypes.STRING,
+      type: DataTypes.BOOLEAN,
     },
     notificationPreference: {
       type: DataTypes.STRING,
@@ -28,7 +28,6 @@ module.exports = (sequelize, DataTypes) => {
     AppPreference.belongsTo(models.User)
     models.User.hasOne(AppPreference)
   }
-  
 
   return AppPreference
 }
