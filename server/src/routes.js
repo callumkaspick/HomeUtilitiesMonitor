@@ -4,6 +4,7 @@ const ChangeController = require('./controllers/ChangeController')
 const isAuthenticated = require('./policies/isAuthenticated')
 const TestController = require('./controllers/TestController')
 const ChangeControllerPolicy = require('./policies/ChangeControllerPolicy')
+const GetController = require('./controllers/GetController')
 
 module.exports = (app) => {
   app.post('/register',
@@ -26,5 +27,21 @@ module.exports = (app) => {
     ChangeControllerPolicy.checkNewPassword,
     ChangeController.changePassword,
     AuthenticationController.login)
+  app.post('/getWaterDevice',
+    AuthenticationController.checkLogin,
+    GetController.getWaterDevice,
+  )
+  app.post('/getElectricDevice',
+    AuthenticationController.checkLogin,
+    GetController.getElectricDevice,
+  )
+  app.post('/getWaterRate',
+    AuthenticationController.checkLogin,
+    GetController.getWaterRate,
+  )
+  app.post('/getElectricRate',
+    AuthenticationController.checkLogin,
+    GetController.getElectricRate,
+  )
 
 }

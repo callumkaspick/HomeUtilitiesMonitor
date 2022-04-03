@@ -13,7 +13,7 @@
                            <v-text-field
                               prepend-icon="person"
                               name="login"
-                              label="Login"
+                              label="Username"
                               type="text"
                               v-model="username"
                            ></v-text-field>
