@@ -13,7 +13,7 @@ module.exports = {
       })
       console.log("found user")
       await WaterDevice.create({
-        UserUserID: "0c65a020-b313-11ec-9e68-f9b5c5efb42c"})
+        UserUserID: user.userID})
       console.log("added water device")
       const waterDevice1 = await WaterDevice.findOne({
         where: {
@@ -41,13 +41,18 @@ module.exports = {
           username: body.username
         }
       })
-      const userID = user.userID
-      const waterDevice = await WaterDevice.findOne({
+      console.log("found user")
+      await WaterDevice.create({
+        UserUserID: user.userID})
+      console.log("added water device")
+      const waterDevice1 = await WaterDevice.findOne({
         where: {
-          UserUserID: userID
+          UserUserID: user.userID
         }
       })
-      const waterDeviceJSON = waterDevice.toJSON
+      console.log("found device with correct userID")
+      const waterDeviceJSON = waterDevice1.toJSON()
+      console.log(waterDeviceJSON)
       res.send({
         waterDevice: waterDeviceJSON
       })

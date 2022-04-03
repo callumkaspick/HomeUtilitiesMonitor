@@ -234,7 +234,7 @@
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
-                                    v-if="waterDevice == null"
+                                    v-if="electricDevice == null"
                                     id="change"
                                     class="mb-2"
                                     @click="changeUsername"
@@ -242,7 +242,7 @@
                                         Add
                                     </v-btn>
                                     <v-btn
-                                    v-if="waterDevice != null"
+                                    v-if="electricDevice != null"
                                     id="change"
                                     class="mb-2"
                                     @click="changeUsername"
@@ -338,7 +338,8 @@ import GetService from '@/services/GetService'
 export default {
   data () {
     return {
-      waterDevice: '',
+      waterDevice: null,
+      electricDevice: null,
       waterRate: null,
       error: null
     }
