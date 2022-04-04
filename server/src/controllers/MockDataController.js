@@ -48,7 +48,7 @@ module.exports = {
             //create mock last 60 minutes
             for(let i = 1; i < 61; i++){
                 await MockElectricMinutes.create({
-                    data: (dataArr[i-1]*60),
+                    data: (dataArr[i-1]*Math.random()*10),
                     date: i,
                     ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID
                 })

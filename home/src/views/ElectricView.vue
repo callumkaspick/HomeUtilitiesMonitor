@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="ma-4 text-center text-h1">Electric Monitor</h1>
+        <h1 class="ma-4 text-center text-h1">Electric Summary</h1>
 
         <v-container class="my-4" grid-list-md fluid>
             <v-card text class="pa-3">

@@ -352,11 +352,22 @@ export default {
             })
             console.log(response.data.waterDevice.waterDeviceID)
             this.waterDevice = response.data.waterDevice.waterDeviceID
-            console.log("mount success")
         }
         catch(error){
             this.error = error.response.data.message
-            console.log("mount fail")
+            console.log("mount failed - water device")
+        }
+        try{
+            const response = await GetService.getElectricDevice({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.username
+            })
+            console.log(response.data.electricDevice.electricDeviceID)
+            this.electricDevice = response.data.electricDevice.electricDeviceID
+        }
+        catch(error){
+            this.error = error.response.data.message
+            console.log("mount failed - elec device")
         }
   },
   methods: {

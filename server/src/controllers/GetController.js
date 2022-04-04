@@ -13,9 +13,6 @@ module.exports = {
         }
       })
       console.log("found user")
-      await WaterDevice.create({
-        UserUserID: user.userID})
-      console.log("added water device")
       const waterDevice1 = await WaterDevice.findOne({
         where: {
           UserUserID: user.userID
@@ -43,16 +40,13 @@ module.exports = {
         }
       })
       console.log("found user")
-      await ElectricDevice.create({
-        UserUserID: user.userID})
-      console.log("added electric device")
-      const electricDevice = await ElectricDevice.findOne({
+      const electricDevice1 = await ElectricDevice.findOne({
         where: {
           UserUserID: user.userID
         }
       })
-      console.log("found device with correct userID")
-      const electricDeviceJSON = electricDevice.toJSON()
+      console.log("found elec device with correct userID")
+      const electricDeviceJSON = electricDevice1.toJSON()
       console.log(electricDeviceJSON)
       res.send({
         electricDevice: electricDeviceJSON
@@ -60,7 +54,7 @@ module.exports = {
 
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured getting electric device'
+        error: 'An error has occured getting water device'
       })
     }
   },

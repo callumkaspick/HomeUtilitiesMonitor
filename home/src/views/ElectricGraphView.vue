@@ -4,12 +4,13 @@
             <v-col
             cols="12">
                 <v-sparkline
+                    v-if="enabled"
                     :gradient="selectedGradient"
                     line-width="2"
                     padding="0"
                     smooth="10"
                     :value="value"
-                    type="bar"
+                    type="trend"
                     fill="true"
                     auto-draw
                 ></v-sparkline>
@@ -58,11 +59,11 @@ export default {
             usageInDollars: null,
             rate: 2,
             value: null,
+            enabled: true,
         }
     },
     async mounted() {
         try{
-            //set total usage
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
@@ -91,30 +92,20 @@ export default {
             return [1,2,3]
         },
         async updateMinute () {
-            this.granularity = 'minute'
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let total = 0
             let responseArray = response.data.mockElectricSeconds
-            responseArray.forEach(element => total += element)
-            this.totalUsage = total
-
-            this.usageInDollars = this.totalUsage * this.rate
+            this.value = responseArray
         },
         async updateHour () {
-            this.granularity = 'hour'
             const response = await GetUsages.getLastHourInMinutes({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let total = 0
             let responseArray = response.data.mockElectricMinutes
-            responseArray.forEach(element => total += element)
-            this.totalUsage = total
-
-            this.usageInDollars = this.totalUsage * this.rate
+            this.value = responseArray
         },
         changePassword () {
         this.$router.push({
