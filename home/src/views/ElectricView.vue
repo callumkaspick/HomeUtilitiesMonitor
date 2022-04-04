@@ -48,7 +48,7 @@
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
                 </v-btn>
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/watergraph')">
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/electricGraph')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Graph</span>
                 </v-btn>
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/settings')">

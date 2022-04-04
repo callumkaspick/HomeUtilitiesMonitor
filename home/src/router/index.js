@@ -17,6 +17,7 @@ import ContactUs from '../views/ContactUs.vue'
 import AccountSettings from '../views/AccountSettingsView.vue'
 import DeviceSettings from '../views/DeviceSettingsView.vue'
 import NotificationSettings from '../views/NotificationSettingsView.vue'
+import ElectricGraph from '../views/ElectricGraphView.vue'
 //import WaterGraph from '../views/WaterGraph.vue'
 //import ElectricGraph from '../views/ElectricGraph.vue'
 
@@ -115,6 +116,11 @@ const routes = [
     path: '/notificationSettings',
     name: 'notificationSettings',
     component: NotificationSettings
+  },
+  {
+    path: '/electricGraph',
+    name: 'electricGraph',
+    component: ElectricGraph
   },
   /*
   {
