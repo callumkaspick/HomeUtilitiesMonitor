@@ -72,33 +72,47 @@ export default {
         return {
             granularity: 'day',
             electricRate: null,
-            lastMinuteInSecondsArray: null,
-            error: null
+            error: null,
+            lastMinuteInSeconds: null,
         }
     },
-    computed:{
-        electricRate(){
-            const respose = GetService.getElectricRate({
-                username: this.$store.state.user.username,
-            })
-            return response.data.electricRate
-        },
-        totalUsage(){
-            let average = 0;
-            console.log(this.lastMinuteInSeconds)
-            this.lastMinuteInSeconds.forEach(element => {
-                average += element.data 
-            });
-        },
-        usageInDollars(){
-            //total used * rate
-        },
-        lastMinuteInSeconds(){
+    async mounted() {
+        try{
+
+            //For if minute toggle is selected
             const response = GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            return response.data.lastMinuteInSeconds
+            this.lastMinuteInSeconds = response.data.lastMinuteInSeconds
+        }
+        catch(error){
+            this.error = error.response.data.message
+            console.log("mount fail")
+        }
+  },
+    computed:{
+        // electricRate(){
+        //     const respose = GetService.getElectricRate({
+        //         username: this.$store.state.user.username,
+        //     })
+        //     return response.data.electricRate
+        // },
+        totalUsage(){
+            const response = GetUsages.getLastMinuteInSeconds({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            // this.lastMinuteInSeconds = response.data.lastMinuteInSeconds
+            let average = 0
+            console.log(response.data.lastMinuteInSeconds)
+            this.lastMinuteInSeconds.forEach(element => {
+                average += element.data 
+            });
+            return average
+        },
+        usageInDollars(){
+            //total used * rate
         },
         lastHourInMinutes(){
             return ['hello', 'goodbye']

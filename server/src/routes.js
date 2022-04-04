@@ -6,6 +6,7 @@ const TestController = require('./controllers/TestController')
 const ChangeControllerPolicy = require('./policies/ChangeControllerPolicy')
 const GetController = require('./controllers/GetController')
 const GetUsagesController = require('./controllers/GetUsagesController')
+const MockDataController = require('./controllers/MockDataController')
 
 module.exports = (app) => {
   app.post('/register',
@@ -47,6 +48,9 @@ module.exports = (app) => {
   app.post('/getLastMinuteInSeconds',
     AuthenticationController.checkLogin,
     GetUsagesController.getLastMinuteInSeconds,
+  )
+  app.post('/initMockData',
+    MockDataController.init,
   )
 
 }

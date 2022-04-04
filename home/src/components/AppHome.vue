@@ -10,6 +10,9 @@
         <h1 block class="display-2 font-weight-bold mb-3">
           Welcome, User
         </h1>
+        <v-btn
+        @click="initMockData">Init Mock Data
+        </v-btn>
       </v-col>
     </v-row>
 
@@ -38,11 +41,19 @@
 </style>
 
 <script>
+  import MockService from '@/services/MockService'
   export default {
     name: 'HelloWorld',
 
     data: () => ({
     }),
+    methods: {
+      initMockData(){
+        MockService.initMockData({
+          username: this.$store.state.user.username
+        })
+      }
+    }
   }
 </script>
 
