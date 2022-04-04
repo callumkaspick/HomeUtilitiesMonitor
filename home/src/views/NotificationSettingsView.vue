@@ -156,8 +156,15 @@
                                     id="change"
                                     class="mb-2"
                                     @click="changePassword"
-                                    >
+                                    v-if="phone != null">
                                         Change
+                                    </v-btn>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    @click="changePassword"
+                                    v-if="phone == null">
+                                        Add
                                     </v-btn>
                             </v-card>
                         </v-col>

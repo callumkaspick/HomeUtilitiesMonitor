@@ -56,7 +56,7 @@
 
       <v-btn 
         v-if="$store.state.isUserLoggedIn"
-        flat 
+        text 
         dark color="appSecondary"
         @click="logout">
         Log Out

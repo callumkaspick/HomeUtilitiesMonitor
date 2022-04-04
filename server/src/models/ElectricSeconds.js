@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
     const ElectricSeconds = sequelize.define('ElectricSeconds', {
       data: {
-        type: DataTypes.STRING,
+        type: DataTypes.DOUBLE,
         unique: true
       },
       date: {
-          type: DataTypes.STRING,
+          type: DataTypes.DATE,
           primaryKey: true,
       }, 
       },{
