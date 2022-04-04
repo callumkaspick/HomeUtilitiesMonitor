@@ -34,8 +34,10 @@ module.exports = {
                         50, 51, 52, 53, 54, 55, 56, 57, 58, 59,
                         60]
                 },
+                attributes: ['data'],
                 raw: true
             })
+            .then(seconds => seconds.map(seconds => seconds.data));
             console.log("found all mock entries matching device ID")
             console.log(mockElectricSeconds)
             res.send({

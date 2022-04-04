@@ -3,7 +3,7 @@
         <h1 class="ma-4 text-center text-h1">Electric Monitor</h1>
 
         <v-container class="my-4" grid-list-md fluid>
-            <v-card flat class="pa-3">
+            <v-card text class="pa-3">
                 <v-layout row wrap>
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3">Usage in dollars</div>
@@ -20,7 +20,7 @@
         </v-container>
 
         <v-container>
-            <v-bottom-navigation grow flat fluid align class="electricSecondary ma-2">
+            <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
                 <v-btn @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
@@ -44,7 +44,7 @@
                 </v-btn>
             </v-bottom-navigation>
 
-            <v-bottom-navigation fixed grow flat fluid align class="electricPrimary ma-2">
+            <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
                 </v-btn>
@@ -74,17 +74,18 @@ export default {
             electricRate: null,
             error: null,
             lastMinuteInSeconds: null,
+            totalUsage: null,
         }
     },
     async mounted() {
         try{
-
-            //For if minute toggle is selected
             const response = GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            this.lastMinuteInSeconds = response.data.lastMinuteInSeconds
+            console.log(response.data.mockElectricSeconds)
+            this.totalUsage = response.data.mockElectricSeconds[0]
+            
         }
         catch(error){
             this.error = error.response.data.message
@@ -98,19 +99,22 @@ export default {
         //     })
         //     return response.data.electricRate
         // },
-        totalUsage(){
-            const response = GetUsages.getLastMinuteInSeconds({
-                username: this.$store.state.user.username,
-                password: this.$store.state.user.password
-            })
-            // this.lastMinuteInSeconds = response.data.lastMinuteInSeconds
-            let average = 0
-            console.log(response.data.lastMinuteInSeconds)
-            this.lastMinuteInSeconds.forEach(element => {
-                average += element.data 
-            });
-            return average
-        },
+        // totalUsage(){
+            
+        //     const response = GetUsages.getLastMinuteInSeconds({
+        //         username: this.$store.state.user.username,
+        //         password: this.$store.state.user.password
+        //     })
+        //     // // this.lastMinuteInSeconds = response.data.lastMinuteInSeconds
+        //     let average = 0
+        //     //let secondsArray = response.data.mockElectricSeconds
+        //     console.log(response.data.mockElectricSeconds[1])
+        //     console.log('data is in view')
+        //     // this.lastMinuteInSeconds.forEach(element => {
+        //     //     average += element.data 
+        //     // });
+        //     // return average
+        // },
         usageInDollars(){
             //total used * rate
         },
