@@ -8,7 +8,7 @@
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3">Usage in dollars</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">$30</div>
+                        <div class="electricSecondary pa-4 text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3" >Usage in gallons</div>
@@ -75,10 +75,13 @@ export default {
             error: null,
             lastMinuteInSeconds: null,
             totalUsage: null,
+            usageInDollars: null,
+            rate: 2,
         }
     },
     async mounted() {
         try{
+            //set total usage
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
@@ -92,6 +95,12 @@ export default {
         catch(error){
             this.error = error.response.data.message
             console.log("mount fail")
+        }
+        try{
+            this.usageInDollars = this.totalUsage * this.rate
+        }
+        catch{
+            console.log("usageInDollars failed")
         }
   },
     computed:{
@@ -117,9 +126,6 @@ export default {
         //     // });
         //     // return average
         // },
-        usageInDollars(){
-            //total used * rate
-        },
         lastHourInMinutes(){
             return ['hello', 'goodbye']
         },
