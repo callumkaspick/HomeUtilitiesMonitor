@@ -79,12 +79,14 @@ export default {
     },
     async mounted() {
         try{
-            const response = GetUsages.getLastMinuteInSeconds({
+            const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            console.log(response.data.mockElectricSeconds)
-            this.totalUsage = response.data.mockElectricSeconds[0]
+            let total = 0
+            let responseArray = response.data.mockElectricSeconds
+            responseArray.forEach(element => total += element)
+            this.totalUsage = total
             
         }
         catch(error){
