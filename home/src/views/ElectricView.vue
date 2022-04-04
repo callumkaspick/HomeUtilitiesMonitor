@@ -43,6 +43,19 @@
                     <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
                 </v-btn>
             </v-bottom-navigation>
+            <v-sparkline
+                    v-if="enabled"
+                    :gradient="selectedGradient"
+                    line-width="2"
+                    padding="0"
+                    smooth="10"
+                    :value="value"
+                    type="trend"
+                    fill="true"
+                    auto-draw
+                    class="mt-12"
+            >
+            </v-sparkline>
 
             <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
@@ -77,7 +90,13 @@ export default {
             totalUsage: null,
             usageInDollars: null,
             rate: 2,
+            selectedGradient: ['red', 'orange', 'yellow'],
+            value: null,
+            enabled: true,
         }
+    },
+    created() {
+        this.value = [1,2,3]
     },
     async mounted() {
         try{
@@ -88,6 +107,7 @@ export default {
             })
             let total = 0
             let responseArray = response.data.mockElectricSeconds
+            this.value = responseArray
             responseArray.forEach(element => total += element)
             this.totalUsage = total
             
@@ -155,6 +175,7 @@ export default {
             })
             let total = 0
             let responseArray = response.data.mockElectricSeconds
+            this.value = responseArray
             responseArray.forEach(element => total += element)
             this.totalUsage = total
 
@@ -168,6 +189,7 @@ export default {
             })
             let total = 0
             let responseArray = response.data.mockElectricMinutes
+            this.value = responseArray
             responseArray.forEach(element => total += element)
             this.totalUsage = total
 
