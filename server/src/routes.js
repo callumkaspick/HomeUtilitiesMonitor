@@ -5,6 +5,7 @@ const isAuthenticated = require('./policies/isAuthenticated')
 const TestController = require('./controllers/TestController')
 const ChangeControllerPolicy = require('./policies/ChangeControllerPolicy')
 const GetController = require('./controllers/GetController')
+const GetUsagesController = require('./controllers/GetUsagesController')
 
 module.exports = (app) => {
   app.post('/register',
@@ -42,6 +43,10 @@ module.exports = (app) => {
   app.post('/getElectricRate',
     AuthenticationController.checkLogin,
     GetController.getElectricRate,
+  )
+  app.post('/getLastMinuteInSeconds',
+    AuthenticationController.checkLogin,
+    GetUsagesController.getLastMinuteInSeconds,
   )
 
 }

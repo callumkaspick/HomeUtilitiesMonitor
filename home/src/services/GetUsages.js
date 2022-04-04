@@ -2,7 +2,7 @@ import Api from '@/services/Api'
 
 export default {
   getLastMinuteInSeconds (credentials) {
-    return Api().post('getWaterDevice', credentials)
+    return Api().post('getLastMinuteInSeconds', credentials)
   },
   getLastHourInMinutes (credentials) {
     return Api().post('getElectricDevice', credentials)

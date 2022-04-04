@@ -13,7 +13,7 @@
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3" >Usage in gallons</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">1000 gallons</div>
+                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} gallons</div>
                     </v-flex>
                 </v-layout>
             </v-card>
@@ -65,68 +65,98 @@
 
 <script>
 import GetUsages from '@/services/GetUsages'
+import GetService from '@/services/GetService'
+
 export default {
-  data () {
-    return {
-        granularity: 'day',
-        waterDevice: null,
-        electricDevice: null,
-        waterRate: null,
-        error: null
-    }
-  },
-  async mounted() {
-        try{
-            const response = await GetService.getWaterDevice({
+    data () {
+        return {
+            granularity: 'day',
+            electricRate: null,
+            lastMinuteInSecondsArray: null,
+            error: null
+        }
+    },
+    computed:{
+        electricRate(){
+            const respose = GetService.getElectricRate({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.username
             })
-            console.log(response.data.waterDevice.waterDeviceID)
-            this.waterDevice = response.data.waterDevice.waterDeviceID
-            console.log("mount success")
+            return response.data.electricRate
+        },
+        totalUsage(){
+            let average = 0;
+            console.log(this.lastMinuteInSeconds)
+            this.lastMinuteInSeconds.forEach(element => {
+                average += element.data 
+            });
+        },
+        usageInDollars(){
+            //total used * rate
+        },
+        lastMinuteInSeconds(){
+            const response = GetUsages.getLastMinuteInSeconds({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            return response.data.lastMinuteInSeconds
+        },
+        lastHourInMinutes(){
+            return ['hello', 'goodbye']
+        },
+        lastDayInHours(){
+            return ['hello', 'goodbye']
+        },
+        lastWeekInDays(){
+            return ['hello', 'goodbye']
+        },
+        lastMonthInWeeks(){
+            return ['hello', 'goodbye']
+        },
+        lastYearInMonths(){
+            return ['hello', 'goodbye']
+        },
+        allTimeInYears(){
+            return ['hello', 'goodbye']
+        },
+
+    },
+    methods: {
+        updateMinute () {
+            this.granularity = 'minute'
+        },
+        updateHour () {
+            this.granularity = 'hour'
+        },
+        updateDay () {
+            this.granularity = 'day'
+        },
+        updateWeek () {
+            this.granularity = 'week'
+        },
+        updateMonth () {
+            this.granularity = 'month'
+        },
+        updateYear () {
+            this.granularity = 'year'
+        },
+        updateAllTime () {
+            this.granularity = 'all-time'
+        },
+        changeWaterRate () {
+        this.$router.push({
+            name: 'newUsername'
+            })
+        },
+        changeElectricRate () {
+        this.$router.push({
+            name: 'newEmail'
+            })
+        },
+        changePassword () {
+        this.$router.push({
+            name: 'newPassword'
+            })
         }
-        catch(error){
-            this.error = error.response.data.message
-            console.log("mount fail")
-        }
-  },
-  methods: {
-    updateMinute () {
-        this.granularity = 'minute'
-    },
-    updateMinute () {
-        this.granularity = 'hour'
-    },
-    updateMinute () {
-        this.granularity = 'day'
-    },
-    updateMinute () {
-        this.granularity = 'week'
-    },
-    updateMinute () {
-        this.granularity = 'month'
-    },
-    updateMinute () {
-        this.granularity = 'year'
-    },
-    updateMinute () {
-        this.granularity = 'all-time'
-    },
-    changeWaterRate () {
-      this.$router.push({
-          name: 'newUsername'
-        })
-    },
-    changeElectricRate () {
-      this.$router.push({
-          name: 'newEmail'
-        })
-    },
-    changePassword () {
-      this.$router.push({
-          name: 'newPassword'
-        })
     }
-  }
 }
 </script>

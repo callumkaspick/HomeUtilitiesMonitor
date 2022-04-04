@@ -1,5 +1,6 @@
 const {User} = require('../models')
 const {WaterDevice} = require('../models')
+const {ElectricDevice} = require('../models')
 const config = require('../config/config')
 
 module.exports = {
@@ -42,24 +43,24 @@ module.exports = {
         }
       })
       console.log("found user")
-      await WaterDevice.create({
+      await ElectricDevice.create({
         UserUserID: user.userID})
-      console.log("added water device")
-      const waterDevice1 = await WaterDevice.findOne({
+      console.log("added electric device")
+      const electricDevice = await ElectricDevice.findOne({
         where: {
           UserUserID: user.userID
         }
       })
       console.log("found device with correct userID")
-      const waterDeviceJSON = waterDevice1.toJSON()
-      console.log(waterDeviceJSON)
+      const electricDeviceJSON = electricDevice.toJSON()
+      console.log(electricDeviceJSON)
       res.send({
-        waterDevice: waterDeviceJSON
+        electricDevice: electricDeviceJSON
       })
 
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured getting water device'
+        error: 'An error has occured getting electric device'
       })
     }
   },
