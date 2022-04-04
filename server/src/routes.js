@@ -49,6 +49,10 @@ module.exports = (app) => {
     AuthenticationController.checkLogin,
     GetUsagesController.getLastMinuteInSeconds,
   )
+  app.post('/getLastHourInMinutes',
+    AuthenticationController.checkLogin,
+    GetUsagesController.getLastHourInMinutes,
+  )
   app.post('/initMockData',
     MockDataController.init,
   )

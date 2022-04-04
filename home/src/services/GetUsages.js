@@ -5,7 +5,7 @@ export default {
     return Api().post('getLastMinuteInSeconds', credentials)
   },
   getLastHourInMinutes (credentials) {
-    return Api().post('getElectricDevice', credentials)
+    return Api().post('getLastHourInMinutes', credentials)
   },
   getLastDayInHours (credentials) {
     return Api().post('getWaterRate', credentials)

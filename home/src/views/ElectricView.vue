@@ -160,8 +160,18 @@ export default {
 
             this.usageInDollars = this.totalUsage * this.rate
         },
-        updateHour () {
+        async updateHour () {
             this.granularity = 'hour'
+            const response = await GetUsages.getLastHourInMinutes({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            let total = 0
+            let responseArray = response.data.mockElectricMinutes
+            responseArray.forEach(element => total += element)
+            this.totalUsage = total
+
+            this.usageInDollars = this.totalUsage * this.rate
         },
         updateDay () {
             this.granularity = 'day'

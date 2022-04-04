@@ -4,6 +4,7 @@ const {WaterDevice} = require('../models')
 const {ElectricSeconds} = require('../models')
 const config = require('../config/config')
 const {MockElectricSeconds} = require('../models')
+const {MockElectricMinutes} = require('../models')
 
 module.exports = {
     async init (req, res) {
@@ -44,7 +45,15 @@ module.exports = {
             }
             console.log("inserted 60 seconds electric mock data")
             
-
+            //create mock last 60 minutes
+            for(let i = 1; i < 61; i++){
+                await MockElectricMinutes.create({
+                    data: (dataArr[i-1]*60),
+                    date: i,
+                    ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID
+                })
+            }
+            console.log("inserted 60 minutes electric mock data")
 
             res.send({
                 message: 'success'
