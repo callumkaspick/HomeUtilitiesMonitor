@@ -15,7 +15,7 @@
         </v-btn>
       </v-col>
     </v-row>
-
+    
     <v-row class="text-center">
       <!-- button for redirect to electricity page -->
       <v-btn depressed large elevation="3" class="flexcol yellow mx-4" width="550" height="580" @click="$router.push('/electric')">
@@ -42,6 +42,7 @@
 
 <script>
   import MockService from '@/services/MockService'
+
   export default {
     name: 'HelloWorld',
 

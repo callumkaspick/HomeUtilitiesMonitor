@@ -20,7 +20,7 @@
         </v-container>
 
         <v-container>
-            <v-bottom-navigation grow flat fluid align class="appPrimary ma-2" justify="space-around">
+            <v-bottom-navigation grow flat fluid align class="appPrimary ma-2">
                 <v-btn class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
