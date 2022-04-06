@@ -7,9 +7,9 @@
     <!-- Header for main page -->
     <v-row class="text-center">
       <v-col class="mt-6 mb-16">
-        <h1 block class="display-2 font-weight-bold mb-3">
-          Welcome, User
-        </h1>
+        <div v-if="username" block class="display-2 font-weight-bold mb-3 text-h2">
+          Welcome, {{ username }}
+        </div>
         <v-btn
         @click="initMockData">Init Mock Data
         </v-btn>
@@ -54,7 +54,12 @@
           username: this.$store.state.user.username
         })
       }
-    }
+    },
+    computed: {
+      username: function() {
+      return this.$store.state.user.username
+  }
+}
   }
 </script>
 
