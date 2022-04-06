@@ -56,7 +56,7 @@
 
       <v-btn 
         v-if="$store.state.isUserLoggedIn"
-        flat 
+        text 
         dark color="appSecondary"
         @click="logout">
         Log Out
@@ -97,7 +97,6 @@ export default {
     return {
       items: [
         { title: 'Home', icon: 'mdi-home', path: '/' },
-        { title: 'Profile', icon: 'mdi-account-box', path: '/profile'},
         { title: 'Settings', icon: 'mdi-cog', path: '/settings'},
         { title: 'About', icon: 'mdi-information', path: '/about'},
         { title: 'Contact', icon: 'mdi-mail', path: '/contact'},

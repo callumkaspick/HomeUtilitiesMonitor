@@ -1,26 +1,26 @@
 <template>
     <div>
-        <h1 class="ma-4 text-center text-h1">Water Monitor</h1>
-
+        <h1 class="ma-4 text-center text-h2">Water Monitor</h1>
+        <v-divider></v-divider>
         <v-container class="my-4" grid-list-md fluid>
             <v-card flat class="pa-3">
                 <v-layout row wrap>
                     <v-flex xs12>
                         <div class="waterPrimary text-center pa-4 text-h3">Usage in dollars</div>
                         <v-divider></v-divider>
-                        <div class="waterSecondary pa-4 text-h4">$30</div>
+                        <div class="waterSecondary text-center pa-4 text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
                         <div class="waterPrimary text-center pa-4 text-h3" >Usage in gallons</div>
                         <v-divider></v-divider>
-                        <div class="waterSecondary pa-4 text-h4">1000 gallons</div>
+                        <div class="waterSecondary text-center pa-4 text-h4">{{totalUsage}} gallons</div>
                     </v-flex>
                 </v-layout>
             </v-card>
         </v-container>
 
         <v-container>
-            <v-bottom-navigation grow flat fluid align class="appPrimary ma-2">
+            <v-bottom-navigation grow flat fluid align class="appPrimary ma-2" justify="space-around">
                 <v-btn class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
@@ -62,3 +62,134 @@
         
     </div>
 </template>
+
+<script>
+import GetUsages from '@/services/GetUsages'
+import GetService from '@/services/GetService'
+ 
+export default {
+    data () {
+        return {
+            granularity: 'day',
+            waterRate: null,
+            error: null,
+            lastMinuteInSeconds: null,
+            totalUsage: null,
+            usageInDollars: null,
+            rate: 2,
+            selectedGradient: ['waterPrimary', 'waterSecondary', 'appPrimary'],
+            value: null,
+            enabled: true,
+        }
+    },
+    created() {
+        this.value = [1,2,3]
+    },
+    async mounted() {
+        try{
+            //set total usage
+            const response = await GetUsages.getLastMinuteInSeconds({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            let total = 0
+            let responseArray = response.data.mockWaterSeconds
+            this.value = responseArray
+            responseArray.forEach(element => total += element)
+            this.totalUsage = total
+            
+        }
+        catch(error){
+            this.error = error.response.data.message
+            console.log("mount fail")
+        }
+        try{
+            this.usageInDollars = this.totalUsage * this.rate
+        }
+        catch{
+            console.log("usageInDollars failed")
+        }
+  },
+    computed:{
+        lastHourInMinutes(){
+            return ['hello', 'goodbye']
+        },
+        lastDayInHours(){
+            return ['hello', 'goodbye']
+        },
+        lastWeekInDays(){
+            return ['hello', 'goodbye']
+        },
+        lastMonthInWeeks(){
+            return ['hello', 'goodbye']
+        },
+        lastYearInMonths(){
+            return ['hello', 'goodbye']
+        },
+        allTimeInYears(){
+            return ['hello', 'goodbye']
+        },
+
+    },
+    methods: {
+        async updateMinute () {
+            this.granularity = 'minute'
+            const response = await GetUsages.getLastMinuteInSeconds({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            let total = 0
+            let responseArray = response.data.mockWaterSeconds
+            this.value = responseArray
+            responseArray.forEach(element => total += element)
+            this.totalUsage = total
+
+            this.usageInDollars = this.totalUsage * this.rate
+        },
+        async updateHour () {
+            this.granularity = 'hour'
+            const response = await GetUsages.getLastHourInMinutes({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            let total = 0
+            let responseArray = response.data.mockWaterMinutes
+            this.value = responseArray
+            responseArray.forEach(element => total += element)
+            this.totalUsage = total
+
+            this.usageInDollars = this.totalUsage * this.rate
+        },
+        updateDay () {
+            this.granularity = 'day'
+        },
+        updateWeek () {
+            this.granularity = 'week'
+        },
+        updateMonth () {
+            this.granularity = 'month'
+        },
+        updateYear () {
+            this.granularity = 'year'
+        },
+        updateAllTime () {
+            this.granularity = 'all-time'
+        },
+        changeWaterRate () {
+        this.$router.push({
+            name: 'newUsername'
+            })
+        },
+        changeElectricRate () {
+        this.$router.push({
+            name: 'newEmail'
+            })
+        },
+        changePassword () {
+        this.$router.push({
+            name: 'newPassword'
+            })
+        }
+    }
+}
+</script>

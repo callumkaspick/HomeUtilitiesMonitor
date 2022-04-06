@@ -12,8 +12,8 @@
                         <v-form>
                            <v-text-field
                               prepend-icon="person"
-                              name="login"
-                              label="Login"
+                              name="username"
+                              label="Username"
                               type="text"
                               v-model="username"
                            ></v-text-field>
