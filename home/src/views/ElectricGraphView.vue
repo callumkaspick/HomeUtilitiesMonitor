@@ -1,9 +1,50 @@
 <template>
     <div>
+        <h1 class="ma-4 text-center text-h2">Electric Monitor Graphs</h1>
+        <v-divider></v-divider>
+
+        <v-container class="electricPrimary my-4" grid-list-md fluid>
+            <v-row no-gutters>
+                
+                <v-col order="1">
+                    <v-card class="electricPrimary pa-12 text-center" outlined tile>
+                        <!-- Button where user will be able to change units -->
+                        <v-btn class="electricSecondary rounded-pill pa-8">
+                            <span dark class="text-center pa-2 text-h3 font-weight-bold">Unit</span>
+                        </v-btn>
+                    </v-card>
+                </v-col>
+                
+                <v-col order="2">
+                    <v-card class="electricPrimary pa-12 text-center" outlined tile>
+                        <!-- Display usage for current month depending on unit selected through button-->
+                        <span class="text-center pa-2 text-h4 font-weight-bold">
+                            Monthly Usage: 
+                            <br> 
+                            x kWh
+                        </span>
+                    </v-card>
+                </v-col>
+                
+                <v-col order="3">
+                    <v-card class="electricPrimary pa-12 text-center" outlined tile>
+                        <span class="text-center pa-2 text-h4 font-weight-bold">
+                            Time Stamp
+                            <br>
+                            Consumption:
+                            <br>
+                            x kWh per unit of time
+                        </span>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </v-container>
+
+        <v-divider></v-divider>
         <v-row>
             <v-col
             cols="12">
-                <v-sparkline
+                <v-sparkline class="ma-4"
                     v-if="enabled"
                     :gradient="selectedGradient"
                     line-width="2"
@@ -14,7 +55,7 @@
                     fill="true"
                     auto-draw
                 ></v-sparkline>
-                <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
+                <v-bottom-navigation grow text fluid align class="electricSecondary mt-4 mb-10">
                 <v-btn @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
@@ -37,10 +78,26 @@
                     <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
                 </v-btn>
             </v-bottom-navigation>
-            </v-col>
-            
+            </v-col>  
         </v-row>
         
+        <v-container>
+            <v-bottom-navigation fixed grow flat fluid align class="electricPrimary ma-2">
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
+                    <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
+                </v-btn>
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/watergraph')">
+                    <span class="text-center pa-2 text-h5 font-weight-bold">Graph</span>
+                </v-btn>
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/settings')">
+                    <span class="text-center pa-2 text-h5 font-weight-bold">Settings</span>
+                </v-btn>
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/notifications')">
+                    <span class="text-center pa-2 text-h5 font-weight-bold">Notifications</span>
+                </v-btn>
+            </v-bottom-navigation>
+        </v-container>
+
     </div>
 </template>
 

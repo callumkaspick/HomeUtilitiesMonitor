@@ -1,26 +1,26 @@
 <template>
     <div>
-        <h1 class="ma-4 text-center text-h1">Electric Summary</h1>
-
+        <h1 class="ma-4 text-center text-h2">Electric Monitor</h1>
+        <v-divider></v-divider>
         <v-container class="my-4" grid-list-md fluid>
-            <v-card text class="pa-3">
+            <v-card flat class="pa-3">
                 <v-layout row wrap>
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3">Usage in dollars</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">${{usageInDollars}}</div>
+                        <div class="electricSecondary text-center pa-4 text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3" >Usage in gallons</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} gallons</div>
+                        <div class="electricSecondary text-center pa-4 text-h4">{{totalUsage}} gallons</div>
                     </v-flex>
                 </v-layout>
             </v-card>
         </v-container>
 
         <v-container>
-            <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
+            <v-bottom-navigation grow flat fluid align class="electricSecondary ma-2">
                 <v-btn @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
@@ -43,21 +43,8 @@
                     <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
                 </v-btn>
             </v-bottom-navigation>
-            <v-sparkline
-                    v-if="enabled"
-                    :gradient="selectedGradient"
-                    line-width="2"
-                    padding="0"
-                    smooth="10"
-                    :value="value"
-                    type="trend"
-                    fill="true"
-                    auto-draw
-                    class="mt-12"
-            >
-            </v-sparkline>
 
-            <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
+            <v-bottom-navigation fixed grow flat fluid align class="electricPrimary ma-2">
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
                 </v-btn>

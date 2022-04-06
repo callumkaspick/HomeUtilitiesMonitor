@@ -21,25 +21,25 @@
 
         <v-container>
             <v-bottom-navigation grow flat fluid align class="appPrimary ma-2">
-                <v-btn class="rounded-pill">
+                <v-btn @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
-                <v-btn class="rounded-pill">
+                <v-btn @click="updateHour" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Hour</span>
                 </v-btn>
-                <v-btn class="rounded-pill">
+                <v-btn @click="updateDay" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Day</span>
                 </v-btn>
-                <v-btn class="rounded-pill">
+                <v-btn @click="updateWeek" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Week</span>
                 </v-btn>
-                <v-btn class="rounded-pill">
+                <v-btn @click="updateMonth" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Month</span>
                 </v-btn>
-                <v-btn class="rounded-pill">
+                <v-btn @click="updateYear" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Year</span>
                 </v-btn>
-                <v-btn class="rounded-pill">
+                <v-btn @click="updateAllTime" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Alltime</span>
                 </v-btn>
             </v-bottom-navigation>
