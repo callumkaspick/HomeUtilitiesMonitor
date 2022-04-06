@@ -54,7 +54,7 @@ module.exports = {
 
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured getting water device'
+        error: 'An error has occured getting electric device'
       })
     }
   },
@@ -104,7 +104,7 @@ module.exports = {
 
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured getting water device'
+        error: 'An error has occured getting electric device'
       })
     }
   },

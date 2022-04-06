@@ -5,6 +5,8 @@ const {ElectricSeconds} = require('../models')
 const config = require('../config/config')
 const {MockElectricSeconds} = require('../models')
 const {MockElectricMinutes} = require('../models')
+const {MockWaterSeconds} = require('../models')
+const {MockWaterMinutes} = require('../models')
 
 module.exports = {
     async init (req, res) {
@@ -16,10 +18,12 @@ module.exports = {
                 }
             })
             console.log("found user")
+            
             await ElectricDevice.create({
                 UserUserID: user.userID
             })
             console.log("added electric device")
+
             await WaterDevice.create({
                 UserUserID: user.userID
             })
@@ -32,6 +36,14 @@ module.exports = {
             })
             console.log("found electric device with correct userID")
             console.log(electricDevice.dataValues.electricDeviceID)
+
+            const waterDevice = await WaterDevice.findOne({
+                where: {
+                    UserUserID: user.userID
+                }
+            })
+            console.log("found water device with correct userID")
+            console.log(waterDevice.dataValues.waterDeviceID)
             
             let dataArr = [1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,6,7,8,9,10,10,11,11,12,12,12,10,13,13,13,15,5,5,5,5,5,5,5,5,5,5,5,3,2,1,2,3,4,5,6,7,9,8,7,6,5,4,3,2,1]
 
@@ -40,10 +52,17 @@ module.exports = {
                 await MockElectricSeconds.create({
                     data: dataArr[i-1],
                     date: i,
-                    ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID
+                    ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+                })
+
+                await MockWaterSeconds.create({
+                    data: dataArr[i-1],
+                    date: i,
+                    WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID,
                 })
             }
             console.log("inserted 60 seconds electric mock data")
+            console.log("inserted 60 seconds water mock data")
             
             //create mock last 60 minutes
             for(let i = 1; i < 61; i++){
@@ -52,8 +71,15 @@ module.exports = {
                     date: i,
                     ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID
                 })
+
+                await MockWaterMinutes.create({
+                    data: (dataArr[i-1]*Math.random()*10),
+                    date: i,
+                    WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID
+                })
             }
             console.log("inserted 60 minutes electric mock data")
+            console.log("inserted 60 minutes water mock data")
 
             res.send({
                 message: 'success'
@@ -61,7 +87,7 @@ module.exports = {
 
         } catch (err) {
         res.status(500).send({
-            error: 'An error has occured getting mock electric seconds device'
+            error: 'An error has occured getting mock electric/water seconds device'
         })
     }
   },
