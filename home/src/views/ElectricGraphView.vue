@@ -119,6 +119,11 @@ export default {
             })
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
+            var startArrEntry = ['Minutes', 'kWA Usage']
+            var compArr = [startArrEntry].concat(this.value)
+            this.chartData = compArr
+            this.chartOptions.hAxis.title = 'Seconds'
+            this.chartOptions.title = 'Usage for the last 60 seconds'
         },
         async updateHour () {
             const response = await GetUsages.getLastHourInMinutes({
@@ -127,6 +132,11 @@ export default {
             })
             let responseArray = response.data.mockElectricMinutes
             this.value = responseArray
+            var startArrEntry = ['Minutes', 'kWA Usage']
+            var compArr = [startArrEntry].concat(this.value)
+            this.chartData = compArr
+            this.chartOptions.hAxis.title = 'Minutes'
+            this.chartOptions.title = 'Usage for the last 60 minutes'
         },
         changePassword () {
         this.$router.push({
