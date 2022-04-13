@@ -4,21 +4,11 @@
             <v-col
             cols="12">
                 <GChart
-                    type="ColumnChart"
+                    type="LineChart"
                     :data="chartData"
                     :options="chartOptions"
+                    :colors="colors"
                 />
-                <v-sparkline
-                    v-if="enabled"
-                    :gradient="selectedGradient"
-                    line-width="2"
-                    padding="0"
-                    smooth="10"
-                    :value="value"
-                    type="trend"
-                    fill="true"
-                    auto-draw
-                ></v-sparkline>
                 <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
                 <v-btn @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
@@ -60,17 +50,24 @@ export default {
     },
     data () {
         return {
+            print: null,
             selectedGradient: ['red', 'orange', 'yellow'],
-            chartData: [
-                ['Year', 'Sales'],
-                ['2014', 1000],
-                ['2015', 200]
-            ],
+            chartData: null,
             chartOptions: {
+                hAxis: {
+                    title: 'Seconds'
+                },
+                vAxis: {
+                    title: 'kWA'
+                },
+                title: 'Usage for last 60 seconds',
                 chart: {
-                    title: 'Company Performance',
+                    title: 'Electric Usage',
                     subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-                }
+                },
+                legend: { position: "right" },
+                curveType: 'function',
+                colors: ['red'],
             },
             granularity: 'day',
             electricRate: null,
@@ -80,6 +77,7 @@ export default {
             rate: 2,
             value: null,
             enabled: true,
+            colors:['yellow','darkyellow'],
         }
     },
     async mounted() {
@@ -90,7 +88,9 @@ export default {
             })
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
-            this.chartData[1] = responseArray
+            var startArrEntry = ['Seconds', 'kWA Usage']
+            var compArr = [startArrEntry].concat(this.value)
+            this.chartData = compArr
             
         }
         catch(error){
