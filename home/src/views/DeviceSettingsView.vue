@@ -42,6 +42,7 @@
                             width="100%"
                             align="start"
                             flat
+                            color="#F5F5F5"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -61,6 +62,7 @@
                             width="100%"
                             align="center"
                             flat
+                            color="#F5F5F5"
                             class="d-flex align-center justify-center">
                                 <div
                                 id="loadedData">
@@ -77,12 +79,14 @@
                             height="100%"
                             width="100%"
                             class="d-flex align-end pr-2"
+                            color="#F5F5F5"
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
                                     v-if="waterDevice == null"
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="changeUsername"
                                     >
                                         Add
@@ -91,6 +95,7 @@
                                     v-if="waterDevice != null"
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="changeUsername"
                                     >
                                         Remove
@@ -128,6 +133,7 @@
                             width="100%"
                             align="start"
                             flat
+                            color="#F5F5F5"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -147,6 +153,7 @@
                             width="100%"
                             align="center"
                             flat
+                            color="#F5F5F5"
                             class="d-flex align-center justify-center">
                                 <div
                                 id="loadedData">
@@ -162,12 +169,14 @@
                             <v-card
                             height="100%"
                             width="100%"
+                            color="#F5F5F5"
                             class="d-flex align-end pr-2"
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="changeWaterRate"
                                     >
                                         Change
@@ -201,6 +210,7 @@
                             width="100%"
                             align="start"
                             flat
+                            color="#F5F5F5"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -220,6 +230,7 @@
                             width="100%"
                             align="center"
                             flat
+                            color="#F5F5F5"
                             class="d-flex align-center justify-center">
                                 <div
                                 id="loadedData">
@@ -235,6 +246,7 @@
                             <v-card
                             height="100%"
                             width="100%"
+                            color="#F5F5F5"
                             class="d-flex align-end pr-2"
                             flat>
                                 <v-spacer></v-spacer>
@@ -242,6 +254,7 @@
                                     v-if="electricDevice == null"
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="addNewElectricDevice"
                                     >
                                         Add
@@ -250,6 +263,7 @@
                                     v-if="electricDevice != null"
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="changeUsername"
                                     >
                                         Remove
@@ -290,6 +304,7 @@
                             width="100%"
                             align="start"
                             flat
+                            color="#F5F5F5"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -308,6 +323,7 @@
                             height="100%"
                             width="100%"
                             align="center"
+                            color="#F5F5F5"
                             flat
                             class="d-flex align-center justify-center">
                                 <div
@@ -325,11 +341,13 @@
                             height="100%"
                             width="100%"
                             class="d-flex align-end pr-2"
+                            color="#F5F5F5"
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="changeElectricRate"
                                     >
                                         Change

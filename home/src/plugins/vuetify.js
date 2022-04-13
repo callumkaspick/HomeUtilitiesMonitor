@@ -13,7 +13,8 @@ export default new Vuetify({
                 waterPrimary: "#00B2FF",
                 waterSecondary: "#00FFFF",
                 electricPrimary: "#FAFF00",
-                electricSecondary: "#FFB800"
+                electricSecondary: "#FFB800",
+                gray: "#F5F5F5"
             },
 
             dark: {

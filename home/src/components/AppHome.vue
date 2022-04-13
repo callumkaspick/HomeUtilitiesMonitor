@@ -53,7 +53,7 @@
       </v-btn>
 
       <!-- button for redirect to water page -->
-      <v-btn depressed large elevation="3" class="flexcol light blue mx-4" width="550" height="580" @click="$router.push('/water')">
+      <v-btn depressed large elevation="3" class="flexcol light waterPrimary mx-4" width="550" height="580" @click="$router.push('/water')">
         <v-icon size="350">water_drop</v-icon>
         <span class="display-2">Water</span>
       </v-btn>
