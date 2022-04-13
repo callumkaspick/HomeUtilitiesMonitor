@@ -23,9 +23,9 @@
                </template>
             </v-snackbar>
             <v-layout justify-center>
-               <v-flex xs12 sm8 md4>
+               <v-flex xs12 sm8 md6 lg6>
                   <v-card class="elevation-12">
-                     <v-toolbar dark color="primary">
+                     <v-toolbar dark color="waterPrimary">
                         <v-toolbar-title>Register form</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text>
@@ -59,7 +59,10 @@
                         <br>
                         <div :class="status" v-html="error" />
                         <br>
-                        <v-btn color="primary" @click="register">Register</v-btn>
+                        <v-btn 
+                        outlined
+                        text="waterPrimary" 
+                        @click="register">Register</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -124,6 +127,14 @@ export default {
 
 #snackbar {
    color: white;
+}
+
+.v-text-field >>> label {
+    font-size: 1.5em;
+}
+
+.v-toolbar__title {
+  font-size: 2em !important;
 }
 
 </style>

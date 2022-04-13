@@ -3,9 +3,9 @@
       <v-main>
          <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm8 md4>
+               <v-flex xs12 sm8 md6 lg6>
                   <v-card class="elevation-12">
-                     <v-toolbar dark color="primary">
+                     <v-toolbar dark color="waterPrimary">
                         <v-toolbar-title>Login form</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text>
@@ -37,7 +37,12 @@
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="login">Login</v-btn>
+                        <v-btn 
+                        outlined
+                        text="waterSeconday" 
+                        background="gray" 
+                        color="waterPrimary" 
+                        @click="login">Login</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -84,4 +89,12 @@ export default {
 </script>
 
 <style scoped>
+.v-text-field >>> label {
+    font-size: 1.5em;
+}
+
+.v-toolbar__title {
+  font-size: 2em !important;
+}
+
 </style>

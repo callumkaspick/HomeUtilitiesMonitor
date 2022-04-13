@@ -361,7 +361,7 @@ export default {
         try{
             const response = await GetService.getElectricDevice({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.username
+                password: this.$store.state.user.password
             })
             console.log(response.data.electricDevice.electricDeviceID)
             this.electricDevice = response.data.electricDevice.electricDeviceID
