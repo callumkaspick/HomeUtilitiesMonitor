@@ -237,7 +237,7 @@
                                     v-if="electricDevice == null"
                                     id="change"
                                     class="mb-2"
-                                    @click="changeUsername"
+                                    @click="addNewElectricDevice"
                                     >
                                         Add
                                     </v-btn>
@@ -334,6 +334,7 @@
 </template>
 
 <script>
+import MockService from '@/services/MockService'
 import GetService from '@/services/GetService'
 export default {
   data () {
@@ -385,7 +386,18 @@ export default {
       this.$router.push({
           name: 'newPassword'
         })
-    }
+    },
+    async addNewElectricDevice(){
+        MockService.initElectricDeviceMockData({
+          username: this.$store.state.user.username
+        })
+        const response = await GetService.getElectricDevice({
+            username: this.$store.state.user.username,
+            password: this.$store.state.user.username
+        })
+        console.log(response.data.electricDevice.electricDeviceID)
+        this.electricDevice = response.data.electricDevice.electricDeviceID
+    },
   }
 }
 </script>

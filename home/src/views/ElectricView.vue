@@ -6,18 +6,23 @@
             <v-card text class="pa-3">
                 <v-layout row wrap>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3">Usage in dollars</div>
+                        <div id="label" class="text-center pa-4 text-h2">Usage in the last {{granularity}}</div>
+                    </v-flex>
+                    <v-flex xs12>
+                        <div class="electricPrimary text-center pa-4 text-h3">Dollars</div>
                         <v-divider></v-divider>
                         <div class="electricSecondary pa-4 text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3" >Usage in gallons</div>
+                        <div class="electricPrimary text-center pa-4 text-h3" >kWA</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} gallons</div>
+                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} kWA</div>
                     </v-flex>
                 </v-layout>
             </v-card>
         </v-container>
+
+        <electric-graph ref="graph" />
 
         <v-container>
             <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
@@ -43,19 +48,6 @@
                     <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
                 </v-btn>
             </v-bottom-navigation>
-            <v-sparkline
-                    v-if="enabled"
-                    :gradient="selectedGradient"
-                    line-width="2"
-                    padding="0"
-                    smooth="10"
-                    :value="value"
-                    type="trend"
-                    fill="true"
-                    auto-draw
-                    class="mt-12"
-            >
-            </v-sparkline>
 
             <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
@@ -79,11 +71,15 @@
 <script>
 import GetUsages from '@/services/GetUsages'
 import GetService from '@/services/GetService'
+import ElectricGraph from '../components/ElectricGraphView.vue'
 
 export default {
+    components: {
+        ElectricGraph
+    },
     data () {
         return {
-            granularity: 'day',
+            granularity: 'minute',
             electricRate: null,
             error: null,
             lastMinuteInSeconds: null,
@@ -108,7 +104,7 @@ export default {
             let total = 0
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
-            responseArray.forEach(element => total += element)
+            responseArray.forEach(element => total += element[1])
             this.totalUsage = total
             
         }
@@ -176,10 +172,11 @@ export default {
             let total = 0
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
-            responseArray.forEach(element => total += element)
+            responseArray.forEach(element => total += element[1])
             this.totalUsage = total
 
             this.usageInDollars = this.totalUsage * this.rate
+            this.$refs.graph.updateMinute()
         },
         async updateHour () {
             this.granularity = 'hour'
@@ -190,10 +187,11 @@ export default {
             let total = 0
             let responseArray = response.data.mockElectricMinutes
             this.value = responseArray
-            responseArray.forEach(element => total += element)
+            responseArray.forEach(element => total += element[1])
             this.totalUsage = total
 
             this.usageInDollars = this.totalUsage * this.rate
+            this.$refs.graph.updateHour()
         },
         updateDay () {
             this.granularity = 'day'
@@ -228,3 +226,17 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+#label {
+    background-color: lightgray;
+    color: black;
+    font-weight: bold;
+}
+#title {
+    color: black;
+    font-weight: bold;
+}
+
+
+</style>

@@ -9,29 +9,7 @@
                     :options="chartOptions"
                     :colors="colors"
                 />
-                <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
-                <v-btn @click="updateMinute" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
-                </v-btn>
-                <v-btn @click="updateHour" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Hour</span>
-                </v-btn>
-                <v-btn @click="updateDay" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Day</span>
-                </v-btn>
-                <v-btn @click="updateWeek" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Week</span>
-                </v-btn>
-                <v-btn @click="updateMonth" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Month</span>
-                </v-btn>
-                <v-btn @click="updateYear" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Year</span>
-                </v-btn>
-                <v-btn @click="updateAllTime" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
-                </v-btn>
-            </v-bottom-navigation>
+                
             </v-col>
             
         </v-row>
@@ -68,6 +46,7 @@ export default {
                 legend: { position: "right" },
                 curveType: 'function',
                 colors: ['red'],
+                height: 300,
             },
             granularity: 'day',
             electricRate: null,

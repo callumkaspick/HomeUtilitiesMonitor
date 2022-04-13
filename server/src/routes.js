@@ -56,5 +56,8 @@ module.exports = (app) => {
   app.post('/initMockData',
     MockDataController.init,
   )
+  app.post('/initElectricDeviceMockData',
+    MockDataController.addNewElectricDevice,
+  )
 
 }
