@@ -3,6 +3,11 @@
         <v-row>
             <v-col
             cols="12">
+                <GChart
+                    type="ColumnChart"
+                    :data="chartData"
+                    :options="chartOptions"
+                />
                 <v-sparkline
                     v-if="enabled"
                     :gradient="selectedGradient"
@@ -47,11 +52,26 @@
 <script>
 import GetUsages from '@/services/GetUsages'
 import GetService from '@/services/GetService'
+import { GChart } from 'vue-google-charts'
 
 export default {
+    components: {
+        GChart
+    },
     data () {
         return {
             selectedGradient: ['red', 'orange', 'yellow'],
+            chartData: [
+                ['Year', 'Sales'],
+                ['2014', 1000],
+                ['2015', 200]
+            ],
+            chartOptions: {
+                chart: {
+                    title: 'Company Performance',
+                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                }
+            },
             granularity: 'day',
             electricRate: null,
             error: null,
@@ -70,6 +90,7 @@ export default {
             })
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
+            this.chartData[1] = responseArray
             
         }
         catch(error){
