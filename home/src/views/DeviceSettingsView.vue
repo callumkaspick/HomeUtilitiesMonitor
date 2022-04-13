@@ -1,35 +1,33 @@
 <template>
-    <div>
-        <v-row
-        class="d-flex justify-center">
-            <v-col
-            cols=12>
-                <v-card
-                elevation="2"
-                class="d-flex justify-center mt-4"
-                id="currentPage"
-                >
-                    Account Settings
-                </v-card>
-            </v-col>
-            
-        </v-row>
-        <v-row
-        class="d-flex justify-center mt-12 mb-6">
-            <v-col
-            cols="12"
-            lg="8"
-            sm="12"
-            md="8"
-            class="">
-                
-                
-                <v-card
+    <v-main>
+      <v-container fluid fill-height>
+            <v-layout justify-center>
+               <v-flex xs12 sm12 md12 lg8>
+                  <v-card class="elevation-12"
+                  height="137%"
+                  width="100%">
+                     <v-toolbar dark color="waterPrimary">
+                        <v-toolbar-title class="settings">Device Settings</v-toolbar-title>
+                     </v-toolbar>
+                     <v-card-text
+                     height="100%"
+                     width="100%">
+                        <v-row
+                        class="d-flex align-stretch justify-center mt-4 mb-4">
+                          <v-col
+                          cols="12"
+                          lg="8"
+                          sm="12"
+                          md="8"
+                          height="100%"
+                          width="100%"
+                          class="">
+                              <v-card
                 elevation="2"
                 outlined
                 color="gray"
                 class="d-flex justify-space-around mb-6"
-                height="80%"
+                height="33%"
                 width="100%"
                 id="settingsChoice"
                 >
@@ -65,7 +63,7 @@
                             flat
                             class="d-flex align-center justify-center">
                                 <div
-                                id="data">
+                                id="loadedData">
                                     {{waterDevice}}
                                 </div>
                             </v-card>
@@ -101,15 +99,21 @@
                         </v-col>
                     </v-row>
                 </v-card>
-                
 
 
-                <v-card
+
+
+
+
+
+
+
+                              <v-card
                 elevation="2"
                 outlined
                 color="gray"
                 class="d-flex justify-space-around mb-6"
-                height="80%"
+                height="33%"
                 width="100%"
                 id="settingsChoice"
                 >
@@ -145,7 +149,7 @@
                             flat
                             class="d-flex align-center justify-center">
                                 <div
-                                id="data">
+                                id="loadedData">
                                     {{waterRate}}
                                 </div>
                             </v-card>
@@ -176,12 +180,13 @@
 
 
 
+
                 <v-card
                 elevation="2"
                 outlined
                 color="gray"
                 class="d-flex justify-space-around mb-6"
-                height="80%"
+                height="33%"
                 width="100%"
                 id="settingsChoice"
                 >
@@ -217,7 +222,7 @@
                             flat
                             class="d-flex align-center justify-center">
                                 <div
-                                id="data">
+                                id="loadedData">
                                     {{electricDevice}}
                                 </div>
                             </v-card>
@@ -253,14 +258,24 @@
                         </v-col>
                     </v-row>
                 </v-card>
-                
+
+
+
+
+
+
+
+
+
+
+
 
                 <v-card
                 elevation="2"
                 outlined
                 color="gray"
                 class="d-flex justify-space-around mb-6"
-                height="80%"
+                height="33%"
                 width="100%"
                 id="settingsChoice"
                 >
@@ -296,7 +311,7 @@
                             flat
                             class="d-flex align-center justify-center">
                                 <div
-                                id="data">
+                                id="loadedData">
                                     {{electricRate}}
                                 </div>
                             </v-card>
@@ -326,12 +341,23 @@
 
 
 
-            </v-col>
-            
-        </v-row>
-        
-    </div>
+
+                
+                          </v-col>
+                          
+                      </v-row>
+                        
+                     </v-card-text>
+                     
+                  </v-card>
+               </v-flex>
+            </v-layout>
+         </v-container>
+     
+    </v-main>
+    
 </template>
+
 
 <script>
 import MockService from '@/services/MockService'
@@ -426,5 +452,9 @@ export default {
 }
 #data {
     font-size: 2em
+}
+
+#loadedData {
+    font-size: 1.5em;
 }
 </style>

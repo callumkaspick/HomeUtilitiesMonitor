@@ -1,35 +1,33 @@
 <template>
-    <div>
-        <v-row
-        class="d-flex justify-center">
-            <v-col
-            cols=12>
-                <v-card
-                elevation="2"
-                class="d-flex justify-center mt-4"
-                id="currentPage"
-                >
-                    Account Settings
-                </v-card>
-            </v-col>
-            
-        </v-row>
-        <v-row
-        class="d-flex justify-center mt-12 mb-6">
-            <v-col
-            cols="12"
-            lg="8"
-            sm="12"
-            md="8"
-            class="">
-                
-                
-                <v-card
+    <v-main>
+      <v-container fluid fill-height>
+            <v-layout justify-center>
+               <v-flex xs12 sm12 md12 lg8>
+                  <v-card class="elevation-12"
+                  height="115%"
+                  width="100%">
+                     <v-toolbar dark color="waterPrimary">
+                        <v-toolbar-title class="settings">Settings</v-toolbar-title>
+                     </v-toolbar>
+                     <v-card-text
+                     height="100%"
+                     width="100%">
+                        <v-row
+                        class="d-flex align-stretch justify-center mt-4 mb-4">
+                          <v-col
+                          cols="12"
+                          lg="8"
+                          sm="12"
+                          md="8"
+                          height="100%"
+                          width="100%"
+                          class="">
+                              <v-card
                 elevation="2"
                 outlined
-                color="gray"
+                color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="80%"
+                height="33%"
                 width="100%"
                 id="settingsChoice"
                 >
@@ -44,6 +42,7 @@
                             width="100%"
                             align="start"
                             flat
+                            color="#F5F5F5"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -63,9 +62,10 @@
                             width="100%"
                             align="center"
                             flat
+                            color="#F5F5F5"
                             class="d-flex align-center justify-center">
                                 <div
-                                id="data">
+                                id="loadedData">
                                     {{username}}
                                 </div>
                             </v-card>
@@ -79,11 +79,13 @@
                             height="100%"
                             width="100%"
                             class="d-flex align-end pr-2"
+                            color="#F5F5F5"
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="changeUsername"
                                     >
                                         Change
@@ -92,15 +94,21 @@
                         </v-col>
                     </v-row>
                 </v-card>
-                
 
 
-                <v-card
+
+
+
+
+
+
+
+                              <v-card
                 elevation="2"
                 outlined
-                color="gray"
+                color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="80%"
+                height="33%"
                 width="100%"
                 id="settingsChoice"
                 >
@@ -115,6 +123,7 @@
                             width="100%"
                             align="start"
                             flat
+                            color="#F5F5F5"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -134,9 +143,10 @@
                             width="100%"
                             align="center"
                             flat
+                            color="#F5F5F5"
                             class="d-flex align-center justify-center">
                                 <div
-                                id="data">
+                                id="loadedData">
                                     {{email}}
                                 </div>
                             </v-card>
@@ -150,11 +160,13 @@
                             height="100%"
                             width="100%"
                             class="d-flex align-end pr-2"
+                            color="#F5F5F5"
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
                                     id="change"
                                     class="mb-2"
+                                    color="white"
                                     @click="changeEmail"
                                     >
                                         Change
@@ -167,14 +179,16 @@
 
 
 
+
                 <v-card
                 elevation="2"
                 outlined
-                color="gray"
+                color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="80%"
+                height="33%"
                 width="100%"
                 id="settingsChoice"
+                
                 >
                     <v-row
                     class="d-flex justify-space-between"
@@ -187,6 +201,7 @@
                             width="100%"
                             align="start"
                             flat
+                            color="#F5F5F5"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -206,9 +221,10 @@
                             width="100%"
                             align="center"
                             flat
+                            color="#F5F5F5"
                             class="d-flex align-center justify-center">
                                 <div
-                                id="data">
+                                id="loadedData">
                                     ●●●●●●●●●●
                                 </div>
                             </v-card>
@@ -222,11 +238,14 @@
                             height="100%"
                             width="100%"
                             class="d-flex align-end pr-2"
+                            color="#F5F5F5"
                             flat>
                                 <v-spacer></v-spacer>
                                     <v-btn
                                     id="change"
                                     class="mb-2"
+                                    color="white"
+                                    
                                     @click="changePassword"
                                     >
                                         Change
@@ -235,12 +254,26 @@
                         </v-col>
                     </v-row>
                 </v-card>
+
+
+
+
+
+
                 
-            </v-col>
-            
-        </v-row>
-        
-    </div>
+                          </v-col>
+                          
+                      </v-row>
+                        
+                     </v-card-text>
+                     
+                  </v-card>
+               </v-flex>
+            </v-layout>
+         </v-container>
+     
+    </v-main>
+    
 </template>
 
 <script>
@@ -276,6 +309,9 @@ export default {
 </script>
 
 <style>
+#data {
+    font-size: 0.9em;
+}
 #currentPage {
   background-color: lightgray;
   color: black;
@@ -294,10 +330,11 @@ export default {
     font-weight: bold;
 }
 #change {
-    font-size: 0.9m;
+    font-size: 0.9em;
     color: green;
 }
-#data {
-    font-size: 2em
+#loadedData {
+    font-size: 1.5em;
 }
+
 </style>
