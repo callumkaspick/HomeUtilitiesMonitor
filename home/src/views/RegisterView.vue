@@ -107,7 +107,6 @@ export default {
             }) 
          }, 2000);
         
-        
       } catch (error) {
         this.error = error.response.data.error
       }
