@@ -5,6 +5,8 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'vue-universal-modal/dist/index.css'
+
 Vue.config.productionTip = false
 Vue.use(VueGoogleCharts)
 new Vue({

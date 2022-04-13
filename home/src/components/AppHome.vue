@@ -10,18 +10,44 @@
         <h1 block class="display-2 font-weight-bold mb-3">
           Welcome, User
         </h1>
-        <v-btn
-        @click="initMockData">Init Mock Data
-        </v-btn>
-        <v-btn
-        @click="$router.push('/addNewElectricDevice')">Add Electric Device
-        </v-btn>
+        
       </v-col>
     </v-row>
 
+    <v-dialog
+      v-model="dialog"
+      persistent
+      max-width="500"
+      max-height="500"
+    >
+      <v-card>
+        <v-card-title id="popupText" class="text-h6">
+          It looks like you don't have an electric device setup!
+        </v-card-title>
+        <v-card-text id="popupText">If you have a device to setup, please click the "setup" button on this popup. Otherwise, please click home.</v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="dialog = false"
+          >
+            Return
+          </v-btn>
+          <v-btn
+            color="green darken-1"
+            text
+            @click="$router.push('/deviceSettings')"
+          >
+            Setup
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
     <v-row class="text-center">
       <!-- button for redirect to electricity page -->
-      <v-btn depressed large elevation="3" class="flexcol yellow mx-4" width="550" height="580" @click="$router.push('/electric')">
+      <v-btn depressed large elevation="3" class="flexcol yellow mx-4" width="550" height="580" @click="electricClicked">
         <v-icon size="350">electric_bolt</v-icon>
         <span class="display-2">Electricity</span>
       </v-btn>
@@ -45,16 +71,35 @@
 
 <script>
   import MockService from '@/services/MockService'
+  import GetService from '@/services/GetService'
   export default {
     name: 'HelloWorld',
 
     data: () => ({
+      dialog: false,
     }),
     methods: {
       initMockData(){
         MockService.initMockData({
           username: this.$store.state.user.username
         })
+      },
+      async electricClicked(){        
+        try{
+          const response = await GetService.getElectricDevice({
+            username: this.$store.state.user.username,
+            password: this.$store.state.user.username
+          })
+          console.log(response)
+          this.$router.push({
+            name: 'electric'
+          })
+        }
+        catch(error){
+          console.log
+          this.dialog = true
+        }
+        
       },
       
     }
