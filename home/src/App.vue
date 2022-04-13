@@ -18,8 +18,9 @@
           transition="scale-transition"
           width="40"
         />
-        <v-app-bar-title class="mr-4">
-        Home Utilities Monitor
+        <v-app-bar-title 
+        class="mr-4">
+          Home Utilities Monitor
       </v-app-bar-title>
       </div>
 
@@ -31,9 +32,10 @@
         v-if="$store.state.isUserLoggedIn"
         target="_blank"
         text
+        color="black"
         @click="$router.push('/')"
       >
-        <span class="mr-2">App Home</span>
+        App Home
       </v-btn>
 
       <v-btn
@@ -56,8 +58,8 @@
 
       <v-btn 
         v-if="$store.state.isUserLoggedIn"
-        text 
-        dark color="appSecondary"
+        text
+        color="black"
         @click="logout">
         Log Out
         <v-icon right>exit_to_app</v-icon>
@@ -119,5 +121,10 @@ export default {
 <style>
 .danger-alert {
   color: red;
+}
+
+.v-toolbar__title {
+  color: black;
+
 }
 </style>
