@@ -6,12 +6,15 @@
             <v-card text class="pa-3">
                 <v-layout row wrap>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3">Usage in dollars</div>
+                        <div id="label" class="text-center pa-4 text-h2">Usage in the last {{granularity}}</div>
+                    </v-flex>
+                    <v-flex xs12>
+                        <div class="electricPrimary text-center pa-4 text-h3">Dollars</div>
                         <v-divider></v-divider>
                         <div class="electricSecondary pa-4 text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3" >Usage in gallons</div>
+                        <div class="electricPrimary text-center pa-4 text-h3" >kWA</div>
                         <v-divider></v-divider>
                         <div class="electricSecondary pa-4 text-h4">{{totalUsage}} gallons</div>
                     </v-flex>
@@ -76,7 +79,7 @@ export default {
     },
     data () {
         return {
-            granularity: 'day',
+            granularity: 'minute',
             electricRate: null,
             error: null,
             lastMinuteInSeconds: null,
@@ -223,3 +226,12 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+#label {
+    background-color: lightgray;
+    color: black;
+    font-weight: bold;
+}
+
+</style>

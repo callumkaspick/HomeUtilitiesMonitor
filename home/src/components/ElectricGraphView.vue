@@ -46,6 +46,7 @@ export default {
                 legend: { position: "right" },
                 curveType: 'function',
                 colors: ['red'],
+                height: 300,
             },
             granularity: 'day',
             electricRate: null,
