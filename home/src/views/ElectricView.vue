@@ -19,6 +19,8 @@
             </v-card>
         </v-container>
 
+        <electric-graph ref="graph" />
+
         <v-container>
             <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
                 <v-btn @click="updateMinute" class="rounded-pill">
@@ -43,19 +45,6 @@
                     <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
                 </v-btn>
             </v-bottom-navigation>
-            <v-sparkline
-                    v-if="enabled"
-                    :gradient="selectedGradient"
-                    line-width="2"
-                    padding="0"
-                    smooth="10"
-                    :value="value"
-                    type="trend"
-                    fill="true"
-                    auto-draw
-                    class="mt-12"
-            >
-            </v-sparkline>
 
             <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
@@ -79,8 +68,12 @@
 <script>
 import GetUsages from '@/services/GetUsages'
 import GetService from '@/services/GetService'
+import ElectricGraph from '../components/ElectricGraphView.vue'
 
 export default {
+    components: {
+        ElectricGraph
+    },
     data () {
         return {
             granularity: 'day',
@@ -108,7 +101,7 @@ export default {
             let total = 0
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
-            responseArray.forEach(element => total += element)
+            responseArray.forEach(element => total += element[1])
             this.totalUsage = total
             
         }
@@ -176,10 +169,11 @@ export default {
             let total = 0
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
-            responseArray.forEach(element => total += element)
+            responseArray.forEach(element => total += element[1])
             this.totalUsage = total
 
             this.usageInDollars = this.totalUsage * this.rate
+            this.$refs.graph.updateMinute()
         },
         async updateHour () {
             this.granularity = 'hour'
@@ -190,10 +184,11 @@ export default {
             let total = 0
             let responseArray = response.data.mockElectricMinutes
             this.value = responseArray
-            responseArray.forEach(element => total += element)
+            responseArray.forEach(element => total += element[1])
             this.totalUsage = total
 
             this.usageInDollars = this.totalUsage * this.rate
+            this.$refs.graph.updateHour()
         },
         updateDay () {
             this.granularity = 'day'
