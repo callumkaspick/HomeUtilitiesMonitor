@@ -13,6 +13,9 @@
         <v-btn
         @click="initMockData">Init Mock Data
         </v-btn>
+        <v-btn
+        @click="$router.push('/addNewElectricDevice')">Add Electric Device
+        </v-btn>
       </v-col>
     </v-row>
 
@@ -52,7 +55,8 @@
         MockService.initMockData({
           username: this.$store.state.user.username
         })
-      }
+      },
+      
     }
   }
 </script>

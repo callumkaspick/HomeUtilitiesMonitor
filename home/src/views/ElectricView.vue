@@ -16,7 +16,7 @@
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3" >kWA</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} gallons</div>
+                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} kWA</div>
                     </v-flex>
                 </v-layout>
             </v-card>
@@ -233,5 +233,10 @@ export default {
     color: black;
     font-weight: bold;
 }
+#title {
+    color: black;
+    font-weight: bold;
+}
+
 
 </style>
