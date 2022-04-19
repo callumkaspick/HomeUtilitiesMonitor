@@ -4,7 +4,7 @@
         Want to go with Electrolize font for text of app
         Replace photo in src with logo
     -->
-    <v-app-bar app color="waterPrimary" class="text-uppercase">
+    <v-app-bar app color="#3DEC00" class="text-uppercase">
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
      v-if="$store.state.isUserLoggedIn">

@@ -19,8 +19,8 @@ import DeviceSettings from '../views/DeviceSettingsView.vue'
 import NotificationSettings from '../views/NotificationSettingsView.vue'
 import ElectricGraph from '../views/ElectricGraphView.vue'
 import AddNewElectricDevice from '../views/AddNewElectricDeviceView.vue'
-//import WaterGraph from '../views/WaterGraph.vue'
-//import ElectricGraph from '../views/ElectricGraph.vue'
+import WaterGraph from '../views/WaterGraph.vue'
+
 
 Vue.use(VueRouter)
 
@@ -128,18 +128,11 @@ const routes = [
     name: 'addNewElectricDevice',
     component: AddNewElectricDevice
   },
-  /*
   {
-    path: '/watergraph',
-    name: 'watergraph',
+    path: '/waterGraph',
+    name: 'waterGraph',
     component: WaterGraph
   },
-  {
-    path: '/electricgraph',
-    name: 'electricgraph',
-    component: ElectricGraph
-  }
-  */
 ]
 
 const router = new VueRouter({

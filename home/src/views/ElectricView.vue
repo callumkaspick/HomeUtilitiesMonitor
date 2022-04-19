@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1 class="ma-4 text-center text-h1">Electric Summary</h1>
-
+        <h1 class="ma-4 text-center text-h1">Electricity Summary</h1>
+        <v-divider></v-divider>
         <v-container class="my-4" grid-list-md fluid>
             <v-card text class="pa-3">
                 <v-layout row wrap>
@@ -11,18 +11,18 @@
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3">Dollars</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">${{usageInDollars}}</div>
+                        <div class="electricSecondary text-center pa-4 text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
                         <div class="electricPrimary text-center pa-4 text-h3" >kWA</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} kWA</div>
+                        <div class="electricSecondary text-center pa-4 text-h4">{{totalUsage}} kWA</div>
                     </v-flex>
                 </v-layout>
             </v-card>
         </v-container>
 
-        <electric-graph ref="graph" />
+        <!--<electric-graph ref="graph" />-->
 
         <v-container>
             <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">

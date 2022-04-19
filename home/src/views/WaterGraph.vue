@@ -1,32 +1,40 @@
 <template>
     <div>
-        <h1 class="ma-4 text-center text-h1">Water Summary</h1>
-        <v-divider></v-divider>
-        <v-container class="my-4" grid-list-md fluid>
-            <v-card text class="pa-3">
-                <v-layout row wrap>
-                    <v-flex xs12>
-                        <div id="label" class="text-center pa-4 text-h2">Usage in the last {{granularity}}</div>
-                    </v-flex>
-                    <v-flex xs12>
-                        <div class="waterPrimary text-center pa-4 text-h3">Dollars</div>
-                        <v-divider></v-divider>
-                        <div class="waterSecondary text-center pa-4 text-h4">${{usageInDollars}}</div>
-                    </v-flex>
-                    <v-flex xs12>
-                        <div class="waterPrimary text-center pa-4 text-h3" >Gallons</div>
-                        <v-divider></v-divider>
-                        <div class="waterSecondary text-center pa-4 text-h4">{{totalUsage}} Gallons</div>
-                    </v-flex>
-                </v-layout>
-            </v-card>
+        <v-container class="waterPrimary my-4" grid-list-md fluid>
+            <v-row no-gutters>
+
+                <v-col order="1">
+                    <v-card class="waterPrimary pa-12 text-center" outlined tile>
+                        <!-- Button where user will be able to change units -->
+                        <v-btn dark class="appSecondary rounded-pill pa-8">
+                            <span class="text-center pa-2 text-h3 font-weight-bold">Unit</span>
+                        </v-btn>
+                    </v-card>
+                </v-col>
+
+                <v-col order="2">
+                    <v-card class="waterPrimary pa-12 text-center" outlined tile>
+                        <!-- Display usage for current month depending on unit selected through button-->
+                        <span class="text-center pa-2 text-h4 font-weight-bold">
+                            Monthly Usage: 
+                            <br> 
+                            x kWh
+                        </span>
+                    </v-card>
+                </v-col>
+            </v-row>
         </v-container>
 
-        <!--<electric-graph ref="graph" />-->
-        <!--<water-graph ref="graph" />-->
-
-        <v-container>
-            <v-bottom-navigation grow text fluid align class="waterSecondary ma-2">
+        <v-row>
+            <v-col
+            cols="12">
+                <GChart
+                    type="LineChart"
+                    :data="chartData"
+                    :options="chartOptions"
+                    :colors="colors"
+                />
+                <v-bottom-navigation grow text fluid align class="waterSecondary ma-2">
                 <v-btn @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
@@ -49,12 +57,16 @@
                     <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
                 </v-btn>
             </v-bottom-navigation>
+            </v-col>
+            
+        </v-row>
 
-            <v-bottom-navigation fixed grow text fluid align class="waterPrimary ma-2">
+        <v-container>
+            <v-bottom-navigation fixed grow flat fluid align class="waterPrimary ma-2">
                 <v-btn class="rounded-pill waterSecondary mx-10" @click="$router.push('/')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
                 </v-btn>
-                <v-btn class="rounded-pill waterSecondary mx-10" @click="$router.push('/waterGraph')">
+                <v-btn class="rounded-pill waterSecondary mx-10" @click="$router.push('/watergraph')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Graph</span>
                 </v-btn>
                 <v-btn class="rounded-pill waterSecondary mx-10" @click="$router.push('/settings')">
@@ -72,44 +84,55 @@
 <script>
 import GetUsages from '@/services/GetUsages'
 import GetService from '@/services/GetService'
-import ElectricGraph from '../components/ElectricGraphView.vue'
-//import WaterGraph from '../components/WaterGraphView.vue'
+import { GChart } from 'vue-google-charts'
 
 export default {
     components: {
-        ElectricGraph
-        //WaterGraph
+        GChart
     },
     data () {
         return {
-            granularity: 'minute',
+            print: null,
+            selectedGradient: ['red', 'orange', 'yellow'],
+            chartData: null,
+            chartOptions: {
+                hAxis: {
+                    title: 'Seconds'
+                },
+                vAxis: {
+                    title: 'kWA'
+                },
+                title: 'Usage for last 60 seconds',
+                chart: {
+                    title: 'Electric Usage',
+                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                },
+                legend: { position: "right" },
+                curveType: 'function',
+                colors: ['red'],
+            },
+            granularity: 'day',
             electricRate: null,
-            //waterRate: null,
             error: null,
             lastMinuteInSeconds: null,
-            totalUsage: null,
             usageInDollars: null,
             rate: 2,
-            selectedGradient: ['#0010A5', '#00B2FF', '#00FFFF'],
             value: null,
             enabled: true,
+            colors:['yellow','darkyellow'],
         }
-    },
-    created() {
-        this.value = [1,2,3]
     },
     async mounted() {
         try{
-            //set total usage
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let total = 0
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
-            responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
+            var startArrEntry = ['Seconds', 'kWA Usage']
+            var compArr = [startArrEntry].concat(this.value)
+            this.chartData = compArr
             
         }
         catch(error){
@@ -117,88 +140,45 @@ export default {
             console.log("mount fail")
         }
         try{
-            this.usageInDollars = this.totalUsage * this.rate
         }
         catch{
-            console.log("usageInDollars failed")
         }
   },
+    created() {
+        this.value = [1,2,3]
+    },
     computed:{
-        lastHourInMinutes(){
-            return ['hello', 'goodbye']
-        },
-        lastDayInHours(){
-            return ['hello', 'goodbye']
-        },
-        lastWeekInDays(){
-            return ['hello', 'goodbye']
-        },
-        lastMonthInWeeks(){
-            return ['hello', 'goodbye']
-        },
-        lastYearInMonths(){
-            return ['hello', 'goodbye']
-        },
-        allTimeInYears(){
-            return ['hello', 'goodbye']
-        },
-
+        
     },
     methods: {
+        async updateValue () {
+            return [1,2,3]
+        },
         async updateMinute () {
-            this.granularity = 'minute'
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let total = 0
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
-            responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
-
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateMinute()
+            var startArrEntry = ['Minutes', 'kWA Usage']
+            var compArr = [startArrEntry].concat(this.value)
+            this.chartData = compArr
+            this.chartOptions.hAxis.title = 'Seconds'
+            this.chartOptions.title = 'Usage for the last 60 seconds'
         },
         async updateHour () {
-            this.granularity = 'hour'
             const response = await GetUsages.getLastHourInMinutes({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let total = 0
             let responseArray = response.data.mockElectricMinutes
             this.value = responseArray
-            responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
-
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateHour()
-        },
-        updateDay () {
-            this.granularity = 'day'
-        },
-        updateWeek () {
-            this.granularity = 'week'
-        },
-        updateMonth () {
-            this.granularity = 'month'
-        },
-        updateYear () {
-            this.granularity = 'year'
-        },
-        updateAllTime () {
-            this.granularity = 'all-time'
-        },
-        changeWaterRate () {
-        this.$router.push({
-            name: 'newUsername'
-            })
-        },
-        changeElectricRate () {
-        this.$router.push({
-            name: 'newEmail'
-            })
+            var startArrEntry = ['Minutes', 'kWA Usage']
+            var compArr = [startArrEntry].concat(this.value)
+            this.chartData = compArr
+            this.chartOptions.hAxis.title = 'Minutes'
+            this.chartOptions.title = 'Usage for the last 60 minutes'
         },
         changePassword () {
         this.$router.push({
@@ -208,17 +188,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-#label {
-    background-color: lightgray;
-    color: black;
-    font-weight: bold;
-}
-#title {
-    color: black;
-    font-weight: bold;
-}
-
-
-</style>
