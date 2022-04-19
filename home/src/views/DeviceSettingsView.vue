@@ -6,7 +6,7 @@
                   <v-card class="elevation-12"
                   height="137%"
                   width="100%">
-                     <v-toolbar dark color="waterPrimary">
+                     <v-toolbar dark color="appPrimary">
                         <v-toolbar-title class="settings">Device Settings</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text
@@ -42,7 +42,7 @@
                             width="100%"
                             align="start"
                             flat
-                            color="#F5F5F5"
+                            color="waterPrimary"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -87,7 +87,7 @@
                                     id="change"
                                     class="mb-2"
                                     color="white"
-                                    @click="changeUsername"
+                                    @click="addNewWaterDevice"
                                     >
                                         Add
                                     </v-btn>
@@ -133,7 +133,7 @@
                             width="100%"
                             align="start"
                             flat
-                            color="#F5F5F5"
+                            color="waterPrimary"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -210,7 +210,7 @@
                             width="100%"
                             align="start"
                             flat
-                            color="#F5F5F5"
+                            color="electricPrimary"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -304,7 +304,7 @@
                             width="100%"
                             align="start"
                             flat
-                            color="#F5F5F5"
+                            color="electricPrimary"
                             class="d-flex pl-2">
                                 <div
                                 id="title"
@@ -441,6 +441,17 @@ export default {
         })
         console.log(response.data.electricDevice.electricDeviceID)
         this.electricDevice = response.data.electricDevice.electricDeviceID
+    },
+    async addNewWaterDevice(){
+        MockService.initWaterDeviceMockData({
+          username: this.$store.state.user.username
+        })
+        const response = await GetService.getWaterDevice({
+            username: this.$store.state.user.username,
+            password: this.$store.state.user.username
+        })
+        console.log(response.data.waterDevice.waterDeviceID)
+        this.waterDevice = response.data.waterDevice.waterDeviceID
     },
   }
 }

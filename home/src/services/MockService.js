@@ -7,4 +7,7 @@ export default {
   initElectricDeviceMockData (credentials) {
     return Api().post('initElectricDeviceMockData', credentials)
   },
+  initWaterDeviceMockData (credentials) {
+    return Api().post('initWaterDeviceMockData', credentials)
+  },
 }
