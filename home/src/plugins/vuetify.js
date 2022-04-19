@@ -8,7 +8,7 @@ export default new Vuetify({
     theme: {
         themes: {
             light: {
-                appPrimary: "#45FF04",
+                appPrimary: "#3DEC00",
                 appSecondary: "#13630C",
                 waterPrimary: "#00B2FF",
                 waterSecondary: "#00FFFF",
@@ -18,7 +18,7 @@ export default new Vuetify({
             },
 
             dark: {
-                appPrimary: "#45FF04",
+                appPrimary: "#3DEC00",
                 appSecondary: "#13630C",
                 waterPrimary: "#00B2FF",
                 waterSecondary: "#00FFFF",
