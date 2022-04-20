@@ -38,6 +38,7 @@
                 outlined
                 v-model="circuit"
                 class="d-flex pt-2"
+                @change="updateElecView"
                 >
                 </v-select>
             </v-col>
@@ -126,7 +127,8 @@ export default {
             //set total usage
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: 'All'
             })
             let total = 0
             let responseArray = response.data.mockElectricSeconds
@@ -213,10 +215,10 @@ export default {
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
+            this.totalUsage = total.toFixed(2)
 
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateMinute()
+            this.usageInDollars = (this.totalUsage * this.rate).toFixed(2)
+            this.$refs.graph.updateMinute(this.circuit)
         },
         async updateHour () {
             this.granularity = 'hour'
@@ -229,10 +231,10 @@ export default {
             let responseArray = response.data.mockElectricMinutes
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
+            this.totalUsage = total.toFixed(2)
 
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateHour()
+            this.usageInDollars = (this.totalUsage * this.rate).toFixed(2)
+            this.$refs.graph.updateHour(this.circuit)
         },
         updateDay () {
             this.granularity = 'day'
@@ -264,13 +266,17 @@ export default {
             name: 'newPassword'
             })
         },
-        async circuits () {
-            const response = await GetUsages.getLastMinuteInSecondsWithCircuit({
-                username: this.$store.state.user.username,
-                password: this.$store.state.user.password,
-                circuitID: 1,
-            })
-            this.granularity = 'sent'
+        updateElecView () {
+            switch (this.granularity){
+                case 'minute':
+                    this.updateMinute(this.circuit)
+                    break;
+                case 'hour':
+                    this.updateHour(this.circuit)
+                    break;
+                default:
+                    console.log('error in refresh')
+            }
         },
     }
 }

@@ -63,7 +63,8 @@ export default {
         try{
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: 'All'
             })
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
@@ -91,10 +92,11 @@ export default {
         async updateValue () {
             return [1,2,3]
         },
-        async updateMinute () {
+        async updateMinute (circuit) {
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: circuit
             })
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
@@ -104,10 +106,11 @@ export default {
             this.chartOptions.hAxis.title = 'Seconds'
             this.chartOptions.title = 'Usage for the last 60 seconds'
         },
-        async updateHour () {
+        async updateHour (circuit) {
             const response = await GetUsages.getLastHourInMinutes({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: circuit
             })
             let responseArray = response.data.mockElectricMinutes
             this.value = responseArray
