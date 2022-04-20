@@ -34,8 +34,9 @@
             lg="2">
                 <v-select
                 :items="items"
-                label="All"
+                label="Circuit choice"
                 outlined
+                v-model="circuit"
                 class="d-flex pt-2"
                 >
                 </v-select>
@@ -113,7 +114,8 @@ export default {
             selectedGradient: ['red', 'orange', 'yellow'],
             value: null,
             enabled: true,
-            items: [1,2,3,4,5,6,7,8],
+            items: ['All',1,2,3,4,5,6,7,8],
+            circuit: 'All',
         }
     },
     created() {
@@ -148,7 +150,9 @@ export default {
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            this.items = response.data.circuitData
+            var dropdownArr = response.data.circuitData
+            dropdownArr.unshift('All')
+            this.items = dropdownArr
         }
         catch{
             console.log("updating circuit dropdown failed")
@@ -202,7 +206,8 @@ export default {
             this.granularity = 'minute'
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: this.circuit
             })
             let total = 0
             let responseArray = response.data.mockElectricSeconds
@@ -217,7 +222,8 @@ export default {
             this.granularity = 'hour'
             const response = await GetUsages.getLastHourInMinutes({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: this.circuit
             })
             let total = 0
             let responseArray = response.data.mockElectricMinutes
