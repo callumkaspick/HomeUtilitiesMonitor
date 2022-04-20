@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     models.ElectricHours.belongsTo(ElectricDevice)
     ElectricDevice.hasMany(models.ElectricDays)
     models.ElectricDays.belongsTo(ElectricDevice)
-    ElectricDevice.hasMany(models.CircuitNames)
-    models.CircuitNames.belongsTo(ElectricDevice)
+    ElectricDevice.hasMany(models.CircuitName)
+    models.CircuitName.belongsTo(ElectricDevice)
   }
 
   return ElectricDevice
