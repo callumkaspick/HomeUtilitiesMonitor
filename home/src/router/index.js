@@ -20,6 +20,7 @@ import NotificationSettings from '../views/NotificationSettingsView.vue'
 import ElectricGraph from '../views/ElectricGraphView.vue'
 import AddNewElectricDevice from '../views/AddNewElectricDeviceView.vue'
 import WaterGraph from '../views/WaterGraph.vue'
+import ElectricCircuits from '../views/ElectricCircuitsView.vue'
 
 
 Vue.use(VueRouter)
@@ -133,6 +134,12 @@ const routes = [
     name: 'waterGraph',
     component: WaterGraph
   },
+  {
+    path: '/electricCircuits',
+    name: 'electricCircuits',
+    component: ElectricCircuits
+  },
+  
 ]
 
 const router = new VueRouter({
