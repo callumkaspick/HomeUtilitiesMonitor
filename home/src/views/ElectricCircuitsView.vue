@@ -726,6 +726,7 @@ export default {
                 })
                 this.items = response2.data.circuitNames
                 this.dialog = false
+                this.textfield = ''
             }
             catch{
                 this.error = error.response.data.message
