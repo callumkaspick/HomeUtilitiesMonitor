@@ -1,7 +1,8 @@
 const {User} = require('../models')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config')
-
+const {CircuitName} = require('../models')
+const {ElectricDevice} = require('../models')
 
 function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
@@ -103,5 +104,55 @@ module.exports = {
         error: 'An error has occured trying to change password'
       })
     }
-  }
+  },
+
+  
+  async changeCircuitName (req, res) {
+    try {
+      const body = req.body
+        const user = await User.findOne({
+            where: {
+                username: body.username
+            }
+        })
+        console.log("found user")
+        
+        const electricDevice = await ElectricDevice.findOne({
+            where: {
+                UserUserID: user.userID
+            }
+        })
+        console.log("found device with correct userID")
+        console.log(electricDevice.dataValues.electricDeviceID)
+    
+        const circuit = await CircuitName.findOne({
+          where: {
+            ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+            circuitID: body.circuitID 
+          }
+        })
+        console.log(circuit.givenName)
+
+        circuit.givenName = body.givenName
+        await circuit.save()
+        console.log(circuit.givenName)
+        // await CircuitName.create({
+        //   givenName: body.givenName,
+        //   ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+        //   circuitID: body.circuitID 
+        // })
+
+        
+
+        res.send({
+            
+        })
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to change password'
+      })
+    }
+  },
+  
+
 }

@@ -12,5 +12,12 @@ export default {
   },
   getLastWeekInDays (credentials) {
     return Api().post('getElectricRate', credentials)
-  }
+  },
+  getLastMinuteInSecondsWithCircuit (credentials) {
+    return Api().post('getLastMinuteInSecondsWithCircuit', credentials)
+  },
+  getCircuitDropdownOptions (credentials) {
+    return Api().post('getCircuitDropdownOptions', credentials)
+  },
+  
 }

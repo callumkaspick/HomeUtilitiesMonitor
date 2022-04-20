@@ -1,28 +1,52 @@
 <template>
     <div>
-        <h1 class="ma-4 text-center text-h1">Electricity Summary</h1>
-        <v-divider></v-divider>
-        <v-container class="my-4" grid-list-md fluid>
-            <v-card text class="pa-3">
+        <h1 class="ma-4 text-center text-h1">Electric Summary</h1>
+
+        <v-container class="" grid-list-md fluid>
+            <v-card text class="pa-2">
                 <v-layout row wrap>
                     <v-flex xs12>
-                        <div id="label" class="text-center pa-4 text-h2">Usage in the last {{granularity}}</div>
+                        <div id="label" class="text-center pa-2 text-h2">Usage in the last {{granularity}}</div>
                     </v-flex>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3">Dollars</div>
+                        <div class="electricPrimary text-center pa-1 text-h3">Dollars</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary text-center pa-4 text-h4">${{usageInDollars}}</div>
+                        <div class="electricSecondary pa-1 text-center text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3" >kWA</div>
+                        <div class="electricPrimary text-center pa-1 text-h3" >kWA</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary text-center pa-4 text-h4">{{totalUsage}} kWA</div>
+                        <div class="electricSecondary pa-1 text-center text-h4">{{totalUsage}} kWA</div>
                     </v-flex>
                 </v-layout>
             </v-card>
         </v-container>
-
-        <!--<electric-graph ref="graph" />-->
+        <v-row
+        class="d-flex justify-center align-center">
+            <v-col
+            cols="2"
+            lg="1">
+                <h2
+                class="d-flex text-center">See circuit(s):</h2>
+            </v-col>
+            <v-col
+            cols="4"
+            lg="2">
+                <v-select
+                :items="items"
+                label="Circuit choice"
+                outlined
+                v-model="circuit"
+                class="d-flex pt-2"
+                @change="updateElecView"
+                >
+                </v-select>
+            </v-col>
+            
+        </v-row>
+        
+        
+        <electric-graph ref="graph" />
 
         <v-container>
             <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
@@ -49,12 +73,14 @@
                 </v-btn>
             </v-bottom-navigation>
 
+            
+
             <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
                 </v-btn>
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/electricGraph')">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Graph</span>
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/electricCircuits')">
+                    <span class="text-center pa-2 text-h5 font-weight-bold">Circuits</span>
                 </v-btn>
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/settings')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Settings</span>
@@ -89,6 +115,8 @@ export default {
             selectedGradient: ['red', 'orange', 'yellow'],
             value: null,
             enabled: true,
+            items: ['All',1,2,3,4,5,6,7,8],
+            circuit: 'All',
         }
     },
     created() {
@@ -99,7 +127,8 @@ export default {
             //set total usage
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: 'All'
             })
             let total = 0
             let responseArray = response.data.mockElectricSeconds
@@ -117,6 +146,18 @@ export default {
         }
         catch{
             console.log("usageInDollars failed")
+        }
+        try{
+            const response = await GetUsages.getCircuitDropdownOptions({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            var dropdownArr = response.data.circuitData
+            dropdownArr.unshift('All')
+            this.items = dropdownArr
+        }
+        catch{
+            console.log("updating circuit dropdown failed")
         }
   },
     computed:{
@@ -167,31 +208,33 @@ export default {
             this.granularity = 'minute'
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: this.circuit
             })
             let total = 0
             let responseArray = response.data.mockElectricSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
+            this.totalUsage = total.toFixed(2)
 
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateMinute()
+            this.usageInDollars = (this.totalUsage * this.rate).toFixed(2)
+            this.$refs.graph.updateMinute(this.circuit)
         },
         async updateHour () {
             this.granularity = 'hour'
             const response = await GetUsages.getLastHourInMinutes({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password
+                password: this.$store.state.user.password,
+                circuit: this.circuit
             })
             let total = 0
             let responseArray = response.data.mockElectricMinutes
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
+            this.totalUsage = total.toFixed(2)
 
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateHour()
+            this.usageInDollars = (this.totalUsage * this.rate).toFixed(2)
+            this.$refs.graph.updateHour(this.circuit)
         },
         updateDay () {
             this.granularity = 'day'
@@ -222,7 +265,19 @@ export default {
         this.$router.push({
             name: 'newPassword'
             })
-        }
+        },
+        updateElecView () {
+            switch (this.granularity){
+                case 'minute':
+                    this.updateMinute(this.circuit)
+                    break;
+                case 'hour':
+                    this.updateHour(this.circuit)
+                    break;
+                default:
+                    console.log('error in refresh')
+            }
+        },
     }
 }
 </script>

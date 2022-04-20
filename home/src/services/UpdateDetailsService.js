@@ -9,5 +9,8 @@ export default {
   },
   newEmail (credentials) {
     return Api().post('newEmail', credentials)
+  },
+  changeCircuitName (credentials) {
+    return Api().post('changeCircuitName', credentials)
   }
 }
