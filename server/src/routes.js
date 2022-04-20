@@ -62,4 +62,7 @@ module.exports = (app) => {
   app.post('/initWaterDeviceMockData',
     MockDataController.addNewWaterDevice,
   )
+  app.post('/getLastMinuteInSecondsWithCircuit',
+    GetUsagesController.getLastMinuteInSecondsForCircuit,
+  )
 }

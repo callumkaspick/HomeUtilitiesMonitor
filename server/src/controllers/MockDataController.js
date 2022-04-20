@@ -66,7 +66,8 @@ module.exports = {
             await MockElectricSeconds.create({
                 data: dataArr[i-1],
                 date: i,
-                ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID
+                ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+                circuitID: (i % 8) + 1  
             })
         }
         console.log("inserted 60 seconds electric mock data")
@@ -76,7 +77,8 @@ module.exports = {
             await MockElectricMinutes.create({
                 data: (dataArr[i-1]*Math.random()*10),
                 date: i,
-                ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID
+                ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+                circuitID: (i % 8) + 1
             })
         }
         console.log("inserted 60 minutes electric mock data")

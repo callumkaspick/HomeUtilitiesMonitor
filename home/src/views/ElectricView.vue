@@ -53,7 +53,7 @@
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
                 </v-btn>
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/electricCircuits')">
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="circuits">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Circuits</span>
                 </v-btn>
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/settings')">
@@ -222,7 +222,15 @@ export default {
         this.$router.push({
             name: 'newPassword'
             })
-        }
+        },
+        async circuits () {
+            const response = await GetUsages.getLastMinuteInSecondsWithCircuit({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password,
+                circuitID: 1
+            })
+            this.granularity = 'sent'
+        },
     }
 }
 </script>
