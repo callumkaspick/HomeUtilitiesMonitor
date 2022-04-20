@@ -1,242 +1,715 @@
 <template>
-    <div>
-        <h1 class="ma-4 text-center text-h1">Circuit Summary</h1>
+    <v-main>
+      <v-container fluid fill-height>
+            <v-layout justify-center>
+               <v-flex xs12 sm12 md12 lg8>
+                  <v-card class="elevation-12"
+                  height="275%"
+                  width="100%">
+                     <v-toolbar dark color="electricPrimary">
+                        <v-toolbar-title class="settings">Circuits</v-toolbar-title>
+                     </v-toolbar>
+                     <v-card-text
+                     height="100%"
+                     width="100%">
+                        <v-row
+                        class="d-flex align-stretch justify-center mt-4 mb-4">
+                          <v-col
+                          cols="12"
+                          lg="8"
+                          sm="12"
+                          md="8"
+                          height="100%"
+                          width="100%"
+                          class="">
+                              <v-card
+                                elevation="2"
+                                outlined
+                                color="#F5F5F5"
+                                class="d-flex justify-space-around mb-6"
+                                height="33%"
+                                width="100%"
+                                id="settingsChoice"
+                                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 1 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
 
-        <v-container class="my-4" grid-list-md fluid>
-            <v-card text class="pa-3">
-                <v-layout row wrap>
-                    <v-flex xs12>
-                        <div id="label" class="text-center pa-4 text-h2">Usage in the last {{granularity}}</div>
-                    </v-flex>
-                    <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3">Dollars</div>
-                        <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">${{usageInDollars}}</div>
-                    </v-flex>
-                    <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3" >kWA</div>
-                        <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} kWA</div>
-                    </v-flex>
-                </v-layout>
-            </v-card>
-        </v-container>
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[0]}}
+                                </div>
+                            </v-card>
+                        </v-col>
 
-        <electric-graph ref="graph" />
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    @click="change(1)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
 
-        <v-container>
-            <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
-                <v-btn @click="updateMinute" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
-                </v-btn>
-                <v-btn @click="updateHour" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Hour</span>
-                </v-btn>
-                <v-btn @click="updateDay" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Day</span>
-                </v-btn>
-                <v-btn @click="updateWeek" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Week</span>
-                </v-btn>
-                <v-btn @click="updateMonth" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Month</span>
-                </v-btn>
-                <v-btn @click="updateYear" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Year</span>
-                </v-btn>
-                <v-btn @click="updateAllTime" class="rounded-pill">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">All-time</span>
-                </v-btn>
-            </v-bottom-navigation>
 
-            <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
-                </v-btn>
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/electricCircuits')">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Circuits</span>
-                </v-btn>
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/settings')">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Settings</span>
-                </v-btn>
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/notifications')">
-                    <span class="text-center pa-2 text-h5 font-weight-bold">Notifications</span>
-                </v-btn>
-            </v-bottom-navigation>
-        </v-container>
-        
-    </div>
+
+
+
+
+
+
+
+                              <v-card
+                elevation="2"
+                outlined
+                color="#F5F5F5"
+                class="d-flex justify-space-around mb-6"
+                height="33%"
+                width="100%"
+                id="settingsChoice"
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 2 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[1]}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    @click="change(2)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+
+
+
+
+                <v-card
+                elevation="2"
+                outlined
+                color="#F5F5F5"
+                class="d-flex justify-space-around mb-6"
+                height="33%"
+                width="100%"
+                id="settingsChoice"
+                
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 3 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[2]}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    
+                                    @click="change(3)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+                <v-card
+                elevation="2"
+                outlined
+                color="#F5F5F5"
+                class="d-flex justify-space-around mb-6"
+                height="33%"
+                width="100%"
+                id="settingsChoice"
+                
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 4 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[3]}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    
+                                    @click="change(4)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+                <v-card
+                elevation="2"
+                outlined
+                color="#F5F5F5"
+                class="d-flex justify-space-around mb-6"
+                height="33%"
+                width="100%"
+                id="settingsChoice"
+                
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 5 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[4]}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    
+                                    @click="change(5)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+                <v-card
+                elevation="2"
+                outlined
+                color="#F5F5F5"
+                class="d-flex justify-space-around mb-6"
+                height="33%"
+                width="100%"
+                id="settingsChoice"
+                
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 6 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[5]}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    
+                                    @click="change(6)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+                <v-card
+                elevation="2"
+                outlined
+                color="#F5F5F5"
+                class="d-flex justify-space-around mb-6"
+                height="33%"
+                width="100%"
+                id="settingsChoice"
+                
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 7 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[6]}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    
+                                    @click="change(7)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+                <v-card
+                elevation="2"
+                outlined
+                color="#F5F5F5"
+                class="d-flex justify-space-around mb-6"
+                height="33%"
+                width="100%"
+                id="settingsChoice"
+                
+                >
+                    <v-row
+                    class="d-flex justify-space-between"
+                    height="100%">
+                        <v-col
+                        sm="3"
+                        align="start">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="start"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex pl-2">
+                                <div
+                                id="title"
+                                class="mt-2 ml-2">
+                                    Circuit 8 Name:
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        cols="5"
+                        sm="6"
+                        align="center"
+                        id="displayed">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            align="center"
+                            flat
+                            color="#F5F5F5"
+                            class="d-flex align-center justify-center">
+                                <div
+                                id="loadedData">
+                                    {{items[7]}}
+                                </div>
+                            </v-card>
+                        </v-col>
+
+                        <v-col
+                        sm="3"
+                        align="end"
+                        id="change">
+                            <v-card
+                            height="100%"
+                            width="100%"
+                            class="d-flex align-end pr-2"
+                            color="#F5F5F5"
+                            flat>
+                                <v-spacer></v-spacer>
+                                    <v-btn
+                                    id="change"
+                                    class="mb-2"
+                                    color="white"
+                                    
+                                    @click="change(8)"
+                                    >
+                                        Change
+                                    </v-btn>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-card>
+
+
+
+
+
+                
+                          </v-col>
+                          
+                      </v-row>
+                        
+                     </v-card-text>
+                     
+                  </v-card>
+               </v-flex>
+            </v-layout>
+         </v-container>
+     
+    </v-main>
+    
 </template>
 
 <script>
-import GetUsages from '@/services/GetUsages'
-import GetService from '@/services/GetService'
-import ElectricGraph from '../components/ElectricGraphView.vue'
 
 export default {
-    components: {
-        ElectricGraph
-    },
-    data () {
-        return {
-            granularity: 'minute',
-            electricRate: null,
-            error: null,
-            lastMinuteInSeconds: null,
-            totalUsage: null,
-            usageInDollars: null,
-            rate: 2,
-            selectedGradient: ['red', 'orange', 'yellow'],
-            value: null,
-            enabled: true,
-        }
-    },
-    created() {
-        this.value = [1,2,3]
-    },
-    async mounted() {
-        try{
-            //set total usage
-            const response = await GetUsages.getLastMinuteInSeconds({
-                username: this.$store.state.user.username,
-                password: this.$store.state.user.password
-            })
-            let total = 0
-            let responseArray = response.data.mockElectricSeconds
-            this.value = responseArray
-            responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
-            
-        }
-        catch(error){
-            this.error = error.response.data.message
-            console.log("mount fail")
-        }
-        try{
-            this.usageInDollars = this.totalUsage * this.rate
-        }
-        catch{
-            console.log("usageInDollars failed")
-        }
+  computed: {
+    username() { return this.$store.state.user.username },
+    email() { return this.$store.state.user.email }
   },
-    computed:{
-        // electricRate(){
-        //     const respose = GetService.getElectricRate({
-        //         username: this.$store.state.user.username,
-        //     })
-        //     return response.data.electricRate
-        // },
-        // totalUsage(){
-            
-        //     const response = GetUsages.getLastMinuteInSeconds({
-        //         username: this.$store.state.user.username,
-        //         password: this.$store.state.user.password
-        //     })
-        //     // // this.lastMinuteInSeconds = response.data.lastMinuteInSeconds
-        //     let average = 0
-        //     //let secondsArray = response.data.mockElectricSeconds
-        //     console.log(response.data.mockElectricSeconds[1])
-        //     console.log('data is in view')
-        //     // this.lastMinuteInSeconds.forEach(element => {
-        //     //     average += element.data 
-        //     // });
-        //     // return average
-        // },
-        lastHourInMinutes(){
-            return ['hello', 'goodbye']
-        },
-        lastDayInHours(){
-            return ['hello', 'goodbye']
-        },
-        lastWeekInDays(){
-            return ['hello', 'goodbye']
-        },
-        lastMonthInWeeks(){
-            return ['hello', 'goodbye']
-        },
-        lastYearInMonths(){
-            return ['hello', 'goodbye']
-        },
-        allTimeInYears(){
-            return ['hello', 'goodbye']
-        },
-
-    },
-    methods: {
-        async updateMinute () {
-            this.granularity = 'minute'
-            const response = await GetUsages.getLastMinuteInSeconds({
-                username: this.$store.state.user.username,
-                password: this.$store.state.user.password
-            })
-            let total = 0
-            let responseArray = response.data.mockElectricSeconds
-            this.value = responseArray
-            responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
-
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateMinute()
-        },
-        async updateHour () {
-            this.granularity = 'hour'
-            const response = await GetUsages.getLastHourInMinutes({
-                username: this.$store.state.user.username,
-                password: this.$store.state.user.password
-            })
-            let total = 0
-            let responseArray = response.data.mockElectricMinutes
-            this.value = responseArray
-            responseArray.forEach(element => total += element[1])
-            this.totalUsage = total
-
-            this.usageInDollars = this.totalUsage * this.rate
-            this.$refs.graph.updateHour()
-        },
-        updateDay () {
-            this.granularity = 'day'
-        },
-        updateWeek () {
-            this.granularity = 'week'
-        },
-        updateMonth () {
-            this.granularity = 'month'
-        },
-        updateYear () {
-            this.granularity = 'year'
-        },
-        updateAllTime () {
-            this.granularity = 'all-time'
-        },
-        changeWaterRate () {
-        this.$router.push({
-            name: 'newUsername'
-            })
-        },
-        changeElectricRate () {
-        this.$router.push({
-            name: 'newEmail'
-            })
-        },
-        changePassword () {
-        this.$router.push({
-            name: 'newPassword'
-            })
-        }
+  data () {
+    return {
+      error: null,
+      items: ["",""]
     }
+  },
+  methods: {
+    changeUsername () {
+      this.$router.push({
+          name: 'newUsername'
+        })
+    },
+    changeEmail () {
+      this.$router.push({
+          name: 'newEmail'
+        })
+    },
+    changePassword () {
+      this.$router.push({
+          name: 'newPassword'
+        })
+    }
+  }
 }
 </script>
 
-<style scoped>
-#label {
-    background-color: lightgray;
-    color: black;
-    font-weight: bold;
+<style>
+#data {
+    font-size: 0.9em;
+}
+#currentPage {
+  background-color: lightgray;
+  color: black;
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: center;
+  font-size: 2em;
+}
+#settingsChoice {
+  background-color: white;
+  color: black;
+  
 }
 #title {
-    color: black;
+    font-size: 1.5em;
     font-weight: bold;
 }
-
+#change {
+    font-size: 0.9em;
+    color: green;
+}
+#loadedData {
+    font-size: 1.5em;
+}
 
 </style>
