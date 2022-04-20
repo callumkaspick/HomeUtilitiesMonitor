@@ -68,5 +68,11 @@ module.exports = (app) => {
   app.post('/getCircuitDropdownOptions',
     GetUsagesController.getCircuitDropdownOptions,
   )
+  app.post('/changeCircuitName',
+    ChangeController.changeCircuitName,
+  )
+  app.post('/getCircuitNameArray',
+    GetController.getCircuitNameArray,
+  )
   
 }

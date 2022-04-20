@@ -1,5 +1,40 @@
 <template>
     <v-main>
+        <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="500"
+        max-height="500">
+        
+        <v-card>
+            <v-card-title id="popupText" class="text-h6">
+            Please enter circuit {{selectedCircuit}}'s new name below:
+            </v-card-title>
+            <v-text-field
+            label="New Name"
+            v-model="textfield"
+            outlined
+          ></v-text-field>
+
+            <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+                color="green darken-1"
+                text
+                @click="dialog = false"
+            >
+                Return
+            </v-btn>
+            <v-btn
+                color="green darken-1"
+                text
+                @click="change(selectedCircuit)"
+            >
+                Change
+            </v-btn>
+            </v-card-actions>
+        </v-card>
+        </v-dialog>
       <v-container fluid fill-height>
             <v-layout justify-center>
                <v-flex xs12 sm12 md12 lg8>
@@ -86,7 +121,7 @@
                                     id="change"
                                     class="mb-2"
                                     color="white"
-                                    @click="change(1)"
+                                    @click="triggerPopup(1)"
                                     >
                                         Change
                                     </v-btn>
@@ -167,7 +202,7 @@
                                     id="change"
                                     class="mb-2"
                                     color="white"
-                                    @click="change(2)"
+                                    @click="triggerPopup(2)"
                                     >
                                         Change
                                     </v-btn>
@@ -246,7 +281,7 @@
                                     class="mb-2"
                                     color="white"
                                     
-                                    @click="change(3)"
+                                    @click="triggerPopup(3)"
                                     >
                                         Change
                                     </v-btn>
@@ -321,7 +356,7 @@
                                     class="mb-2"
                                     color="white"
                                     
-                                    @click="change(4)"
+                                    @click="triggerPopup(4)"
                                     >
                                         Change
                                     </v-btn>
@@ -396,7 +431,7 @@
                                     class="mb-2"
                                     color="white"
                                     
-                                    @click="change(5)"
+                                    @click="triggerPopup(5)"
                                     >
                                         Change
                                     </v-btn>
@@ -471,7 +506,7 @@
                                     class="mb-2"
                                     color="white"
                                     
-                                    @click="change(6)"
+                                    @click="triggerPopup(6)"
                                     >
                                         Change
                                     </v-btn>
@@ -546,7 +581,7 @@
                                     class="mb-2"
                                     color="white"
                                     
-                                    @click="change(7)"
+                                    @click="triggerPopup(7)"
                                     >
                                         Change
                                     </v-btn>
@@ -621,7 +656,7 @@
                                     class="mb-2"
                                     color="white"
                                     
-                                    @click="change(8)"
+                                    @click="triggerPopup(8)"
                                     >
                                         Change
                                     </v-btn>
@@ -651,8 +686,17 @@
 </template>
 
 <script>
+import UpdateDetailsService from '@/services/UpdateDetailsService'
+import GetService from '@/services/GetService'
 
 export default {
+  async mounted() {
+        const response = await GetService.getCircuitNameArray({
+            username: this.$store.state.user.username,
+            password: this.$store.state.user.username,
+        })
+        this.items = response.data.circuitNames
+  },
   computed: {
     username() { return this.$store.state.user.username },
     email() { return this.$store.state.user.email }
@@ -660,26 +704,38 @@ export default {
   data () {
     return {
       error: null,
-      items: ["",""]
+      items: ["",""],
+      dialog: false,
+      selectedCircuit: 1,
+      textfield: 'asdf',
     }
   },
-  methods: {
-    changeUsername () {
-      this.$router.push({
-          name: 'newUsername'
-        })
-    },
-    changeEmail () {
-      this.$router.push({
-          name: 'newEmail'
-        })
-    },
-    changePassword () {
-      this.$router.push({
-          name: 'newPassword'
-        })
+    methods: {
+
+        async change (circuit) {
+            try{
+                const response = await UpdateDetailsService.changeCircuitName({
+                    username: this.$store.state.user.username,
+                    password: this.$store.state.user.username,
+                    circuitID: circuit,
+                    givenName: this.textfield
+                })
+                const response2 = await GetService.getCircuitNameArray({
+                    username: this.$store.state.user.username,
+                    password: this.$store.state.user.username,
+                })
+                this.items = response2.data.circuitNames
+                this.dialog = false
+            }
+            catch{
+                this.error = error.response.data.message
+            }
+        },
+        triggerPopup (circuit) {
+            this.selectedCircuit = circuit
+            this.dialog = true
+        }
     }
-  }
 }
 </script>
 

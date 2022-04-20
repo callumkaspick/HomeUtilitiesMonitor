@@ -12,5 +12,9 @@ export default {
   },
   getElectricRate (credentials) {
     return Api().post('getElectricRate', credentials)
-  }
+  },
+  getCircuitNameArray (credentials) {
+    return Api().post('getCircuitNameArray', credentials)
+  },
+  
 }
