@@ -16,4 +16,8 @@ export default {
   getLastMinuteInSecondsWithCircuit (credentials) {
     return Api().post('getLastMinuteInSecondsWithCircuit', credentials)
   },
+  getCircuitDropdownOptions (credentials) {
+    return Api().post('getCircuitDropdownOptions', credentials)
+  },
+  
 }

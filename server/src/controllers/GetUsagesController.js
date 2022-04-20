@@ -4,6 +4,7 @@ const {ElectricSeconds} = require('../models')
 const config = require('../config/config')
 const {MockElectricSeconds} = require('../models')
 const {MockElectricMinutes} = require('../models')
+const {CircuitName} = require('../models')
 
 module.exports = {
     async getLastMinuteInSeconds (req, res) {
@@ -190,6 +191,48 @@ async getLastHourInMinutesForCircuit (req, res) {
 
         res.send({
             mockElectricSecondsWithCircuit: mockElectricSecondsWithCircuit,
+        })
+
+    } catch (err) {
+    res.status(500).send({
+        error: 'An error has occured getting mock electric seconds device'
+    })
+}
+},
+async getCircuitDropdownOptions (req, res) {
+    try {
+        const body = req.body
+        const user = await User.findOne({
+            where: {
+                username: body.username
+            }
+        })
+        console.log("found user")
+        
+        const electricDevice = await ElectricDevice.findOne({
+            where: {
+                UserUserID: user.userID
+            }
+        })
+        console.log("found device with correct userID")
+        console.log(electricDevice.dataValues.electricDeviceID)
+    
+        const circuitData = await CircuitName.findAll({
+            where: {
+                ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+                circuitID: [1,2,3,4,5,6,7,8],
+            },
+            attributes: ['circuitID','givenName'],
+            raw: true
+        })
+        .then(seconds => seconds.map(seconds => seconds.circuitID + ": " + seconds.givenName));
+        console.log("found all circuit names")
+        console.log(circuitData)
+
+        
+
+        res.send({
+            circuitData: circuitData,
         })
 
     } catch (err) {

@@ -2,26 +2,48 @@
     <div>
         <h1 class="ma-4 text-center text-h1">Electric Summary</h1>
 
-        <v-container class="my-4" grid-list-md fluid>
-            <v-card text class="pa-3">
+        <v-container class="" grid-list-md fluid>
+            <v-card text class="pa-2">
                 <v-layout row wrap>
                     <v-flex xs12>
-                        <div id="label" class="text-center pa-4 text-h2">Usage in the last {{granularity}}</div>
+                        <div id="label" class="text-center pa-2 text-h2">Usage in the last {{granularity}}</div>
                     </v-flex>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3">Dollars</div>
+                        <div class="electricPrimary text-center pa-1 text-h3">Dollars</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">${{usageInDollars}}</div>
+                        <div class="electricSecondary pa-1 text-center text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs12>
-                        <div class="electricPrimary text-center pa-4 text-h3" >kWA</div>
+                        <div class="electricPrimary text-center pa-1 text-h3" >kWA</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-4 text-h4">{{totalUsage}} kWA</div>
+                        <div class="electricSecondary pa-1 text-center text-h4">{{totalUsage}} kWA</div>
                     </v-flex>
                 </v-layout>
             </v-card>
         </v-container>
-
+        <v-row
+        class="d-flex justify-center align-center">
+            <v-col
+            cols="2"
+            lg="1">
+                <h2
+                class="d-flex text-center">See circuit(s):</h2>
+            </v-col>
+            <v-col
+            cols="4"
+            lg="2">
+                <v-select
+                :items="items"
+                label="All"
+                outlined
+                class="d-flex pt-2"
+                >
+                </v-select>
+            </v-col>
+            
+        </v-row>
+        
+        
         <electric-graph ref="graph" />
 
         <v-container>
@@ -49,11 +71,13 @@
                 </v-btn>
             </v-bottom-navigation>
 
+            
+
             <v-bottom-navigation fixed grow text fluid align class="electricPrimary ma-2">
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Home</span>
                 </v-btn>
-                <v-btn class="rounded-pill electricSecondary mx-10" @click="circuits">
+                <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/electricCircuits')">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Circuits</span>
                 </v-btn>
                 <v-btn class="rounded-pill electricSecondary mx-10" @click="$router.push('/settings')">
@@ -89,6 +113,7 @@ export default {
             selectedGradient: ['red', 'orange', 'yellow'],
             value: null,
             enabled: true,
+            items: [1,2,3,4,5,6,7,8],
         }
     },
     created() {
@@ -117,6 +142,16 @@ export default {
         }
         catch{
             console.log("usageInDollars failed")
+        }
+        try{
+            const response = await GetUsages.getCircuitDropdownOptions({
+                username: this.$store.state.user.username,
+                password: this.$store.state.user.password
+            })
+            this.items = response.data.circuitData
+        }
+        catch{
+            console.log("updating circuit dropdown failed")
         }
   },
     computed:{
@@ -227,7 +262,7 @@ export default {
             const response = await GetUsages.getLastMinuteInSecondsWithCircuit({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password,
-                circuitID: 1
+                circuitID: 1,
             })
             this.granularity = 'sent'
         },

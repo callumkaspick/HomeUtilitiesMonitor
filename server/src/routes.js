@@ -65,4 +65,8 @@ module.exports = (app) => {
   app.post('/getLastMinuteInSecondsWithCircuit',
     GetUsagesController.getLastMinuteInSecondsForCircuit,
   )
+  app.post('/getCircuitDropdownOptions',
+    GetUsagesController.getCircuitDropdownOptions,
+  )
+  
 }
