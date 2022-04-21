@@ -16,7 +16,6 @@
                   text
                   v-bind="attrs"
                   @click="snackbar = false"
-                  id="snackbar"
                >
                   Close
                </v-btn>
@@ -29,7 +28,8 @@
                         <v-toolbar-title>Register form</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text>
-                        <v-form>
+                        <v-form
+                        id="v-form">
                           <v-text-field
                               prepend-icon="mail"
                               name="email"
