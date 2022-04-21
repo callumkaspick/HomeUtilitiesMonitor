@@ -707,7 +707,7 @@ export default {
       items: ["",""],
       dialog: false,
       selectedCircuit: 1,
-      textfield: 'asdf',
+      textfield: '',
     }
   },
     methods: {

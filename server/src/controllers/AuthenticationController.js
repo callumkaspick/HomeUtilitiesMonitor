@@ -35,7 +35,7 @@ module.exports = {
 
       if (!user) {
         return res.status(403).send({
-          error: 'The login information was incorrect - No user'
+          error: 'The login information was incorrect - No user exists'
         })
       }
 
