@@ -2,8 +2,9 @@
     <v-main>
       <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm12 md12 lg8>
-                  <v-card class="elevation-12"
+               <v-flex xs12 sm10 md7 lg8>
+                  <v-card 
+                  class="elevation-4"
                   height=115%>
                      <v-toolbar dark color="waterPrimary">
                         <v-toolbar-title class="settings">Settings</v-toolbar-title>
@@ -16,7 +17,7 @@
                           cols="12"
                           lg="8"
                           sm="12"
-                          md="8"
+                          md="12"
                           height="100%"
                           class="">
                               <v-card
@@ -32,8 +33,13 @@
                                   width="100%"
                                   height="100%"
                                   color="F5F5F5"
+                                  id="button"
                                   @click="accountSettings">
+                                    <div
+                                    id="button">
                                       Account Settings
+                                    </div>
+                                      
                                   </v-btn>
                               </v-card>
                               <v-card
@@ -136,6 +142,12 @@ export default {
 }
 
 .settings {
-  font-size: 2em !important;
+  font-size: 1.8em !important;
+  color: white
 }
+
+#button {
+  float: left;
+}
+
 </style>

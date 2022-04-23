@@ -23,9 +23,10 @@
             </v-snackbar>
             <v-layout justify-center>
                <v-flex xs12 sm8 md6 lg6>
-                  <v-card class="elevation-12">
+                  <v-card class="elevation-4"
+                  outlined>
                      <v-toolbar dark color="waterPrimary">
-                        <v-toolbar-title>Register form</v-toolbar-title>
+                        <v-toolbar-title>Register Account</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text>
                         <v-form
@@ -100,7 +101,6 @@ export default {
         this.$store.dispatch('setToken', response.data.token)
         this.$store.dispatch('setUser', response.data.user)
         this.snackbar = true
-        //this.status = 'success'
         this.error = 'Success! Redirecting...'
         this.error = ''
 
@@ -134,7 +134,8 @@ export default {
 }
 
 .v-toolbar__title {
-  font-size: 2em !important;
+  font-size: 1.8em !important;
+  color: white;
 }
 
 </style>
