@@ -22,7 +22,7 @@
             </v-card>
         </v-container>
 
-        <!--<electric-graph ref="graph" />-->
+        <electric-graph ref="graph" />
 
         <v-container>
             <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">

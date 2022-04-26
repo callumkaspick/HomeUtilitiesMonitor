@@ -1,9 +1,12 @@
 const {User} = require('../models')
 const {ElectricDevice} = require('../models')
 const {ElectricSeconds} = require('../models')
+const {WaterDevice} = require('../models')
 const config = require('../config/config')
 const {MockElectricSeconds} = require('../models')
 const {MockElectricMinutes} = require('../models')
+const {MockWaterSeconds} = require('../models')
+const {MockWaterMinutes} = require('../models')
 
 module.exports = {
     async getLastMinuteInSeconds (req, res) {
@@ -16,17 +19,17 @@ module.exports = {
             })
             console.log("found user")
             
-            const electricDevice = await ElectricDevice.findOne({
+            const waterDevice = await WaterDevice.findOne({
                 where: {
                     UserUserID: user.userID
                 }
             })
             console.log("found device with correct userID")
-            console.log(electricDevice.dataValues.electricDeviceID)
+            console.log(waterDevice.dataValues.waterDeviceID)
         
-            const mockElectricSeconds = await MockElectricSeconds.findAll({
+            const mockWaterSeconds = await MockWaterSeconds.findAll({
                 where: {
-                    ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+                    WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID,
                     date: [1,2,3,4,5,6,7,8,9,10,10, 11, 12, 13, 
                         14, 15, 16, 17, 18, 19,
                         20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
@@ -40,14 +43,14 @@ module.exports = {
             })
             .then(seconds => seconds.map(seconds => [seconds.date, seconds.data]));
             console.log("found all mock entries matching device ID")
-            console.log(mockElectricSeconds)
+            console.log(mockWaterSeconds)
             res.send({
-                mockElectricSeconds: mockElectricSeconds
+                mockWaterSeconds: mockWaterSeconds
             })
 
         } catch (err) {
         res.status(500).send({
-            error: 'An error has occured getting mock electric seconds device'
+            error: 'An error has occured getting mock water seconds device'
         })
     }
   },
@@ -61,17 +64,17 @@ module.exports = {
         })
         console.log("found user")
         
-        const electricDevice = await ElectricDevice.findOne({
+        const waterDevice = await WaterDevice.findOne({
             where: {
                 UserUserID: user.userID
             }
         })
         console.log("found device with correct userID")
-        console.log(electricDevice.dataValues.electricDeviceID)
+        console.log(waterDevice.dataValues.waterDeviceID)
     
-        const mockElectricMinutes = await MockElectricMinutes.findAll({
+        const mockWaterMinutes = await MockWaterMinutes.findAll({
             where: {
-                ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
+                WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID,
                 date: [1,2,3,4,5,6,7,8,9,10,10, 11, 12, 13, 
                     14, 15, 16, 17, 18, 19,
                     20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
@@ -85,14 +88,14 @@ module.exports = {
         })
         .then(minutes => minutes.map(minutes => [minutes.date, minutes.data]));
         console.log("found all mock entries matching device ID")
-        console.log(mockElectricMinutes)
+        console.log(mockWaterMinutes)
         res.send({
-            mockElectricMinutes: mockElectricMinutes
+            mockWaterMinutes: mockWaterMinutes
         })
 
     } catch (err) {
     res.status(500).send({
-        error: 'An error has occured getting mock electric seconds device'
+        error: 'An error has occured getting mock water minutes device'
     })
 }
 },
