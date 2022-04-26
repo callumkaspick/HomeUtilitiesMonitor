@@ -27,14 +27,14 @@
                               color="gray"
                               class="d-flex align-stretch mb-6 justify-space-around align-center"
                               height="33%"
-                              id="settingsChoice"
+                              
                               >
                                   <v-btn
+                                  id="accountSettings"
                                   width="100%"
                                   height="100%"
                                   color="F5F5F5"
-                                  id="button"
-                                  @click="accountSettings">
+                                  @click="accountSettings()">
                                     <div
                                     id="button">
                                       Account Settings
@@ -48,12 +48,13 @@
                               color="gray"
                               class="d-flex mb-6 justify-space-around align-center"
                               height="33%"
-                              id="settingsChoice"
+                              
                               >
                                   <v-btn
+                                  id="deviceSettings"
                                   width="100%"
                                   height="100%"
-                                  @click="deviceSettings">
+                                  @click="deviceSettings()">
                                       Device Settings
                                   </v-btn>
                               </v-card>
@@ -63,12 +64,13 @@
                               color="gray"
                               class="d-flex mb-6 justify-space-around align-center"
                               height="33%"
-                              id="settingsChoice"
+                              
                               >
                                   <v-btn
                                   width="100%"
                                   height="100%"
-                                  @click="notificationSettings">
+                                  id="notificationSettings"
+                                  @click="notificationSettings()">
                                       Notifcation Settings
                                   </v-btn>
                               </v-card>

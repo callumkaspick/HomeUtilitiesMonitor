@@ -57,14 +57,12 @@ describe('Mounted App can register', () => {
       expect(wrapper.exists()).toBe(true)
     })
 
-    it('s button press actually calls register()', async () => {
+    test('button press actually calls register()', async () => {
         const button = wrapper.find('#registerButton')
         const spy = jest.spyOn(wrapper.vm, 'register')
         button.trigger('click')
         await wrapper.vm.$nextTick()
         expect(spy).toHaveBeenCalled()
     })
-
-
 
 })

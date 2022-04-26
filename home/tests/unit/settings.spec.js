@@ -23,4 +23,27 @@ describe('Mounted App', () => {
         expect(wrapper.find('v-btn').exists()).toBe(true)
     })
 
+    test('account settings press actually calls register()', async () => {
+      const button = wrapper.find('#accountSettings')
+      const spy = jest.spyOn(wrapper.vm, 'accountSettings')
+      button.trigger('click')
+      await wrapper.vm.$nextTick()
+      expect(spy).toHaveBeenCalled()
+    })
+    test('device settings press actually calls register()', async () => {
+      const button = wrapper.find('#deviceSettings')
+      const spy = jest.spyOn(wrapper.vm, 'deviceSettings')
+      button.trigger('click')
+      await wrapper.vm.$nextTick()
+      expect(spy).toHaveBeenCalled()
+    })
+    test('notification settings press actually calls register()', async () => {
+      const button = wrapper.find('#notificationSettings')
+      const spy = jest.spyOn(wrapper.vm, 'notificationSettings')
+      button.trigger('click')
+      await wrapper.vm.$nextTick()
+      expect(spy).toHaveBeenCalled()
+    })
+    
+
 })
