@@ -16,9 +16,9 @@
                         <div class="electricSecondary pa-1 text-center text-h4">${{usageInDollars}}</div>
                     </v-flex>
                     <v-flex xs6>
-                        <div class="electricPrimary text-center pa-1 text-h3" >kWH</div>
+                        <div class="electricPrimary text-center pa-1 text-h3" >kWh</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-1 text-center text-h4">{{totalUsage}} kW</div>
+                        <div class="electricSecondary pa-1 text-center text-h4">{{totalUsage}} kWh</div>
                     </v-flex>
                 </v-layout>
             </v-card>

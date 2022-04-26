@@ -19,8 +19,10 @@
           width="40"
         />
         <v-app-bar-title 
-        class="mr-4">
-          Home Utilities Monitor
+        class="">
+          <div
+          id="hum">Home Utilities Monitor
+            </div> 
       </v-app-bar-title>
       </div>
 
@@ -95,6 +97,9 @@
 <script>
 export default {
   name: 'App',
+  mounted () {
+    this.drawer = false
+  },
   data () {
     return {
       items: [
@@ -118,13 +123,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#hum {
+  font-size: 1.5em !important;
+}
+
 .danger-alert {
   color: red;
 }
 
 .v-toolbar__title {
   color: black;
-
+  font-size: 1em;
 }
+
 </style>
