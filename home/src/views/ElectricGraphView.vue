@@ -28,12 +28,12 @@
         <v-row>
             <v-col
             cols="12">
-                <GChart
+                <!--<GChart
                     type="LineChart"
                     :data="chartData"
                     :options="chartOptions"
                     :colors="colors"
-                />
+                />-->
                 <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
                 <v-btn @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>

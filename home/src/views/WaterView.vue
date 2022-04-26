@@ -22,8 +22,7 @@
             </v-card>
         </v-container>
 
-        <!--<electric-graph ref="graph" />-->
-        <!--<water-graph ref="graph" />-->
+        <water-graph ref="graph" />
 
         <v-container>
             <v-bottom-navigation grow text fluid align class="waterSecondary ma-2">
@@ -72,25 +71,25 @@
 <script>
 import GetUsages from '@/services/GetUsages'
 import GetService from '@/services/GetService'
-import ElectricGraph from '../components/ElectricGraphView.vue'
-//import WaterGraph from '../components/WaterGraphView.vue'
+//import ElectricGraph from '../components/ElectricGraphView.vue'
+import WaterGraph from '../components/WaterGraphView.vue'
 
 export default {
     components: {
-        ElectricGraph
-        //WaterGraph
+        //ElectricGraph
+        WaterGraph
     },
     data () {
         return {
             granularity: 'minute',
-            electricRate: null,
-            //waterRate: null,
+            //electricRate: null,
+            waterRate: null,
             error: null,
             lastMinuteInSeconds: null,
             totalUsage: null,
             usageInDollars: null,
             rate: 2,
-            selectedGradient: ['#0010A5', '#00B2FF', '#00FFFF'],
+            selectedGradient: ['red', 'orange', 'yellow'],
             value: null,
             enabled: true,
         }
@@ -106,7 +105,7 @@ export default {
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockElectricSeconds
+            let responseArray = response.data.mockWaterSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total
@@ -152,7 +151,7 @@ export default {
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockElectricSeconds
+            let responseArray = response.data.mockWaterSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total
@@ -167,7 +166,7 @@ export default {
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockElectricMinutes
+            let responseArray = response.data.mockWaterMinutes
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total
