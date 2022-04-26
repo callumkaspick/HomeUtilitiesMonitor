@@ -42,7 +42,8 @@
                         text="waterSeconday" 
                         background="gray" 
                         color="waterPrimary" 
-                        @click="login">Login</v-btn>
+                        id="loginButton"
+                        @click="login()">Login</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>

@@ -40,4 +40,26 @@ describe('Mounted App', () => {
         expect(wrapper.find('v-btn').exists()).toBe(true)
     })
 
+    
 })
+
+describe('Mounted App', () => {
+  const wrapper = mount(Login, {
+      propsData: {
+        username: 'username',
+        password: 'password',
+      }
+    });
+
+    test('button press actually calls login()', async () => {
+      const button = wrapper.find('#loginButton')
+      const spy = jest.spyOn(wrapper.vm, 'login')
+      button.trigger('click')
+      await wrapper.vm.$nextTick()
+      expect(spy).toHaveBeenCalled()
+    })
+  
+})
+
+
+
