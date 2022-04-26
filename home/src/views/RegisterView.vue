@@ -63,7 +63,8 @@
                         <v-btn 
                         outlined
                         text="waterPrimary" 
-                        @click="register">Register</v-btn>
+                        id="registerButton"
+                        @click="register()">Register</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
