@@ -4,7 +4,7 @@
         Want to go with Electrolize font for text of app
         Replace photo in src with logo
     -->
-    <v-app-bar app color="#3DEC00" class="text-uppercase">
+    <v-app-bar app color="appPrimary" class="text-uppercase">
      <v-app-bar-nav-icon 
      @click="drawer = !drawer"
      v-if="$store.state.isUserLoggedIn">
@@ -19,8 +19,10 @@
           width="40"
         />
         <v-app-bar-title 
-        class="mr-4">
-          Home Utilities Monitor
+        class="">
+          <div
+          id="hum">Home Utilities Monitor
+            </div> 
       </v-app-bar-title>
       </div>
 
@@ -95,6 +97,9 @@
 <script>
 export default {
   name: 'App',
+  mounted () {
+    this.drawer = false
+  },
   data () {
     return {
       items: [
@@ -118,13 +123,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#hum {
+  font-size: 1.5em !important;
+}
+
 .danger-alert {
   color: red;
 }
 
 .v-toolbar__title {
   color: black;
-
+  font-size: 1em;
 }
+
 </style>

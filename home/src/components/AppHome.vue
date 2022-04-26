@@ -16,7 +16,7 @@
     </v-row>
 
     <v-dialog
-      v-model="dialog"
+      v-model="electricDialog"
       persistent
       max-width="500"
       max-height="500">
@@ -31,7 +31,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="dialog = false"
+            @click="electricDialog = false"
           >
             Return
           </v-btn>
@@ -109,6 +109,7 @@
 
     data: () => ({
       dialog: false,
+      electricDialog: false,
     }),
     methods: {
       initMockData(){
@@ -129,7 +130,7 @@
         }
         catch(error){
           console.log
-          this.dialog = true
+          this.electricDialog = true
         }
         
       },

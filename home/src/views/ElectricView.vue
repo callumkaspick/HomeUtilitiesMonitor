@@ -1,28 +1,36 @@
 <template>
     <div>
-        <h1 class="ma-4 text-center text-h1">Electric Summary</h1>
+        <h1 class="mt-8 mb-4 text-center text-h1 ">Electric Summary</h1>
 
         <v-container class="" grid-list-md fluid>
+            <v-layout justify-center>
+            <v-flex xs12 sm12 md8 lg6>
             <v-card text class="pa-2">
-                <v-layout row wrap>
+                <v-layout row wrap justify-center>
                     <v-flex xs12>
                         <div id="label" class="text-center pa-2 text-h2">Usage in the last {{granularity}}</div>
                     </v-flex>
-                    <v-flex xs12>
+                    <v-flex xs6>
                         <div class="electricPrimary text-center pa-1 text-h3">Dollars</div>
                         <v-divider></v-divider>
                         <div class="electricSecondary pa-1 text-center text-h4">${{usageInDollars}}</div>
                     </v-flex>
-                    <v-flex xs12>
-                        <div class="electricPrimary text-center pa-1 text-h3" >kWA</div>
+                    <v-flex xs6>
+                        <div class="electricPrimary text-center pa-1 text-h3" >kWh</div>
                         <v-divider></v-divider>
-                        <div class="electricSecondary pa-1 text-center text-h4">{{totalUsage}} kWA</div>
+                        <div class="electricSecondary pa-1 text-center text-h4">{{totalUsage}} kWh</div>
                     </v-flex>
                 </v-layout>
             </v-card>
+            </v-flex>
+            </v-layout>
         </v-container>
+
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+
         <v-row
-        class="d-flex justify-center align-center">
+        class="d-flex justify-center align-center mt-6">
             <v-col
             cols="2"
             lg="1">
@@ -50,10 +58,13 @@
 
         <v-container>
             <v-bottom-navigation grow text fluid align class="electricSecondary ma-2">
-                <v-btn @click="updateMinute" class="rounded-pill">
+                <v-btn 
+                :elevation="minuteElevation"
+                @click="updateMinute" 
+                class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
-                <v-btn @click="updateHour" class="rounded-pill">
+                <v-btn @click="updateHour" class="rounded-pill" :elevation="hourElevation">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Hour</span>
                 </v-btn>
                 <v-btn @click="updateDay" class="rounded-pill">
@@ -117,6 +128,8 @@ export default {
             enabled: true,
             items: ['All',1,2,3,4,5,6,7,8],
             circuit: 'All',
+            minuteElevation: 0,
+            hourElevation: 0,
         }
     },
     created() {
@@ -219,6 +232,8 @@ export default {
 
             this.usageInDollars = (this.totalUsage * this.rate).toFixed(2)
             this.$refs.graph.updateMinute(this.circuit)
+            this.minuteElevation = 12
+            this.hourElevation = 0
         },
         async updateHour () {
             this.granularity = 'hour'
@@ -235,6 +250,8 @@ export default {
 
             this.usageInDollars = (this.totalUsage * this.rate).toFixed(2)
             this.$refs.graph.updateHour(this.circuit)
+            this.hourElevation = 12
+            this.minuteElevation = 0
         },
         updateDay () {
             this.granularity = 'day'
@@ -286,11 +303,9 @@ export default {
 #label {
     background-color: lightgray;
     color: black;
-    font-weight: bold;
 }
 #title {
     color: black;
-    font-weight: bold;
 }
 
 

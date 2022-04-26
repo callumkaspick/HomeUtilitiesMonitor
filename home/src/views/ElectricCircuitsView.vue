@@ -707,7 +707,7 @@ export default {
       items: ["",""],
       dialog: false,
       selectedCircuit: 1,
-      textfield: 'asdf',
+      textfield: '',
     }
   },
     methods: {
@@ -768,5 +768,8 @@ export default {
 #loadedData {
     font-size: 1.5em;
 }
-
+.v-toolbar__title {
+  font-size: 1.8em;
+  color:  black;
+}
 </style>
