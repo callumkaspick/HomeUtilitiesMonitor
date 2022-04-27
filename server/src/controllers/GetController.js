@@ -93,19 +93,19 @@ module.exports = {
         }
       })
       const userID = user.userID
-      const waterDevice = await WaterDevice.findOne({
+      const electricDevice = await ElectricDevice.findOne({
         where: {
           UserUserID: userID
         }
       })
-      const waterDeviceJSON = waterDevice.toJSON
+      const electricDeviceJSON = electricDevice.toJSON
       res.send({
-        waterDevice: waterDeviceJSON
+        electricDevice: electricDeviceJSON
       })
 
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured getting water device'
+        error: 'An error has occured getting electric device'
       })
     }
   },

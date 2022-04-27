@@ -18,7 +18,7 @@
                         <span class="text-center pa-2 text-h4 font-weight-bold">
                             Monthly Usage: 
                             <br> 
-                            x kWh
+                            x Gallons
                         </span>
                     </v-card>
                 </v-col>
@@ -100,11 +100,11 @@ export default {
                     title: 'Seconds'
                 },
                 vAxis: {
-                    title: 'kWA'
+                    title: 'Gallons'
                 },
                 title: 'Usage for last 60 seconds',
                 chart: {
-                    title: 'Electric Usage',
+                    title: 'Water Usage',
                     subtitle: 'Sales, Expenses, and Profit: 2014-2017',
                 },
                 legend: { position: "right" },
@@ -112,7 +112,7 @@ export default {
                 colors: ['red'],
             },
             granularity: 'day',
-            electricRate: null,
+            waterRate: null,
             error: null,
             lastMinuteInSeconds: null,
             usageInDollars: null,
@@ -128,9 +128,9 @@ export default {
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
-            var startArrEntry = ['Seconds', 'kWA Usage']
+            var startArrEntry = ['Seconds', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
             this.chartData = compArr
             
@@ -138,10 +138,6 @@ export default {
         catch(error){
             this.error = error.response.data.message
             console.log("mount fail")
-        }
-        try{
-        }
-        catch{
         }
   },
     created() {
@@ -159,9 +155,9 @@ export default {
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
-            var startArrEntry = ['Minutes', 'kWA Usage']
+            var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
             this.chartData = compArr
             this.chartOptions.hAxis.title = 'Seconds'
@@ -172,9 +168,9 @@ export default {
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricMinutes
+            let responseArray = response.data.mockElectricMinutes   //mockWaterMinutes
             this.value = responseArray
-            var startArrEntry = ['Minutes', 'kWA Usage']
+            var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
             this.chartData = compArr
             this.chartOptions.hAxis.title = 'Minutes'

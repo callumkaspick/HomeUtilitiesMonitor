@@ -19,9 +19,9 @@ import DeviceSettings from '../views/DeviceSettingsView.vue'
 import NotificationSettings from '../views/NotificationSettingsView.vue'
 import ElectricGraph from '../views/ElectricGraphView.vue'
 import AddNewElectricDevice from '../views/AddNewElectricDeviceView.vue'
-import WaterGraph from '../views/WaterGraph.vue'
 import ElectricCircuits from '../views/ElectricCircuitsView.vue'
-
+import WaterGraph from '../views/WaterGraphView.vue'
+import AddNewWaterDevice from '../views/AddNewWaterDeviceView.vue'
 
 Vue.use(VueRouter)
 
@@ -78,7 +78,7 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }, 
+  },
   {
     path: '/water',
     name: 'water',
@@ -139,7 +139,11 @@ const routes = [
     name: 'electricCircuits',
     component: ElectricCircuits
   },
-  
+  {
+    path: '/addNewWaterDevice',
+    name: 'addNewWaterDevice',
+    component: AddNewWaterDevice
+  },
 ]
 
 const router = new VueRouter({

@@ -1,10 +1,13 @@
 const {User} = require('../models')
 const {ElectricDevice} = require('../models')
 const {ElectricSeconds} = require('../models')
+const {WaterDevice} = require('../models')
 const config = require('../config/config')
 const {MockElectricSeconds} = require('../models')
 const {MockElectricMinutes} = require('../models')
 const {CircuitName} = require('../models')
+const {MockWaterSeconds} = require('../models')
+const {MockWaterMinutes} = require('../models')
 
 module.exports = {
     async getLastMinuteInSeconds (req, res) {
@@ -79,13 +82,9 @@ module.exports = {
                 })
             }
 
-
-
-            
-
         } catch (err) {
         res.status(500).send({
-            error: 'An error has occured getting mock electric seconds device'
+            error: 'An error has occured getting mock water seconds device'
         })
     }
   },
@@ -255,7 +254,7 @@ async getLastHourInMinutesForCircuit (req, res) {
 
     } catch (err) {
     res.status(500).send({
-        error: 'An error has occured getting mock electric seconds device'
+        error: 'An error has occured getting mock water minutes device'
     })
 }
 },
@@ -301,11 +300,4 @@ async getCircuitDropdownOptions (req, res) {
         })
     }
 },
-
-
-
-
-
-
-
 }
