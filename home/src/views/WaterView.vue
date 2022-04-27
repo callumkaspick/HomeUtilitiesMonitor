@@ -105,7 +105,7 @@ export default {
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockWaterSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total
@@ -151,7 +151,7 @@ export default {
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockWaterSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total
@@ -166,7 +166,7 @@ export default {
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockWaterMinutes
+            let responseArray = response.data.mockElectricMinutes   //mockWaterMinutes
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total

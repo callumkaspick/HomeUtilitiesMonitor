@@ -65,7 +65,7 @@ export default {
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockWaterSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
             var startArrEntry = ['Seconds', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
@@ -92,7 +92,7 @@ export default {
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockWaterSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
             var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
@@ -105,7 +105,7 @@ export default {
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockWaterMinutes
+            let responseArray = response.data.mockElectricMinutes   //mockWaterMinutes
             this.value = responseArray
             var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)

@@ -19,17 +19,17 @@ module.exports = {
             })
             console.log("found user")
             
-            const waterDevice = await WaterDevice.findOne({
+            const electricDevice = await ElectricDevice.findOne({
                 where: {
                     UserUserID: user.userID
                 }
             })
             console.log("found device with correct userID")
-            console.log(waterDevice.dataValues.waterDeviceID)
+            console.log(electricDevice.dataValues.electricDeviceID)
         
-            const mockWaterSeconds = await MockWaterSeconds.findAll({
+            const mockElectricSeconds = await MockElectricSeconds.findAll({
                 where: {
-                    WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID,
+                    ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
                     date: [1,2,3,4,5,6,7,8,9,10,10, 11, 12, 13, 
                         14, 15, 16, 17, 18, 19,
                         20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
@@ -43,9 +43,9 @@ module.exports = {
             })
             .then(seconds => seconds.map(seconds => [seconds.date, seconds.data]));
             console.log("found all mock entries matching device ID")
-            console.log(mockWaterSeconds)
+            console.log(mockElectricSeconds)
             res.send({
-                mockWaterSeconds: mockWaterSeconds
+                mockElectricSeconds: mockElectricSeconds
             })
 
         } catch (err) {
@@ -64,17 +64,17 @@ module.exports = {
         })
         console.log("found user")
         
-        const waterDevice = await WaterDevice.findOne({
+        const electricDevice = await ElectricDevice.findOne({
             where: {
                 UserUserID: user.userID
             }
         })
         console.log("found device with correct userID")
-        console.log(waterDevice.dataValues.waterDeviceID)
+        console.log(electricDevice.dataValues.electricDeviceID)
     
-        const mockWaterMinutes = await MockWaterMinutes.findAll({
+        const mockElectricMinutes = await MockElectricMinutes.findAll({
             where: {
-                WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID,
+                ElectricDeviceElectricDeviceID: electricDevice.dataValues.electricDeviceID,
                 date: [1,2,3,4,5,6,7,8,9,10,10, 11, 12, 13, 
                     14, 15, 16, 17, 18, 19,
                     20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
@@ -88,9 +88,9 @@ module.exports = {
         })
         .then(minutes => minutes.map(minutes => [minutes.date, minutes.data]));
         console.log("found all mock entries matching device ID")
-        console.log(mockWaterMinutes)
+        console.log(mockElectricMinutes)
         res.send({
-            mockWaterMinutes: mockWaterMinutes
+            mockElectricMinutes: mockElectricMinutes
         })
 
     } catch (err) {

@@ -81,7 +81,6 @@ module.exports = {
     })
     }
     },
-
     async addNewWaterDevice (req, res) {
         try {
             const body = req.body
@@ -108,7 +107,7 @@ module.exports = {
     
             //create mock last 60 seconds
             for(let i = 1; i < 61; i++){
-                await MockWaterSeconds.create({
+                await MockElectricSeconds.create({
                     data: dataArr[i-1],
                     date: i,
                     WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID
@@ -116,7 +115,28 @@ module.exports = {
             }
             console.log("inserted 60 seconds water mock data")
             
+            /*
+            for(let i = 1; i < 61; i++){
+                await MockWaterSeconds.create({
+                    data: dataArr[i-1],
+                    date: i,
+                    WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID
+                })
+            }
+            console.log("inserted 60 seconds water mock data")
+            */
+
             //create mock last 60 minutes
+            for(let i = 1; i < 61; i++){
+                await MockElectricMinutes.create({
+                    data: (dataArr[i-1]*Math.random()*10),
+                    date: i,
+                    WaterDeviceWaterDeviceID: waterDevice.dataValues.waterDeviceID
+                })
+            }
+            console.log("inserted 60 minutes water mock data")
+    
+            /*
             for(let i = 1; i < 61; i++){
                 await MockWaterMinutes.create({
                     data: (dataArr[i-1]*Math.random()*10),
@@ -125,7 +145,8 @@ module.exports = {
                 })
             }
             console.log("inserted 60 minutes water mock data")
-    
+            */
+
             res.send({
                 message: 'success'
             })
