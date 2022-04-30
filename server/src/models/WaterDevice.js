@@ -1,5 +1,3 @@
-const User = require('./User')
-
 module.exports = (sequelize, DataTypes) => {
   const WaterDevice = sequelize.define('WaterDevice', {
     waterDeviceID: {

@@ -53,6 +53,14 @@ module.exports = (app) => {
     AuthenticationController.checkLogin,
     GetUsagesController.getLastHourInMinutes,
   )
+  app.post('/getLastMinuteInSecondsWater',
+    AuthenticationController.checkLogin,
+    GetUsagesController.getLastMinuteInSecondsWater,
+  )
+  app.post('/getLastHourInMinutesWater',
+  AuthenticationController.checkLogin,
+  GetUsagesController.getLastHourInMinutesWater,
+  )
   app.post('/initMockData',
     MockDataController.init,
   )

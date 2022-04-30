@@ -104,6 +104,7 @@ export default {
     return {
       items: [
         { title: 'Home', icon: 'mdi-home', path: '/' },
+        { title: 'Notifications', icon: 'mdi-bell', path: '/notifications'},
         { title: 'Settings', icon: 'mdi-cog', path: '/settings'},
         { title: 'About', icon: 'mdi-information', path: '/about'},
         { title: 'Contact', icon: 'mdi-mail', path: '/contact'},

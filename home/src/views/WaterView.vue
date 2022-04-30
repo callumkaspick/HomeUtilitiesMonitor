@@ -97,12 +97,12 @@ export default {
     async mounted() {
         try{
             //set total usage
-            const response = await GetUsages.getLastMinuteInSeconds({
+            const response = await GetUsages.getLastMinuteInSecondsWater({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
+            let responseArray = response.data.mockWaterSeconds   //mockWaterSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total
@@ -143,12 +143,12 @@ export default {
     methods: {
         async updateMinute () {
             this.granularity = 'minute'
-            const response = await GetUsages.getLastMinuteInSeconds({
+            const response = await GetUsages.getLastMinuteInSecondsWater({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
+            let responseArray = response.data.mockWaterSeconds   //mockWaterSeconds
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total
@@ -158,12 +158,12 @@ export default {
         },
         async updateHour () {
             this.granularity = 'hour'
-            const response = await GetUsages.getLastHourInMinutes({
+            const response = await GetUsages.getLastHourInMinutesWater({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
             let total = 0
-            let responseArray = response.data.mockElectricMinutes   //mockWaterMinutes
+            let responseArray = response.data.mockWaterMinutes   //mockWaterMinutes
             this.value = responseArray
             responseArray.forEach(element => total += element[1])
             this.totalUsage = total

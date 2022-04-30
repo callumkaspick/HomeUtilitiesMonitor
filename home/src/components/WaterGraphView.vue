@@ -61,11 +61,11 @@ export default {
     },
     async mounted() {
         try{
-            const response = await GetUsages.getLastMinuteInSeconds({
+            const response = await GetUsages.getLastMinuteInSecondsWater({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
+            let responseArray = response.data.mockWaterSeconds   //mockWaterSeconds
             this.value = responseArray
             var startArrEntry = ['Seconds', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
@@ -88,11 +88,11 @@ export default {
             return [1,2,3]
         },
         async updateMinute () {
-            const response = await GetUsages.getLastMinuteInSeconds({
+            const response = await GetUsages.getLastMinuteInSecondsWater({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
+            let responseArray = response.data.mockWaterSeconds   //mockWaterSeconds
             this.value = responseArray
             var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
@@ -101,11 +101,11 @@ export default {
             this.chartOptions.title = 'Usage for the last 60 seconds'
         },
         async updateHour () {
-            const response = await GetUsages.getLastHourInMinutes({
+            const response = await GetUsages.getLastHourInMinutesWater({
                 username: this.$store.state.user.username,
                 password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricMinutes   //mockWaterMinutes
+            let responseArray = response.data.mockWaterMinutes   //mockWaterMinutes
             this.value = responseArray
             var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)

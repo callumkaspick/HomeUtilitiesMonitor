@@ -7,6 +7,12 @@ export default {
   getLastHourInMinutes (credentials) {
     return Api().post('getLastHourInMinutes', credentials)
   },
+  getLastMinuteInSecondsWater (credentials) {
+    return Api().post('getLastMinuteInSecondsWater', credentials)
+  },
+  getLastHourInMinutesWater (credentials) {
+    return Api().post('getLastHourInMinutesWater', credentials)
+  },
   getLastDayInHours (credentials) {
     return Api().post('getWaterRate', credentials)
   },
