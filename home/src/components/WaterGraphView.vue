@@ -41,7 +41,7 @@ export default {
                 title: 'Usage for last 60 seconds',
                 chart: {
                     title: 'Water Usage',
-                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                    subtitle: 'Usage',
                 },
                 legend: { position: "right" },
                 curveType: 'function',

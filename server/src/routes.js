@@ -62,4 +62,17 @@ module.exports = (app) => {
   app.post('/initWaterDeviceMockData',
     MockDataController.addNewWaterDevice,
   )
+  app.post('/getLastMinuteInSecondsWithCircuit',
+    GetUsagesController.getLastMinuteInSecondsForCircuit,
+  )
+  app.post('/getCircuitDropdownOptions',
+    GetUsagesController.getCircuitDropdownOptions,
+  )
+  app.post('/changeCircuitName',
+    ChangeController.changeCircuitName,
+  )
+  app.post('/getCircuitNameArray',
+    GetController.getCircuitNameArray,
+  )
+  
 }

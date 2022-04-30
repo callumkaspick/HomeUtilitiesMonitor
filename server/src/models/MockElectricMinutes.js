@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
           type: DataTypes.INTEGER,
           primaryKey: true,
       }, 
+      circuitID: {
+        type: DataTypes.INTEGER,
+
+      }
       },{
       hooks: {
       }

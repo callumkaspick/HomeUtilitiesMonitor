@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon src/app.js --exec",
-    "seed": "node seed"
+    "seed": "node seed",
+    "test:unit": "jest"
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
@@ -24,5 +25,8 @@
     "passport-jwt": "^4.0.0",
     "sequelize": "^6.17.0",
     "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }

@@ -6,7 +6,7 @@
                   <v-card class="elevation-12"
                   height="137%"
                   width="100%">
-                     <v-toolbar dark color="appPrimary">
+                     <v-toolbar dark color="waterPrimary">
                         <v-toolbar-title class="settings">Device Settings</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text

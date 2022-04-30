@@ -71,18 +71,15 @@
 <script>
 import GetUsages from '@/services/GetUsages'
 import GetService from '@/services/GetService'
-//import ElectricGraph from '../components/ElectricGraphView.vue'
 import WaterGraph from '../components/WaterGraphView.vue'
 
 export default {
     components: {
-        //ElectricGraph
         WaterGraph
     },
     data () {
         return {
             granularity: 'minute',
-            //electricRate: null,
             waterRate: null,
             error: null,
             lastMinuteInSeconds: null,
