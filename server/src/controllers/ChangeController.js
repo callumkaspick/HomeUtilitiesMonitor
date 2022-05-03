@@ -145,7 +145,7 @@ module.exports = {
         
 
         res.send({
-            
+            circuit: circuit.givenName
         })
     } catch (err) {
       res.status(500).send({
