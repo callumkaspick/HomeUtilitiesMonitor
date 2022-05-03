@@ -2,14 +2,27 @@ const path = require('path')
 
 module.exports = {
   port: process.env.PORT || 8081,
+  
   db: {
-    database: process.env.DB_NAME || 'hum',
+    database: 'hum',
     user: process.env.DB_USER || 'hum',
     password: process.env.DB_PASS || 'hum',
+    dialect: 'sqlite',
     options: {
-      dialect: process.env.DIALECT || 'sqlite',
+      dialect: 'sqlite',
       host: process.env.HOST || 'localhost',
       storage: path.resolve(__dirname, '../../hum.sqlite')
+    }
+  },
+  test: {
+    database: 'testhum',
+    user: process.env.DB_USER || 'hum',
+    password: process.env.DB_PASS || 'hum',
+    dialect: 'sqlite',
+    options: {
+      dialect: 'sqlite',
+      host: process.env.HOST || 'localhost',
+      storage: path.resolve(__dirname, '../../testhum.sqlite')
     }
   },
   authentication: {

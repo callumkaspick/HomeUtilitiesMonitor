@@ -43,7 +43,7 @@ describe('Mounted App', () => {
     
 })
 
-describe('Mounted App', () => {
+describe('Click login and call login() method', () => {
   const wrapper = mount(Login, {
       propsData: {
         username: 'username',

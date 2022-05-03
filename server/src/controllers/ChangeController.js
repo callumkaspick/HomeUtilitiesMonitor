@@ -1,6 +1,6 @@
 const {User} = require('../models')
 const jwt = require('jsonwebtoken')
-const config = require('../config/config')
+const config = require('../../config/config')
 const {CircuitName} = require('../models')
 const {ElectricDevice} = require('../models')
 

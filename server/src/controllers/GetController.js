@@ -2,7 +2,7 @@ const {User} = require('../models')
 const {WaterDevice} = require('../models')
 const {ElectricDevice} = require('../models')
 const {CircuitName} = require('../models')
-const config = require('../config/config')
+const config = require('../../config/config')
 
 module.exports = {
   async getWaterDevice (req, res) {
