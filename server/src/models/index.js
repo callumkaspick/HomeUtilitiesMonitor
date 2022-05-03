@@ -3,7 +3,7 @@ const path = require('path')
 const Sequelize = require('sequelize')
 const config = require('../../config/config')[process.env.NODE_ENV]
 const db = {}
-console.log(process.env.NODE_ENV+ "")
+console.log(process.env.NODE_ENV+ "====as=df=asdf==asd=fa=sdf=as=df=asdf=")
 const sequelize = new Sequelize(
   config.database,
   config.user,
