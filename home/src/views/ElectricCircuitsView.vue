@@ -37,9 +37,9 @@
         </v-dialog>
       <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm12 md12 lg8>
-                  <v-card class="elevation-12"
-                  height="275%"
+               <v-flex xs12 sm12 md10 lg8>
+                  <v-card class="elevation-4"
+                  height="140%"
                   width="100%">
                      <v-toolbar dark color="electricPrimary">
                         <v-toolbar-title class="settings">Circuits</v-toolbar-title>
@@ -62,7 +62,7 @@
                                 outlined
                                 color="#F5F5F5"
                                 class="d-flex justify-space-around mb-6"
-                                height="33%"
+                                height="15%"
                                 width="100%"
                                 id="settingsChoice"
                                 >
@@ -82,7 +82,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 1 Name:
+                                    Circuit 1:
                                 </div>
                             </v-card>
                         </v-col>
@@ -143,7 +143,7 @@
                 outlined
                 color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="33%"
+                height="15%"
                 width="100%"
                 id="settingsChoice"
                 >
@@ -163,7 +163,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 2 Name:
+                                    Circuit 2:
                                 </div>
                             </v-card>
                         </v-col>
@@ -220,7 +220,7 @@
                 outlined
                 color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="33%"
+                height="15%"
                 width="100%"
                 id="settingsChoice"
                 
@@ -241,7 +241,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 3 Name:
+                                    Circuit 3:
                                 </div>
                             </v-card>
                         </v-col>
@@ -295,7 +295,7 @@
                 outlined
                 color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="33%"
+                height="15%"
                 width="100%"
                 id="settingsChoice"
                 
@@ -316,7 +316,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 4 Name:
+                                    Circuit 4:
                                 </div>
                             </v-card>
                         </v-col>
@@ -370,7 +370,7 @@
                 outlined
                 color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="33%"
+                height="15%"
                 width="100%"
                 id="settingsChoice"
                 
@@ -391,7 +391,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 5 Name:
+                                    Circuit 5:
                                 </div>
                             </v-card>
                         </v-col>
@@ -445,7 +445,7 @@
                 outlined
                 color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="33%"
+                height="15%"
                 width="100%"
                 id="settingsChoice"
                 
@@ -466,7 +466,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 6 Name:
+                                    Circuit 6:
                                 </div>
                             </v-card>
                         </v-col>
@@ -520,7 +520,7 @@
                 outlined
                 color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="33%"
+                height="15%"
                 width="100%"
                 id="settingsChoice"
                 
@@ -541,7 +541,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 7 Name:
+                                    Circuit 7:
                                 </div>
                             </v-card>
                         </v-col>
@@ -595,7 +595,7 @@
                 outlined
                 color="#F5F5F5"
                 class="d-flex justify-space-around mb-6"
-                height="33%"
+                height="15%"
                 width="100%"
                 id="settingsChoice"
                 
@@ -616,7 +616,7 @@
                                 <div
                                 id="title"
                                 class="mt-2 ml-2">
-                                    Circuit 8 Name:
+                                    Circuit 8:
                                 </div>
                             </v-card>
                         </v-col>
@@ -740,7 +740,7 @@ export default {
 }
 </script>
 
-<style>
+<style local>
 #data {
     font-size: 0.9em;
 }
@@ -771,5 +771,13 @@ export default {
 .v-toolbar__title {
   font-size: 1.8em;
   color:  black;
+}
+.v-text-field >>> label {
+    font-size: 1.5em;
+}
+
+.v-toolbar__title {
+  font-size: 1.8em !important;
+  color: black;
 }
 </style>

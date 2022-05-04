@@ -42,8 +42,8 @@
 
       <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm12 md12 lg8>
-                  <v-card class="elevation-12"
+               <v-flex xs12 sm12 md10 lg6>
+                  <v-card class="elevation-4"
                   height="137%"
                   width="100%">
                      <v-toolbar dark color="waterPrimary">
@@ -56,9 +56,9 @@
                         class="d-flex align-stretch justify-center mt-4 mb-4">
                           <v-col
                           cols="12"
-                          lg="8"
+                          lg="10"
                           sm="12"
-                          md="8"
+                          md="10"
                           height="100%"
                           width="100%"
                           class="">
