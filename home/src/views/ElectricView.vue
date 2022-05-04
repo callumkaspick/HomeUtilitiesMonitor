@@ -155,6 +155,10 @@ export default {
             console.log("mount fail")
         }
         try{
+            const response = await GetService.getElectricRate({
+                username: this.$store.state.user.username
+            })
+            this.rate = response.data.electricRate
             this.usageInDollars = this.totalUsage * this.rate
         }
         catch{

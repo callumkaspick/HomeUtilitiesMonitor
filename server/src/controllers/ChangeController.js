@@ -1,8 +1,9 @@
 const {User} = require('../models')
 const jwt = require('jsonwebtoken')
-const config = require('../config/config')
+const config = require('../../config/config')
 const {CircuitName} = require('../models')
 const {ElectricDevice} = require('../models')
+const {AppPreference} = require('../models/')
 
 function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
@@ -105,6 +106,45 @@ module.exports = {
       })
     }
   },
+  async changeElectricRate (req, res) {
+    try {
+      const body = req.body
+      const user = await User.findOne({
+        where: {
+          username: body.username
+        }
+      })
+
+      if (!user) {
+        return res.status(403).send({
+          error: 'Username does not exist'
+        })
+      }
+      console.log(user.userID + "asdfasdf")
+      const appPreference = await AppPreference.findOne({
+        where: {
+            UserUserID: user.userID
+        }
+      })
+      console.log("found appPreferencce with correct userID")
+      console.log("new rate =" + body.electricRate)
+      appPreference.electricRate = body.electricRate
+
+
+      await appPreference.save()
+      
+
+      const appPreferencceJSON = appPreference.toJSON()
+
+      res.send({
+        electricRate: appPreference.electricRate
+      })
+    } catch (err) {
+      res.status(500).send({
+        error: 'An error has occured trying to change electric rate'
+      })
+    }
+  },
 
   
   async changeCircuitName (req, res) {
@@ -145,7 +185,7 @@ module.exports = {
         
 
         res.send({
-            
+            circuit: circuit.givenName
         })
     } catch (err) {
       res.status(500).send({

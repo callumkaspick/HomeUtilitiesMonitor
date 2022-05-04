@@ -3,15 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon src/app.js --exec",
+    "start": "cross-env NODE_ENV=db nodemon src/app.js --exec",
     "seed": "node seed",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "test": "cross-env NODE_ENV=test jest --testTimeout=10000",
+    "pretest": "cross-env NODE_ENV=test npm run migrate:reset",
+    "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
+    "migrate": "npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   },
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "bcrypt-nodejs": "^0.0.3",
     "bluebird": "^3.7.2",
-    "body-parser": "^1.19.2",
+    "body-parser": "^1.20.0",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
     "debug": "~2.6.9",
@@ -19,14 +29,18 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "jsonwebtoken": "^8.5.1",
+    "migrate": "^1.8.0",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.15",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.16",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
-    "sequelize": "^6.17.0",
-    "sqlite3": "^5.0.2"
+    "sequelize": "^6.19.0",
+    "sqlite3": "^5.0.6"
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "cross-env": "^7.0.3",
+    "jest": "^27.5.1",
+    "supertest": "^6.2.3"
   }
 }

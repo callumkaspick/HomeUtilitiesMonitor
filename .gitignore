@@ -128,3 +128,5 @@ dist
 web-form/
 
 server/hum.sqlite
+hum.sqlite
+testhum.sqlite

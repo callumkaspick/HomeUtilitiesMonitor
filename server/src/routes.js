@@ -42,7 +42,6 @@ module.exports = (app) => {
     GetController.getWaterRate,
   )
   app.post('/getElectricRate',
-    AuthenticationController.checkLogin,
     GetController.getElectricRate,
   )
   app.post('/getLastMinuteInSeconds',
@@ -74,5 +73,10 @@ module.exports = (app) => {
   app.post('/getCircuitNameArray',
     GetController.getCircuitNameArray,
   )
+  app.post('/changeElectricRate',
+    ChangeController.changeElectricRate,
+  )
+
+  
   
 }

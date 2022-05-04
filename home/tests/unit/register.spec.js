@@ -44,7 +44,7 @@ describe('Mounted App', () => {
 
 })
 
-describe('Mounted App', () => {
+describe('Mounted App can register', () => {
     const wrapper = mount(Register, {
         propsData: {
           username: 'newusername',
@@ -57,9 +57,12 @@ describe('Mounted App', () => {
       expect(wrapper.exists()).toBe(true)
     })
 
-    it('registers an account with the DB', () => {
-        wrapper.vm.register()
-        expect(wrapper.vm.error).toEqual(null)
+    test('button press actually calls register()', async () => {
+        const button = wrapper.find('#registerButton')
+        const spy = jest.spyOn(wrapper.vm, 'register')
+        button.trigger('click')
+        await wrapper.vm.$nextTick()
+        expect(spy).toHaveBeenCalled()
     })
 
 })
