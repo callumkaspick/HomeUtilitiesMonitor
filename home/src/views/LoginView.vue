@@ -3,7 +3,7 @@
       <v-main>
          <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm8 md6 lg6>
+               <v-flex xs12 sm10 md7 lg4>
                   <v-card class="elevation-4">
                      <v-toolbar dark color="waterPrimary">
                         <v-toolbar-title>Login</v-toolbar-title>
@@ -39,8 +39,6 @@
                         <v-spacer></v-spacer>
                         <v-btn 
                         outlined
-                        text="waterSeconday" 
-                        background="gray" 
                         color="waterPrimary" 
                         id="loginButton"
                         @click="login()">Login</v-btn>
@@ -90,6 +88,7 @@ export default {
 </script>
 
 <style scoped>
+
 .v-text-field >>> label {
     font-size: 1.5em;
 }

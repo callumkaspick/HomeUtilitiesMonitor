@@ -22,7 +22,7 @@
                </template>
             </v-snackbar>
             <v-layout justify-center>
-               <v-flex xs12 sm8 md6 lg6>
+               <v-flex xs12 sm10 md7 lg4>
                   <v-card class="elevation-4"
                   outlined>
                      <v-toolbar dark color="waterPrimary">
@@ -62,7 +62,7 @@
                         <br>
                         <v-btn 
                         outlined
-                        text="waterPrimary" 
+                        color="waterPrimary" 
                         id="registerButton"
                         @click="register()">Register</v-btn>
                      </v-card-actions>
@@ -109,7 +109,7 @@ export default {
             this.$router.push({
                name: 'home'
             }) 
-         }, 2000);
+         }, 1500);
         
       } catch (error) {
         this.error = error.response.data.error

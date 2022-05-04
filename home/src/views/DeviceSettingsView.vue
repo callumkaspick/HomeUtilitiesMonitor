@@ -21,7 +21,7 @@
             <v-btn
                 color="green darken-1"
                 text
-                @click="dialog = false"
+                @click="closeDialog"
             >
                 Return
             </v-btn>
@@ -515,6 +515,10 @@ export default {
         })
         this.electricRate = response.data.electricRate
         this.dialog = false
+    },
+    closeDialog(){
+        this.dialog = false
+        this.newElectricRate = null
     },
   }
 }

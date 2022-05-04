@@ -3,9 +3,9 @@
       <v-main>
          <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm8 md4>
-                  <v-card class="elevation-12">
-                     <v-toolbar dark color="primary">
+               <v-flex xs12 sm10 md7>
+                  <v-card class="elevation-4">
+                     <v-toolbar dark color="waterPrimary">
                         <v-toolbar-title>Change Username</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text>
@@ -40,7 +40,7 @@
                      </v-card-text>
                      <v-card-actions>
                         <v-spacer></v-spacer>
-                        <v-btn color="primary" @click="createNewUsername">Change</v-btn>
+                        <v-btn color="waterPrimary" outlined @click="createNewUsername">Change</v-btn>
                      </v-card-actions>
                   </v-card>
                </v-flex>
@@ -88,4 +88,12 @@ export default {
 </script>
 
 <style scoped>
+.v-text-field >>> label {
+    font-size: 1.5em;
+}
+
+.v-toolbar__title {
+  font-size: 1.8em !important;
+  color: white;
+}
 </style>
