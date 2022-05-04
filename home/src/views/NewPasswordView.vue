@@ -72,6 +72,8 @@ export default {
                   oldPassword: this.password,
                   username: this.username,
                })
+               this.$store.dispatch('setToken', response.data.token)
+               this.$store.dispatch('setUser', response.data.user)
                this.hasError = false
                this.msg = 'Password successfully changed'
              }

@@ -73,6 +73,8 @@ export default {
             password: this.password,
             newEmail: this.newEmail,
         })
+        this.$store.dispatch('setToken', response.data.token)
+        this.$store.dispatch('setUser', response.data.user)
         this.hasError = false
         this.msg = 'Email successfully changed'
         }
