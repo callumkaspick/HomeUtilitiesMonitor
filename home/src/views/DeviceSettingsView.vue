@@ -8,10 +8,10 @@
         
         <v-card>
             <v-card-title id="popupText" class="text-h6">
-            Please enter the new rate below:
+            Please enter dollars per kWh:
             </v-card-title>
             <v-text-field
-            label="Rate (As integer)"
+            label="dollars/kWh (As integer)"
             v-model="newElectricRate"
             outlined
           ></v-text-field>
@@ -368,7 +368,7 @@
                             class="d-flex align-center justify-center">
                                 <div
                                 id="loadedData">
-                                    {{electricRate}}
+                                    ${{electricRate}} per kWh
                                 </div>
                             </v-card>
                         </v-col>
