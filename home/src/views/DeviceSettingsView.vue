@@ -76,17 +76,17 @@
                     height="100%">
                         <v-col
                         sm="3"
-                        align="start">
+                        class="d-flex align-center justify-center">
                             <v-card
-                            height="100%"
+                            height="50%"
                             width="100%"
                             align="start"
                             flat
                             color="waterPrimary"
-                            class="d-flex pl-2">
+                            class="d-flex rounded-xl align-center justify-center elevation-4">
                                 <div
                                 id="title"
-                                class="mt-2 ml-2">
+                                class="">
                                     Water Device
                                 </div>
                             </v-card>
@@ -167,17 +167,16 @@
                     height="100%">
                         <v-col
                         sm="3"
-                        align="start">
+                        class="d-flex align-center justify-center">
                             <v-card
-                            height="100%"
+                            height="50%"
                             width="100%"
-                            align="start"
                             flat
                             color="waterPrimary"
-                            class="d-flex pl-2">
+                            class="d-flex rounded-xl align-center justify-center elevation-4">
                                 <div
                                 id="title"
-                                class="mt-2 ml-2">
+                                class="">
                                     Water Rate
                                 </div>
                             </v-card>
@@ -244,17 +243,18 @@
                     height="100%">
                         <v-col
                         sm="3"
-                        align="start">
+                        align="start"
+                        class="d-flex align-center justify-center">
                             <v-card
-                            height="100%"
+                            height="50%"
                             width="100%"
                             align="start"
                             flat
-                            color="electricPrimary"
-                            class="d-flex pl-2">
+                            color="yellow"
+                            class="d-flex rounded-xl align-center justify-center elevation-4">
                                 <div
                                 id="title"
-                                class="mt-2 ml-2">
+                                class="">
                                     Electric Device
                                 </div>
                             </v-card>
@@ -338,17 +338,18 @@
                     height="100%">
                         <v-col
                         sm="3"
-                        align="start">
+                        align="start"
+                        class="d-flex align-center justify-center">
                             <v-card
-                            height="100%"
+                            height="50%"
                             width="100%"
                             align="start"
                             flat
-                            color="electricPrimary"
-                            class="d-flex pl-2">
+                            color="yellow"
+                            class="d-flex rounded-xl align-center justify-center elevation-4">
                                 <div
                                 id="title"
-                                class="mt-2 ml-2">
+                                class="">
                                     Electric Rate
                                 </div>
                             </v-card>
@@ -524,7 +525,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #currentPage {
   background-color: lightgray;
   color: black;
@@ -552,5 +553,13 @@ export default {
 
 #loadedData {
     font-size: 1.5em;
+}
+.v-text-field >>> label {
+    font-size: 1.5em;
+}
+
+.v-toolbar__title {
+  font-size: 1.8em !important;
+  color: white;
 }
 </style>

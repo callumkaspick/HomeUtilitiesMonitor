@@ -123,13 +123,43 @@ export default {
 };
 </script>
 <style>
+#currentPage {
+  background-color: lightgray;
+  color: black;
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: center;
+  font-size: 2em;
+}
+#settingsChoice {
+  background-color: white;
+  color: black;
+  text-align: center;
+  
+}
+
+.v-btn {
+    font-size: 4em;
+}
+
+.v-text-field >>> label {
+    font-size: 1.5em;
+}
+
+.settings {
+  font-size: 1.8em !important;
+  color: white
+}
+
+#button {
+  float: left;
+}
 .danger-alert {
   color: red;
 }
-</style>
-<style scoped>
+
 #hum {
-  font-size: 1.5em !important;
+  font-size: 0.9em !important;
 }
 
 .danger-alert {

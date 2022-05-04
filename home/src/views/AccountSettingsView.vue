@@ -2,12 +2,12 @@
     <v-main>
       <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm12 md12 lg8>
-                  <v-card class="elevation-12"
+               <v-flex xs12 sm12 md10 lg5>
+                  <v-card class="elevation-4"
                   height="115%"
                   width="100%">
                      <v-toolbar dark color="waterPrimary">
-                        <v-toolbar-title class="settings">Settings</v-toolbar-title>
+                        <v-toolbar-title class="settings">Account Settings</v-toolbar-title>
                      </v-toolbar>
                      <v-card-text
                      height="100%"
@@ -308,7 +308,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #data {
     font-size: 0.9em;
 }
@@ -335,6 +335,14 @@ export default {
 }
 #loadedData {
     font-size: 1.5em;
+}
+.v-text-field >>> label {
+    font-size: 1.5em;
+}
+
+.v-toolbar__title {
+  font-size: 1.8em !important;
+  color: white;
 }
 
 </style>

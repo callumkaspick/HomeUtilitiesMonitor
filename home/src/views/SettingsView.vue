@@ -2,7 +2,7 @@
     <v-main>
       <v-container fluid fill-height>
             <v-layout justify-center>
-               <v-flex xs12 sm10 md7 lg8>
+               <v-flex xs12 sm10 md7 lg5>
                   <v-card 
                   class="elevation-4"
                   height=115%>
@@ -119,37 +119,13 @@ export default {
 }
 </script>
 
-<style>
-#currentPage {
-  background-color: lightgray;
-  color: black;
-  font-size: 1.5em;
-  padding: 10px;
-  text-align: center;
-  font-size: 2em;
-}
-#settingsChoice {
-  background-color: white;
-  color: black;
-  text-align: center;
-  
-}
-
-.v-btn {
-    font-size: 4em;
-}
-
+<style scoped>
 .v-text-field >>> label {
     font-size: 1.5em;
 }
 
-.settings {
+.v-toolbar__title {
   font-size: 1.8em !important;
-  color: white
+  color: white;
 }
-
-#button {
-  float: left;
-}
-
 </style>
