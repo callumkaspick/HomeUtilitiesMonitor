@@ -3,7 +3,8 @@ const User = require('./User')
 module.exports = (sequelize, DataTypes) => {
   const AppPreference = sequelize.define('AppPreference', {
     preferencesID: {
-      type: DataTypes.STRING,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
       unique: true
     },
@@ -18,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     notificationPreference: {
       type: DataTypes.STRING,
+    },
+    electricRate: {
+      type: DataTypes.INTEGER,
     }
   },{
     hooks: {

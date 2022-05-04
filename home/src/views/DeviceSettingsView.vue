@@ -1,5 +1,45 @@
 <template>
     <v-main>
+        <v-dialog
+        v-model="dialog"
+        persistent
+        max-width="500"
+        max-height="500">
+        
+        <v-card>
+            <v-card-title id="popupText" class="text-h6">
+            Please enter the new rate below:
+            </v-card-title>
+            <v-text-field
+            label="Rate (As integer)"
+            v-model="newElectricRate"
+            outlined
+          ></v-text-field>
+
+            <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+                color="green darken-1"
+                text
+                @click="dialog = false"
+            >
+                Return
+            </v-btn>
+            <v-btn
+                color="green darken-1"
+                text
+                @click="changeElectricRate"
+            >
+                Change
+            </v-btn>
+            </v-card-actions>
+        </v-card>
+        </v-dialog>
+
+
+
+
+
       <v-container fluid fill-height>
             <v-layout justify-center>
                <v-flex xs12 sm12 md12 lg8>
@@ -348,7 +388,7 @@
                                     id="change"
                                     class="mb-2"
                                     color="white"
-                                    @click="changeElectricRate"
+                                    @click="dialog=true"
                                     >
                                         Change
                                     </v-btn>
@@ -380,13 +420,18 @@
 <script>
 import MockService from '@/services/MockService'
 import GetService from '@/services/GetService'
+import UpdateDetailsService from '@/services/UpdateDetailsService'
+
 export default {
   data () {
     return {
       waterDevice: null,
       electricDevice: null,
+      electricRate: 2,
       waterRate: null,
-      error: null
+      error: null,
+      dialog: false,
+      newElectricRate: null,
     }
   },
   async mounted() {
@@ -413,6 +458,16 @@ export default {
         catch(error){
             this.error = error.response.data.message
             console.log("mount failed - elec device")
+        }
+        try{
+            const response = await GetService.getElectricRate({
+                username: this.$store.state.user.username
+            })
+            this.electricRate = response.data.electricRate
+        }
+        catch(error){
+            this.error = error.response.data.message
+            console.log("mount failed - elecRate")
         }
   },
   methods: {
@@ -452,6 +507,14 @@ export default {
         })
         console.log(response.data.waterDevice.waterDeviceID)
         this.waterDevice = response.data.waterDevice.waterDeviceID
+    },
+    async changeElectricRate(){
+        const response = await UpdateDetailsService.changeElectricRate({
+            username: this.$store.state.user.username,
+            electricRate: this.newElectricRate
+        })
+        this.electricRate = response.data.electricRate
+        this.dialog = false
     },
   }
 }

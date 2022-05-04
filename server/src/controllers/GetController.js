@@ -3,6 +3,7 @@ const {WaterDevice} = require('../models')
 const {ElectricDevice} = require('../models')
 const {CircuitName} = require('../models')
 const config = require('../../config/config')
+const {AppPreference} = require('../models')
 
 module.exports = {
   async getWaterDevice (req, res) {
@@ -93,14 +94,13 @@ module.exports = {
         }
       })
       const userID = user.userID
-      const waterDevice = await WaterDevice.findOne({
+      const appPreferencce = await AppPreference.findOne({
         where: {
           UserUserID: userID
         }
       })
-      const waterDeviceJSON = waterDevice.toJSON
       res.send({
-        waterDevice: waterDeviceJSON
+        electricRate: appPreferencce.electricRate
       })
 
     } catch (err) {
