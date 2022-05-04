@@ -97,5 +97,4 @@ export default {
   font-size: 1.8em !important;
   color: white;
 }
-
 </style>
