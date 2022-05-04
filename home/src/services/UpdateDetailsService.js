@@ -12,5 +12,8 @@ export default {
   },
   changeCircuitName (credentials) {
     return Api().post('changeCircuitName', credentials)
+  },
+  changeElectricRate (credentials) {
+    return Api().post('changeElectricRate', credentials)
   }
 }

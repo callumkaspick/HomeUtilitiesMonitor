@@ -1,6 +1,7 @@
 const {User} = require('../models')
 const jwt = require('jsonwebtoken')
-const config = require('../config/config')
+const config = require('../../config/config')
+const {AppPreference} = require('../models')
 
 function jwtSignUser (user) {
   const ONE_WEEK = 60 * 60 * 24 * 7
@@ -14,6 +15,9 @@ module.exports = {
     try {
       const user = await User.create(req.body)
       const userJson = user.toJSON()
+      await AppPreference.create({
+        UserUserID: user.userID
+      })
       res.send({
         user: userJson,
         token: jwtSignUser(userJson)

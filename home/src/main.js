@@ -9,6 +9,7 @@ import 'vue-universal-modal/dist/index.css'
 
 Vue.config.productionTip = false
 Vue.use(VueGoogleCharts)
+Vue.use(vuetify)
 new Vue({
   router,
   store,

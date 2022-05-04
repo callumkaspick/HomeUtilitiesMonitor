@@ -122,7 +122,11 @@ export default {
   }
 };
 </script>
-
+<style>
+.danger-alert {
+  color: red;
+}
+</style>
 <style scoped>
 #hum {
   font-size: 1.5em !important;
