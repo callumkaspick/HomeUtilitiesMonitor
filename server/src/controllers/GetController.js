@@ -95,6 +95,7 @@ module.exports = {
       })
       const userID = user.userID
       const appPreferencce = await AppPreference.findOne({
+
         where: {
           UserUserID: userID
         }
@@ -105,7 +106,7 @@ module.exports = {
 
     } catch (err) {
       res.status(500).send({
-        error: 'An error has occured getting water device'
+        error: 'An error has occured getting electric device'
       })
     }
   },

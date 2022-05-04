@@ -36,20 +36,20 @@ export default {
                     title: 'Seconds'
                 },
                 vAxis: {
-                    title: 'kWA'
+                    title: 'Gallons'
                 },
                 title: 'Usage for last 60 seconds',
                 chart: {
-                    title: 'Electric Usage',
+                    title: 'Water Usage',
                     subtitle: 'Usage',
                 },
                 legend: { position: "right" },
-                
+                curveType: 'function',
                 colors: ['red'],
                 height: 300,
             },
             granularity: 'day',
-            electricRate: null,
+            waterRate: null,
             error: null,
             lastMinuteInSeconds: null,
             usageInDollars: null,
@@ -63,12 +63,11 @@ export default {
         try{
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password,
-                circuit: 'All'
+                password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
-            var startArrEntry = ['Seconds', 'kWA Usage']
+            var startArrEntry = ['Seconds', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
             this.chartData = compArr
             
@@ -88,29 +87,27 @@ export default {
         async updateValue () {
             return [1,2,3]
         },
-        async updateMinute (circuit) {
+        async updateMinute () {
             const response = await GetUsages.getLastMinuteInSeconds({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password,
-                circuit: circuit
+                password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricSeconds
+            let responseArray = response.data.mockElectricSeconds   //mockWaterSeconds
             this.value = responseArray
-            var startArrEntry = ['Minutes', 'kWA Usage']
+            var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
             this.chartData = compArr
             this.chartOptions.hAxis.title = 'Seconds'
             this.chartOptions.title = 'Usage for the last 60 seconds'
         },
-        async updateHour (circuit) {
+        async updateHour () {
             const response = await GetUsages.getLastHourInMinutes({
                 username: this.$store.state.user.username,
-                password: this.$store.state.user.password,
-                circuit: circuit
+                password: this.$store.state.user.password
             })
-            let responseArray = response.data.mockElectricMinutes
+            let responseArray = response.data.mockElectricMinutes   //mockWaterMinutes
             this.value = responseArray
-            var startArrEntry = ['Minutes', 'kWA Usage']
+            var startArrEntry = ['Minutes', 'Gallons Usage']
             var compArr = [startArrEntry].concat(this.value)
             this.chartData = compArr
             this.chartOptions.hAxis.title = 'Minutes'
