@@ -1,35 +1,42 @@
 <template>
     <div>
         <h1 class="ma-4 text-center text-h1">Water Summary</h1>
-        <v-divider></v-divider>
-        <v-container class="my-4" grid-list-md fluid>
-            <v-card text class="pa-3">
-                <v-layout row wrap>
+        
+        <v-container class="" grid-list-md fluid>
+            <v-layout justify-center>
+            <v-flex xs12 sm12 md8 lg6>
+            <v-card text class="pa-2">
+                <v-layout row wrap justify-center>
                     <v-flex xs12>
-                        <div id="label" class="text-center pa-4 text-h2">Usage in the last {{granularity}}</div>
+                        <div id="label" class="text-center pa-2 text-h2">Usage in the last {{granularity}}</div>
                     </v-flex>
-                    <v-flex xs12>
-                        <div class="waterPrimary text-center pa-4 text-h3">Dollars</div>
+                    <v-flex xs6>
+                        <div class="waterPrimary text-center pa-1 text-h3">Dollars</div>
                         <v-divider></v-divider>
-                        <div class="waterSecondary text-center pa-4 text-h4">${{usageInDollars}}</div>
+                        <div class="waterSecondary pa-1 text-center text-h4">${{usageInDollars}}</div>
                     </v-flex>
-                    <v-flex xs12>
-                        <div class="waterPrimary text-center pa-4 text-h3" >Gallons</div>
+                    <v-flex xs6>
+                        <div class="waterPrimary text-center pa-1 text-h3" >Gallons</div>
                         <v-divider></v-divider>
-                        <div class="waterSecondary text-center pa-4 text-h4">{{totalUsage}} Gallons</div>
+                        <div class="waterSecondary pa-1 text-center text-h4">{{totalUsage}} Gallons</div>
                     </v-flex>
                 </v-layout>
             </v-card>
+            </v-flex>
+            </v-layout>
         </v-container>
+
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
 
         <water-graph ref="graph" />
 
         <v-container>
             <v-bottom-navigation grow text fluid align class="waterSecondary ma-2">
-                <v-btn @click="updateMinute" class="rounded-pill">
+                <v-btn :elevation="minuteElevation" @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
-                <v-btn @click="updateHour" class="rounded-pill">
+                <v-btn :elevation="hourElevation" @click="updateHour" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Hour</span>
                 </v-btn>
                 <v-btn @click="updateDay" class="rounded-pill">
@@ -89,6 +96,8 @@ export default {
             selectedGradient: ['red', 'orange', 'yellow'],
             value: null,
             enabled: true,
+            minuteElevation: 0,
+            hourElevation: 0,
         }
     },
     created() {
@@ -155,6 +164,8 @@ export default {
 
             this.usageInDollars = this.totalUsage * this.rate
             this.$refs.graph.updateMinute()
+            this.minuteElevation = 12
+            this.hourElevation = 0
         },
         async updateHour () {
             this.granularity = 'hour'
@@ -170,6 +181,8 @@ export default {
 
             this.usageInDollars = this.totalUsage * this.rate
             this.$refs.graph.updateHour()
+            this.hourElevation = 12
+            this.minuteElevation = 0
         },
         updateDay () {
             this.granularity = 'day'

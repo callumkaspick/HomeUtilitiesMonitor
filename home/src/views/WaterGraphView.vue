@@ -35,10 +35,10 @@
                     :colors="colors"
                 />
                 <v-bottom-navigation grow text fluid align class="waterSecondary ma-2">
-                <v-btn @click="updateMinute" class="rounded-pill">
+                <v-btn :elevation="minuteElevation" @click="updateMinute" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Minute</span>
                 </v-btn>
-                <v-btn @click="updateHour" class="rounded-pill">
+                <v-btn :elevation="hourElevation" @click="updateHour" class="rounded-pill">
                     <span class="text-center pa-2 text-h5 font-weight-bold">Hour</span>
                 </v-btn>
                 <v-btn @click="updateDay" class="rounded-pill">
@@ -120,6 +120,8 @@ export default {
             value: null,
             enabled: true,
             colors:['yellow','darkyellow'],
+            minuteElevation: 0,
+            hourElevation: 0,
         }
     },
     async mounted() {
@@ -162,6 +164,8 @@ export default {
             this.chartData = compArr
             this.chartOptions.hAxis.title = 'Seconds'
             this.chartOptions.title = 'Usage for the last 60 seconds'
+            this.minuteElevation = 12
+            this.hourElevation = 0
         },
         async updateHour () {
             const response = await GetUsages.getLastHourInMinutesWater({
@@ -175,6 +179,8 @@ export default {
             this.chartData = compArr
             this.chartOptions.hAxis.title = 'Minutes'
             this.chartOptions.title = 'Usage for the last 60 minutes'
+            this.hourElevation = 12
+            this.minuteElevation = 0
         },
         changePassword () {
         this.$router.push({
